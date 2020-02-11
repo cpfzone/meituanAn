@@ -1,0 +1,132 @@
+{
+  "data": [
+    {
+      "children": [
+        {
+          "bg": "#fd9d21",
+          "text": "美食",
+          "url": "/meishi",
+          "icon": "icon-meishi"
+        },
+        {
+          "bg": "#ff6767",
+          "text": "猫眼电影",
+          "url": "/dianying",
+          "icon": "icon-mao"
+        },
+        {
+          "bg": "#8a90fa",
+          "text": "酒店",
+          "url": "/jiudian",
+          "icon": "icon-jiudian"
+        },
+        {
+          "bg": "#fed030",
+          "text": "休闲娱乐",
+          "url": "/yule",
+          "icon": "icon-xiuxianyule"
+        },
+        {
+          "bg": "#fd9d21",
+          "text": "外卖",
+          "url": "/waimai",
+          "icon": "icon-waimai"
+        },
+        {
+          "bg": "#fed030",
+          "text": "KTV",
+          "url": "/ktv",
+          "icon": "icon-KTV"
+        },
+        {
+          "bg": "#4dc6ee",
+          "text": "周边游",
+          "url": "/zhoubianyou",
+          "icon": "icon-zhoubianyou"
+        },
+        {
+          "bg": "#ff80c2",
+          "text": "丽人",
+          "url": "/liren",
+          "icon": "icon-qunfenglirenxian"
+        },
+        {
+          "bg": "#fd9d21",
+          "text": "小吃快餐",
+          "url": "/xiaochi",
+          "icon": "icon-kuaican"
+        },
+        {
+          "bg": "#A8DD99",
+          "text": "生活服务",
+          "url": "/shenghuo",
+          "icon": "icon-iconfontshenghuojiaofei"
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "bg": "#fd9d21",
+          "text": "今日新单",
+          "url": "/xindan",
+          "icon": "icon-dingdan"
+        },
+        {
+          "bg": "#ff6767",
+          "text": "足疗按摩",
+          "url": "/zuliao",
+          "icon": "icon-zuyuzuliao"
+        },
+        {
+          "bg": "#8a90fa",
+          "text": "甜点餐饮",
+          "url": "/tiandian",
+          "icon": "icon-kuaican"
+        },
+        {
+          "bg": "#fed030",
+          "text": "母婴亲子",
+          "url": "/muying",
+          "icon": "icon-airudiantubiaohuizhi-zhuanqu_qinzichengchang"
+        },
+        {
+          "bg": "#fd9d21",
+          "text": "学习培训",
+          "url": "/xuexi",
+          "icon": "icon-xuexi"
+        },
+        {
+          "bg": "#fed030",
+          "text": "结婚",
+          "url": "/jiehun",
+          "icon": "icon-jiehunzhengshu"
+        },
+        {
+          "bg": "#4dc6ee",
+          "text": "家装",
+          "url": "/zhuang",
+          "icon": "icon-weibiaoti2fuzhi13"
+        },
+        {
+          "bg": "#ff80c2",
+          "text": "汽车服务",
+          "url": "/che",
+          "icon": "icon-che"
+        },
+        {
+          "bg": "#fd9d21",
+          "text": "川湘菜",
+          "url": "/chuan",
+          "icon": "icon-shanchuan"
+        },
+        {
+          "bg": "#A8DD99",
+          "text": "全部分类",
+          "url": "/more",
+          "icon": "icon-gengduo"
+        }
+      ]
+    }
+  ]
+}

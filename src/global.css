@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  margin: 0;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.28em;
   line-height: 1;
@@ -42,4 +43,11 @@ img {
 
 a{
   text-decoration: none;
+}
+
+p, h6 {
+  line-height: 1.41;
+  text-align: justify;
+  margin: -.2em 0;
+  word-break: break-all;
 }

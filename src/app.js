@@ -1,3 +1,5 @@
+import './interceptor';
+
 export const dva = {
   config: {
     onError(err) {
