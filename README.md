@@ -1,6 +1,6 @@
 <div align="center">
   
-# Vue-美团(Nuxt + Mongoose + koa)
+# React-美团(Dva + umi + koa + Mongoose)
 
 </div>
 
@@ -21,9 +21,15 @@
 
 ## 完成
 
+- [x] 自动部署到服务器
+- [ ] umi的基本使用
+
 ## 计划
 
-- [x] 自动部署到服务器
+- [ ] 首页基本完成
+- [ ] SSR服务端渲染
+- [ ] dva
+- [ ] umi
 
 ## 使用
 

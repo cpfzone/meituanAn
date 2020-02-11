@@ -1,7 +1,27 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
+html {
+  font-size: 50px;
+}
+
 body {
-  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.28em;
+  line-height: 1;
+  color: #333;
+  background-color: #f0efed;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
 }
