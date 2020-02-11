@@ -1,12 +1,15 @@
-import styles from './index.css';
+import { Component } from 'react';
+import withRouter from 'umi/withRouter';
 
-function BasicLayout(props) {
-  return (
-    <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to umi!</h1>
-      {props.children}
-    </div>
-  );
+class Layout extends Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
+  }
+  render() {
+    return this.props.children;
+  }
 }
 
-export default BasicLayout;
+export default withRouter(Layout);

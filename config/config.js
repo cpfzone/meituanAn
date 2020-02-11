@@ -5,9 +5,18 @@ export default {
     //   以pages为根目录
     {
       path: '/',
-      //   component: '../layouts/index',
       // 这里相对根目录,文件后缀名不能缺少
-      component: './index',
+      component: '../layouts/index.js',
+      routes: [
+        { path: '/', component: './index.js' },
+        {
+          path: '/search',
+          component: './search/index',
+        },
+        {
+          component: './NoFound',
+        },
+      ],
     },
     {
       component: './NoFound',
