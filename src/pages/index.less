@@ -198,3 +198,136 @@ label.react {
     }
   }
 }
+
+.guessLike {
+  border-top: 1px solid #ddd8ce;
+  border-bottom: 1px solid #ddd8ce;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+  background-color: #fff;
+  min-height: 5rem;
+  position: relative;
+  .listInDl {
+    opacity: 0;
+    transition: all .6s;
+    dt {
+      font-size: 0.34rem;
+      padding-bottom: 0.2rem;
+      color: #333;
+      padding: 0.28rem 0.2rem;
+      border-bottom: 1px solid #ddd8ce;
+      font-weight: 400;
+    }
+    dd {
+      margin: 0;
+      border-bottom: 1px solid #ddd8ce;
+      overflow: hidden;
+      font-size: inherit;
+      font-weight: 400;
+      position: relative;
+      a {
+        padding: 0.28rem 0.2rem;
+        .dealcard {
+          position: relative;
+          box-sizing: border-box;
+          margin: -0.08rem 0;
+          .dealcardImg {
+            position: absolute;
+            width: 1.8rem;
+            height: 1.64rem;
+            text-align: center;
+            overflow: hidden;
+            max-width: 4rem;
+          }
+          .dealcardRight {
+            margin-left: 2rem;
+            position: relative;
+            height: 1.64rem;
+            .singleLine {
+              padding-top: 0.1rem;
+              margin-bottom: 0.12rem;
+              font-size: 0.3rem;
+              font-weight: 400;
+              color: #333;
+              display: block;
+            }
+            .title {
+              font-size: 0.24rem;
+              height: 0.68rem;
+              margin-bottom: 0.16rem;
+              color: #666;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              line-height: 1.41;
+              text-align: justify;
+            }
+            .price {
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              del {
+                font-size: 0.24rem;
+                margin-left: 5px;
+                &::before {
+                  content: '门市价:';
+                }
+              }
+              .strong {
+                font-size: 0.36rem;
+                color: #f60;
+              }
+              .strongColor {
+                font-size: 0.24rem;
+                color: #f60;
+              }
+              .lineRight {
+                position: absolute;
+                top: 0.04rem;
+                right: 0;
+                font-size: 0.24rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .db {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.3rem;
+    .reacts {
+      color: #fe8c00;
+      padding: 0 0.2rem;
+      display: block;
+      height: 100%;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .more {
+      position: relative;
+      padding-right: 0.3rem;
+      width: 100%;
+      box-sizing: border-box;
+      color: #fe8c00;
+      &:after {
+        position: absolute;
+        right: 0.05rem;
+        top: 50%;
+        display: block;
+        content: '';
+        width: 0.6em;
+        height: 0.6em;
+        border-left: 0.04rem solid #fe8c00;
+        border-bottom: 0.04rem solid #fe8c00;
+        -webkit-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+        -moz-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+        -ms-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+      }
+    }
+  }
+}

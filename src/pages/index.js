@@ -3,8 +3,22 @@ import styles from './index.less';
 import Link from 'umi/link';
 import { Carousel, WingBlank } from 'antd-mobile';
 import data from '../data/header.json';
+import Axios from 'axios';
+import Footer from './footer';
 
 export default class index extends Component {
+  state = {
+    arr: [],
+  };
+
+  componentDidMount() {
+    Axios.get('/api/tags').then(res => {
+      this.setState({
+        arr: res.data.list,
+      });
+    });
+  }
+
   render() {
     return (
       <div>
@@ -94,6 +108,49 @@ export default class index extends Component {
               })}
             </Carousel>
           </WingBlank>
+        </div>
+        <div className={styles.guessLike}>
+          <WingBlank>
+            <dl
+              className={styles.listInDl}
+              style={{ opacity: this.state.arr.length > 0 ? '1' : '0' }}
+            >
+              <dd>
+                <dl>
+                  <dt>猜你喜欢</dt>
+                  {this.state.arr.map((v, i) => {
+                    return (
+                      <dd key={i}>
+                        <Link to={'/detail/' + v.url} className={styles.react}>
+                          <div className={styles.dealcard}>
+                            <div className={styles.dealcardImg}>
+                              <img src={v.pic} alt="图像" />
+                            </div>
+                            <div className={styles.dealcardRight}>
+                              <div className={styles.singleLine}>{v.title}</div>
+                              <div className={styles.title}>{'[' + v.city + ']' + v.content}</div>
+                              <div className={styles.price}>
+                                <span className={styles.strong}>{v.new}</span>
+                                <span className={styles.strongColor}>元</span>
+                                <del>{v.old}</del>
+                                <span className={styles.lineRight}>已售{v.num}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      </dd>
+                    );
+                  })}
+                </dl>
+              </dd>
+              <dd className={styles.db}>
+                <Link to="/all" className={styles.reacts}>
+                  <div className={styles.more}>查看全部团购</div>
+                </Link>
+              </dd>
+            </dl>
+          </WingBlank>
+          <Footer />
         </div>
       </div>
     );
