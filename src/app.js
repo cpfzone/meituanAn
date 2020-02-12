@@ -1,5 +1,5 @@
 import './interceptor';
-import '../utils/pc';
+// import '../utils/pc';
 
 export const dva = {
   config: {
