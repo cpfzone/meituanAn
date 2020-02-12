@@ -14,10 +14,10 @@ export default function IsPC() {
 const fang = window.localStorage.getItem('meituanAn');
 
 console.log(fang);
-if (fang === "1") {
+if (fang === '1') {
   // 手机端
   window.location.href = 'http://react.shtodream.cn/';
-} else if (fang === "2") {
+} else if (fang === '2') {
   // 电脑端
   window.location.href = 'http://mt.shtodream.cn/';
 } else {
@@ -25,7 +25,9 @@ if (fang === "1") {
   const flag = IsPC();
   if (flag) {
     window.localStorage.setItem('meituanAn', 2);
+    window.location.href = 'http://mt.shtodream.cn/';
   } else {
     window.localStorage.setItem('meituanAn', 1);
+    window.location.href = 'http://react.shtodream.cn/';
   }
 }
