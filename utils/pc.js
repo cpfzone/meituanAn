@@ -11,10 +11,21 @@ export default function IsPC() {
   return flag;
 }
 
-var flag = IsPC(); //true为PC端，false为手机端
+const fang = window.localStorage.getItem('meituanAn');
 
-if(flag){
-  window.location.href = "http://mt.shtodream.cn/"
-}else{
-  window.location.href = "http://react.shtodream.cn/"
+console.log(fang);
+if (fang === "1") {
+  // 手机端
+  window.location.href = 'http://react.shtodream.cn/';
+} else if (fang === "2") {
+  // 电脑端
+  window.location.href = 'http://mt.shtodream.cn/';
+} else {
+  // 没有本地缓存
+  const flag = IsPC();
+  if (flag) {
+    window.localStorage.setItem('meituanAn', 2);
+  } else {
+    window.localStorage.setItem('meituanAn', 1);
+  }
 }
