@@ -3,23 +3,29 @@ import styles from './index.less';
 import Link from 'umi/link';
 import { Carousel, WingBlank } from 'antd-mobile';
 import data from '../data/header.json';
-import Axios from 'axios';
 import Footer from './footer';
+import { connect } from 'dva';
 
-export default class index extends Component {
-  state = {
-    arr: [],
-  };
-
+export default
+@connect(
+  state => {
+    return {
+      arr: state.list.arr,
+    };
+  },
+  {
+    getList: () => ({
+      type: 'list/getList', //aciton的type需要加上命名空间
+    }),
+  },
+)
+class index extends Component {
   componentDidMount() {
-    Axios.get('/api/tags').then(res => {
-      this.setState({
-        arr: res.data.list,
-      });
-    });
+    this.props.getList();
   }
 
   render() {
+    const { arr } = this.props;
     return (
       <div>
         <header className={styles.navbar}>
@@ -111,14 +117,11 @@ export default class index extends Component {
         </div>
         <div className={styles.guessLike}>
           <WingBlank>
-            <dl
-              className={styles.listInDl}
-              style={{ opacity: this.state.arr.length > 0 ? '1' : '0' }}
-            >
+            <dl className={styles.listInDl} style={{ opacity: arr.length > 0 ? '1' : '0' }}>
               <dd>
                 <dl>
                   <dt>猜你喜欢</dt>
-                  {this.state.arr.map((v, i) => {
+                  {arr.map((v, i) => {
                     return (
                       <dd key={i}>
                         <Link to={'/detail/' + v.url} className={styles.react}>
