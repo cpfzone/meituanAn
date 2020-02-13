@@ -53,7 +53,7 @@ class index extends Component {
             </Link>
           </div>
           <div className={styles.navbarRight}>
-            <Link to="/acount" className={[styles.react, styles.right_nav].join(' ')}>
+            <Link to="/account" className={[styles.react, styles.right_nav].join(' ')}>
               <span className={styles.NavBtn}>
                 <img
                   src="https://p0.meituan.net/travelcube/641521461179df7cfb88738dd1ea11ec1031.png"
