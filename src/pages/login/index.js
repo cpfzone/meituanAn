@@ -55,7 +55,7 @@ class index extends Component {
       return false;
     }
     if (value.length === 11 && /^1[3456789]\d{9}$/.test(value)) {
-      // this.props.getCode(value);
+      this.props.getCode(value);
       this.setState(
         {
           firstTip: '',

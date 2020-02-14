@@ -6,8 +6,8 @@ const DefaultUser = {
 };
 
 // api
-async function getListData(phone) {
-  const data = await Axios({
+function getListData(phone) {
+  return Axios({
     method: 'get',
     params: {
       code: getCode(6),
@@ -15,8 +15,6 @@ async function getListData(phone) {
     },
     url: '/server/user/phone',
   });
-  console.log(data);
-  return data;
 }
 
 export default {
