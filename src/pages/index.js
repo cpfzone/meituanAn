@@ -85,7 +85,7 @@ class index extends Component {
             <Carousel
               autoplay={false}
               infinite
-              swipeSpeed={5}
+              swipeSpeed={12}
               dotStyle={{ position: 'relative', top: '10px' }}
               dotActiveStyle={{
                 backgroundColor: '#FE8C00',
