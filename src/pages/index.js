@@ -115,6 +115,7 @@ class index extends Component {
             </Carousel>
           </WingBlank>
         </div>
+        <div className={styles.Gekai}></div>
         <div className={styles.guessLike}>
           <WingBlank>
             <dl className={styles.listInDl} style={{ opacity: arr.length > 0 ? '1' : '0' }}>
