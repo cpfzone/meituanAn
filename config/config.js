@@ -13,6 +13,10 @@ export default {
           component: './login',
         },
         {
+          path: '/account',
+          component: './account',
+        },
+        {
           path: '/',
           component: './index.js',
         },
