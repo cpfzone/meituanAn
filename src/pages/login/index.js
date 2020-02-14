@@ -4,12 +4,23 @@ import Link from 'umi/link';
 import { Button } from 'antd-mobile';
 import { connect } from 'dva';
 
-@connect(null, {
-  getCode: value => ({
-    type: 'user/getCode',
-    value,
-  }),
-})
+@connect(
+  state => {
+    return {
+      isCode: state.list.isCode,
+    };
+  },
+  {
+    getCode: value => ({
+      type: 'user/getCode',
+      value,
+    }),
+    propsLoginDemo: value => ({
+      type: 'user/code',
+      value,
+    }),
+  },
+)
 class index extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +53,7 @@ class index extends Component {
         ) {
           this.setState({ next: false });
           // 判断验证码是否和后台的验证码相符合
-        }else{
+        } else {
           this.setState({ next: true });
         }
       },
@@ -95,8 +106,13 @@ class index extends Component {
     clearInterval(this.timer);
   };
 
+  propsLoginDemo = () => {
+    console.log(1);
+  };
+
   render() {
-    const { firstTip, firstTime, next } = this.state;
+    const { firstTip, firstTime, next, code } = this.state;
+    const { propsLoginDemo } = this.props;
     return (
       <div className={styles.nei}>
         <header className={styles.iloginHeader}>
@@ -137,7 +153,12 @@ class index extends Component {
               </div>
               <div className={[styles.mtfe, styles.margin50].join(' ')}></div>
               <div>
-                <Button disabled={next} type="primary" className={styles.gaiColor}>
+                <Button
+                  onClick={() => propsLoginDemo(code)}
+                  disabled={next}
+                  type="primary"
+                  className={styles.gaiColor}
+                >
                   登录
                 </Button>
               </div>

@@ -1,13 +1,8 @@
-import Axios from 'axios';
+import { getListData } from '../service/list';
 
 const homeList = {
   arr: [],
 };
-
-// api
-function getListData() {
-  return Axios.get('http://mock.shtodream.cn/mock/5e439b1dbaf5c011f5fce6f9/api/tags');
-}
 
 export default {
   namespace: 'list',

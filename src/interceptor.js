@@ -11,12 +11,13 @@ const codeMessage = {
 
 //拦截请求
 axios.interceptors.response.use(null, ({ response }) => {
-  Toast.loading('加载中', 0);
   if (codeMessage[response.status]) {
     notification.error({
       message: `请求错误 ${response.status}: ${response.config.url}`,
-      description: codeMessage[response.status]
+      description: codeMessage[response.status],
     });
+  } else {
+    Toast.loading('加载中', 0);
   }
   // eslint-disable-next-line no-undef
   return Promise.reject(err);
