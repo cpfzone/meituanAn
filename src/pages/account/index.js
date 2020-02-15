@@ -15,7 +15,7 @@ class index extends Component {
         {isLogin ? (
           <div>我是账号页面</div>
         ) : (
-          <Redirect to={{ pathname: '/login', query: { url: route.path } }} />
+          <Redirect to={{ pathname: '/login', query: { url: route.path.substr(1) } }} />
         )}
       </Fragment>
     );

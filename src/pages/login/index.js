@@ -4,23 +4,16 @@ import Link from 'umi/link';
 import { Button } from 'antd-mobile';
 import { connect } from 'dva';
 
-@connect(
-  state => {
-    return {
-      isCode: state.list.isCode,
-    };
-  },
-  {
-    getCode: value => ({
-      type: 'user/getCode',
-      value,
-    }),
-    propsLoginDemo: value => ({
-      type: 'user/code',
-      value,
-    }),
-  },
-)
+@connect(null, {
+  getCode: value => ({
+    type: 'user/getCode',
+    value,
+  }),
+  propsLoginDemo: value => ({
+    type: 'user/code',
+    value,
+  }),
+})
 class index extends Component {
   constructor(props) {
     super(props);
@@ -106,12 +99,8 @@ class index extends Component {
     clearInterval(this.timer);
   };
 
-  propsLoginDemo = () => {
-    console.log(1);
-  };
-
   render() {
-    const { firstTip, firstTime, next, code } = this.state;
+    const { firstTip, firstTime, next, code, tel } = this.state;
     const { propsLoginDemo } = this.props;
     return (
       <div className={styles.nei}>
@@ -154,7 +143,7 @@ class index extends Component {
               <div className={[styles.mtfe, styles.margin50].join(' ')}></div>
               <div>
                 <Button
-                  onClick={() => propsLoginDemo(code)}
+                  onClick={() => propsLoginDemo({ code, tel })}
                   disabled={next}
                   type="primary"
                   className={styles.gaiColor}

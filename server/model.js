@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const dbName = require('../config/db');
 
 //数据库的地址
-const DB_URL = 'mongodb://localhost:27017/meituanAn';
+const DB_URL = `mongodb://localhost:27017/${dbName.dbName}`;
 mongoose.connect(DB_URL);
 
 const models = {
@@ -20,6 +21,8 @@ const models = {
     address: { type: String },
     // 密码的盐
     salt: { type: String, require: true },
+    // 第一次注册密码是否被修改
+    firstPas: { type: Boolean },
   },
 };
 

@@ -26,8 +26,18 @@ export const code = phone => {
   return Axios({
     method: 'post',
     data: {
-      phone,
+      code: phone,
     },
     url: '/server/user/yan',
+  });
+};
+
+export const setPassWord = values => {
+  return Axios({
+    method: 'post',
+    data: {
+      values,
+    },
+    url: '/server/user/setPassword',
   });
 };
