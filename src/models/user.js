@@ -3,7 +3,7 @@ import { message } from 'antd';
 import router from 'umi/router';
 
 const DefaultUser = {
-  isLogin: localStorage.getItem('meiToken') === null ? false : true,
+  isLogin: localStorage.getItem('meituanToken') === null ? false : true,
 };
 
 export default {
@@ -28,7 +28,7 @@ export default {
         // 跳转回登录页面
         console.log(router.query);
       }
-      localStorage.setItem('meiToken', res.data.token);
+      localStorage.setItem('meituanToken', res.data.token);
       localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
       yield put({ type: 'codeState', payload: res.data });
     },

@@ -10,7 +10,7 @@ import { Toast } from 'antd-mobile';
 
 axios.interceptors.request.use(function(config) {
   // jwt添加header的token
-  const token = localStorage.getItem('meiToken');
+  const token = localStorage.getItem('meituanToken');
   config.headers.common['Authorization'] = 'Bearer ' + token;
   Toast.loading('加载中', 0);
   // eslint-disable-next-line no-undef
