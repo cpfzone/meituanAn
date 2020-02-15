@@ -1,3 +1,4 @@
+const config = require('./db');
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
@@ -64,7 +65,7 @@ export default {
   },
   proxy: {
     '/server': {
-      target: 'http://localhost:4000',
+      target: `http://localhost:${config.port}`,
       changeOrigin: true,
     },
   },
