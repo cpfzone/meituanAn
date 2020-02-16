@@ -25,8 +25,13 @@ const models = {
     firstPas: { type: Boolean },
     // 美团会员等级
     level: { type: Number },
+    // 收藏列表
+    collections: { type: Array },
+    // 抵用券列表
+    quans: { type: Array },
+    // 抽奖券
+    chous: { type: Array },
   },
-  
 };
 
 for (let m in models) {

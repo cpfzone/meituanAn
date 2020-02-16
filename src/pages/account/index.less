@@ -126,14 +126,15 @@
             display: block;
             font-size: 0.6rem;
             margin-bottom: 0.18rem;
-            span{
+            span {
               font-size: 0.5rem;
             }
           }
         }
       }
     }
-    a {
+    a,
+    .shMyA {
       padding: 0.28rem 0.2rem;
       display: block;
       color: inherit;
@@ -141,6 +142,58 @@
       overflow-x: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      .moreWeak {
+        position: relative;
+        padding-right: 0.3rem;
+        width: 100%;
+        box-sizing: border-box;
+        .moreNew {
+          display: inline-block;
+          background: url(http://p1.meituan.net/mmc/304e239b309615cc12f7565729a709e12024.png);
+          background-size: 100%;
+          width: 0.41rem;
+          height: 0.21rem;
+          background-repeat: no-repeat;
+          vertical-align: top;
+          margin-left: 0.1rem;
+        }
+        .moreIconText {
+          display: inline-block;
+          width: 0.5rem;
+          height: 0.5rem;
+          text-align: center;
+          line-height: 0.5rem;
+          border-radius: 0.06rem;
+          color: white;
+          margin-right: 0.25rem;
+          margin-top: -0.06rem;
+          margin-bottom: -0.06rem;
+          background-color: #f5716e;
+          vertical-align: initial;
+          font-size: 0.3rem;
+        }
+        .moreSpan {
+          color: #999;
+          position: absolute;
+          right: 0.25rem;
+          top: 50%;
+          -webkit-transform: translateY(-0.5em);
+        }
+        &::after {
+          position: absolute;
+          right: 0.05rem;
+          top: 50%;
+          display: block;
+          content: '';
+          width: 0.6em;
+          height: 0.6em;
+          border-left: 0.04rem solid #999;
+          border-bottom: 0.04rem solid #999;
+          -webkit-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+          -moz-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+          -ms-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+        }
+      }
       .moreOrder {
         &::after {
           position: absolute;

@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "title": "我的收藏",
+      "icon": "icon-shoucang",
+      "data": "collections",
+      "url": "collections",
+      "color": "#0092DE"
+    },
+    {
+      "title": "我的抵用券",
+      "icon": "icon-using_help",
+      "data": "quans",
+      "url": "quans",
+      "color": "#EB2C00"
+    },
+    {
+      "title": "我的抽奖单",
+      "icon": "icon-choujiang",
+      "data": "chous",
+      "url": "chous",
+      "color": "#F5B345"
+    },
+    {
+      "title": "积分换礼品",
+      "icon": "icon-jifen",
+      "data": null,
+      "url": "/",
+      "new": true
+    }
+  ]
+}

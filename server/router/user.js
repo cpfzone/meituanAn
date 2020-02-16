@@ -62,6 +62,7 @@ code.post('/yan', async ctx => {
     // 操作数据库
     const createTime = new Date().getTime();
     const newPassword = hashCode(ctx.request.body.code.tel);
+    // 注册数据库模型
     const userModel = new Meituan({
       createTime,
       password: newPassword.passwordHash,
@@ -70,6 +71,9 @@ code.post('/yan', async ctx => {
       salt: newPassword.salt,
       firstPas: false,
       level: 1,
+      collections: ['123'],
+      quans: ['12', '34', '56'],
+      chous: [],
     });
     try {
       let obj = await userModel.save();

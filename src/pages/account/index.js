@@ -5,6 +5,8 @@ import Footer from '../footer/index';
 import Header from '../header/index';
 import styles from './index.less';
 import Link from 'umi/link';
+import data from '../../data/account.json';
+import router from 'umi/router';
 
 @connect(state => {
   return {
@@ -13,6 +15,14 @@ import Link from 'umi/link';
   };
 }, null)
 class index extends Component {
+  shMyA = url => {
+    if (url === '/') {
+      router.push('/');
+    } else {
+      router.push('/account/' + url);
+    }
+  };
+
   render() {
     const { isLogin, route, userinfo } = this.props;
     return (
@@ -98,12 +108,33 @@ class index extends Component {
                 </dl>
                 <div className={styles.Gekai}></div>
                 <dl className={styles.list}>
-                  <dd>
-                    <Link to="/account/collection"></Link>
-                  </dd>
-                  <dd></dd>
-                  <dd></dd>
-                  <dd></dd>
+                  {data.data.map((v, i) => {
+                    return (
+                      <dd key={i}>
+                        <div
+                          className={styles.shMyA}
+                          onClick={() => {
+                            this.shMyA(v.url);
+                          }}
+                        >
+                          <div className={styles.moreWeak}>
+                            <i className={styles.moreIconText} style={{ background: v.color }}>
+                              <span className={['iconfont', v.icon].join(' ')}></span>
+                            </i>
+                            {v.title}
+                            {v.new && <i className={styles.moreNew}></i>}
+                            <span className={styles.moreSpan}>
+                              {v.data === null
+                                ? null
+                                : userinfo[v.data].length > 0
+                                ? userinfo[v.data].length
+                                : null}
+                            </span>
+                          </div>
+                        </div>
+                      </dd>
+                    );
+                  })}
                 </dl>
               </Fragment>
             )}
