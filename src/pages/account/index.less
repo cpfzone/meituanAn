@@ -1,0 +1,191 @@
+.myUserInfo {
+  color: #333;
+  position: relative;
+  background: -webkit-linear-gradient(top, #e1dace, #dfc8b4);
+  border-bottom: 1px solid #c0bbb2;
+  display: block;
+  height: 1.6rem;
+  position: relative;
+  padding-right: 0.2rem;
+  > img {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+  .avater {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.4rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    right: 0;
+    z-index: 0;
+  }
+  .userinfoMore {
+    z-index: 1;
+    position: relative;
+    height: 100%;
+    padding: 0.28rem 0.2rem;
+    margin-right: 0.2rem;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    font-size: 0.24rem;
+    color: #666;
+    strong {
+      color: #ff9712;
+      font-weight: normal;
+    }
+    .levelDemo {
+      vertical-align: middle;
+      margin-left: 0.2rem;
+      display: inline-block;
+      width: 0.3rem;
+      height: 0.3rem;
+      background: url(http://s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:d5896c44/touch/css/i/vip3.png);
+      background-size: 0.3rem;
+      margin-top: -0.08rem;
+    }
+    .level1 {
+      background-position-y: -0.4rem;
+    }
+    .level2 {
+      background-position-y: -0.8rem;
+    }
+    .level3 {
+      background-position-y: -1.2rem;
+    }
+    .level4 {
+      background-position-y: -1.6rem;
+    }
+    .level5 {
+      background-position-y: -2rem;
+    }
+    .level6 {
+      background-position-y: -2.4rem;
+    }
+    .userInfoName {
+      font-size: 0.3rem;
+      color: #333;
+      margin-top: 0.1rem;
+      margin-bottom: 0.25rem;
+    }
+    &:after {
+      position: absolute;
+      right: 0.05rem;
+      top: 50%;
+      display: block;
+      content: '';
+      width: 0.6em;
+      height: 0.6em;
+      border-left: 0.04rem solid #999;
+      border-bottom: 0.04rem solid #999;
+      border-color: #666;
+      -webkit-transform: translateY(-50%) scaleY(1.2) rotateZ(-135deg);
+    }
+  }
+}
+
+.Gekai {
+  height: 0.2rem;
+  background: #e5e5e5;
+}
+
+.list {
+  border-top: 1px solid #ddd8ce;
+  border-bottom: 1px solid #ddd8ce;
+  margin-bottom: 0;
+  background-color: #fff;
+  dd {
+    margin: 0;
+    border-bottom: 1px solid #ddd8ce;
+    overflow: hidden;
+    font-size: inherit;
+    font-weight: 400;
+    position: relative;
+    .orderIndex {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      li {
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+        position: relative;
+        .react {
+          padding: 0.28rem 0;
+          display: block;
+          color: inherit;
+          height: 100%;
+          overflow-x: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          .textIcon {
+            display: block;
+            font-size: 0.6rem;
+            margin-bottom: 0.18rem;
+            span{
+              font-size: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+    a {
+      padding: 0.28rem 0.2rem;
+      display: block;
+      color: inherit;
+      height: 100%;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      .moreOrder {
+        &::after {
+          position: absolute;
+          right: 0.05rem;
+          top: 50%;
+          display: block;
+          content: '';
+          width: 0.6em;
+          height: 0.6em;
+          border-left: 0.04rem solid #999;
+          border-bottom: 0.04rem solid #999;
+          -webkit-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+          -moz-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+          -ms-transform: translateY(-50%) scaleY(0.7) rotateZ(-135deg);
+        }
+        position: relative;
+        padding-right: 0.3rem;
+        width: 100%;
+        box-sizing: border-box;
+        .orderAfter {
+          position: absolute;
+          right: 0.25rem;
+          top: 50%;
+          -webkit-transform: translateY(-0.5em);
+          color: #06c1ae;
+          color: #999;
+        }
+        .orderI {
+          display: inline-block;
+          width: 0.5rem;
+          height: 0.5rem;
+          text-align: center;
+          line-height: 0.5rem;
+          border-radius: 0.06rem;
+          color: white;
+          margin-right: 0.25rem;
+          margin-top: -0.06rem;
+          margin-bottom: -0.06rem;
+          background-color: #f5716e;
+          vertical-align: initial;
+          font-size: 0.3rem;
+          background: #fe8c00;
+          border-radius: 0.04rem;
+        }
+      }
+    }
+  }
+}

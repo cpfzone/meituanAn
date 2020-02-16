@@ -23,7 +23,10 @@ const models = {
     salt: { type: String, require: true },
     // 第一次注册密码是否被修改
     firstPas: { type: Boolean },
+    // 美团会员等级
+    level: { type: Number },
   },
+  
 };
 
 for (let m in models) {

@@ -1,15 +1,15 @@
 const code = require('koa-router')();
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const koajwt = require('koa-jwt');
 // 加载mongodb数据库
-const model = require('../model');
 const dbName = require('../../config/db');
-const Meituan = model.getNames(dbName.dbName);
-// 密码加盐
-const hashCode = require('../utils/hasCode');
+const model = require('../model');
+const Meituan = model.getNames('meituan');
+const hashCode = require('../utils/hasCode'); // 密码加盐
 // 这个是我个人的一个验证码平台,资金有限,如果大家使用尽量就是用来自己测试,不要随意使用,短信低于一定数量之后我会停掉这个接口
 const PHONECODE = '80a1580da2040d43e6aa990d78a203d1';
-
+const secret = dbName.secret;
 /* params
    	将value替换成你发送的内容，
     如：content={"code":"测试0"}
@@ -33,7 +33,8 @@ code.get('/phone', async (ctx, next) => {
   ctx.body = result.data;
 });
 
-code.post('/setPassword', async ctx => {
+// 修改密码
+code.post('/setPassword', koajwt({ secret }), async ctx => {
   const values = ctx.request.body.values;
   let result = {};
   const obj = await Meituan.findOne({ phone: values.phone });
@@ -54,7 +55,7 @@ code.post('/setPassword', async ctx => {
   ctx.body = JSON.stringify(result);
 });
 
-// 判断验证码是否正确
+// 判断验证码是否正确 并且注册
 code.post('/yan', async ctx => {
   if (ctx.cookies.get('code') === ctx.request.body.code.code) {
     let result = {};
@@ -68,21 +69,22 @@ code.post('/yan', async ctx => {
       name: ctx.request.body.code.tel,
       salt: newPassword.salt,
       firstPas: false,
+      level: 1,
     });
     try {
       let obj = await userModel.save();
-      obj.password = ''; //保护密码不背查看到
-      obj.salt = '';
-      obj._id = '';
-      result.userinfo = obj;
+      let gai = {};
+      obj.password = '';
+      gai.yy = obj._id;
+      result.userinfo = gai;
+      result.biao = obj;
       result.code = 1;
       // 生成加密token
       const token = jwt.sign(
         {
           name: obj.name,
-          _id: obj._id,
         },
-        'sh',
+        secret,
         { expiresIn: '2h' },
       );
       result.token = token;
@@ -96,6 +98,15 @@ code.post('/yan', async ctx => {
       message: '验证码填写错误,请重新查看或者重新获取',
     });
   }
+});
+
+// 获取用户基本信息
+// 判断验证码是否正确 并且注册
+code.post('/info', koajwt({ secret }), async ctx => {
+  const data = ctx.request.body;
+  const obj = await Meituan.findById(data.id);
+  obj.password = '';
+  ctx.body = JSON.stringify(obj);
 });
 
 module.exports = code.routes();

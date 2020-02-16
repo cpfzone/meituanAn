@@ -1,15 +1,21 @@
-import { getListData, code, setPassWord } from '../service/user';
+import { getListData, code, setPassWord, getUserInfoData } from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
 
 const DefaultUser = {
   isLogin: localStorage.getItem('meituanToken') === null ? false : true,
+  userinfo: null,
 };
 
 export default {
   namespace: 'user',
   state: DefaultUser,
   effects: {
+    // 获取用户信息
+    *userInfoData({ id }, { call, put }) {
+      const res = yield call(getUserInfoData, id);
+      yield put({ type: 'userInfoDataMy', payload: res.data });
+    },
     // 获取验证码
     *getCode(action, { call, put }) {
       const res = yield call(getListData, action.value);
@@ -61,7 +67,13 @@ export default {
       const newState = JSON.parse(JSON.stringify(state));
       if (action.payload.code === 1) {
         newState.isLogin = true;
+        newState.userinfo = action.payload.biao;
       }
+      return newState;
+    },
+    userInfoDataMy(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.userinfo = action.payload;
       return newState;
     },
   }, //更新状态

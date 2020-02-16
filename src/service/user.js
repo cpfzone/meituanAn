@@ -41,3 +41,13 @@ export const setPassWord = values => {
     url: '/server/user/setPassword',
   });
 };
+
+export const getUserInfoData = id => {
+  return Axios({
+    method: 'post',
+    data: {
+      id,
+    },
+    url: '/server/user/info',
+  });
+};

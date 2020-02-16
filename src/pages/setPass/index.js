@@ -3,18 +3,25 @@ import { Form, Icon, Input, Button } from 'antd';
 import styles from './index.less';
 import { connect } from 'dva';
 
-@connect(null, {
-  setPassWord: values => ({
-    type: 'user/setPassWordDemo',
-    values,
-  }),
-})
+@connect(
+  state => {
+    return {
+      userinfo: state.user.userinfo,
+    };
+  },
+  {
+    setPassWord: values => ({
+      type: 'user/setPassWordDemo',
+      values,
+    }),
+  },
+)
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        const phone = JSON.parse(localStorage.getItem('userinfo')).phone;
+        const phone = this.props.userinfo.phone;
         this.props.setPassWord({ password: values.password, phone });
       }
     });

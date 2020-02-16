@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styles from './index.less';
 import Link from 'umi/link';
+import { connect } from 'dva';
 
-export default class index extends Component {
+@connect(state => {
+  return {
+    isLogin: state.user.isLogin,
+  };
+}, null)
+class index extends Component {
   render() {
     return (
       <footer>
         <div className={styles.footerNav}>
-          <div className={styles.pullRight}>
+          <div className={[styles.pullRight, styles.pullDemo].join(' ')}>
             <span className={styles.m_city}>城市</span>
             <img
               src="https://p1.meituan.net/travelcube/c6c04160817d530ecddf9f86b158106e2032.png"
@@ -18,13 +24,17 @@ export default class index extends Component {
               北京
             </Link>
           </div>
-          <Link to="/login" className={styles.btn}>
-            登录
-          </Link>
-          <em></em>
-          <Link to="/register" className={styles.btn}>
-            注册
-          </Link>
+          {!this.props.isLogin ? (
+            <Fragment>
+              <Link to="/login" className={styles.btn}>
+                登录
+              </Link>
+              <em></em>
+              <Link to="/register" className={styles.btn}>
+                注册
+              </Link>
+            </Fragment>
+          ) : null}
         </div>
         <div className={styles.footerBar}>
           <ul>
@@ -64,3 +74,5 @@ export default class index extends Component {
     );
   }
 }
+
+export default index;

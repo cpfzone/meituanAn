@@ -1,0 +1,68 @@
+#account {
+  display: -ms-flexbox;
+}
+.accountHeader {
+  height: 1.01rem;
+  display: -webkit-box;
+  position: relative;
+  background-image: linear-gradient(135deg, #ffd000 0%, #ffbd00 100%);
+  border: none;
+  .accountSpan {
+    font-family: PingFangSC-Regular;
+    font-size: 0.32rem;
+    color: #222222;
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1rem;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .navWarpLeft {
+    height: 1.01rem;
+    line-height: 1.01rem;
+    width: 1.9rem;
+    span {
+      height: 1rem;
+      width: 0.45rem;
+      line-height: 1rem;
+      padding: 0 0.3rem;
+      display: block;
+      color: inherit;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      img {
+        width: 0.2rem;
+        height: 0.36rem;
+      }
+    }
+  }
+  .navWarpRight {
+    width: 1.7rem;
+    text-align: right;
+    padding-right: 0.2rem;
+    a {
+      width: auto;
+      padding: 0 0 0 0.2rem;
+      display: inline-block;
+      height: 100%;
+      line-height: 1rem;
+      text-align: center;
+      span {
+        display: inline-block;
+        font-size: 0.2rem;
+        line-height: 1;
+        vertical-align: middle;
+        img {
+          width: 0.48rem;
+          height: 0.48rem;
+        }
+      }
+    }
+  }
+}
