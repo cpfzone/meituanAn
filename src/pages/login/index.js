@@ -106,10 +106,12 @@ class index extends Component {
       <div className={styles.nei}>
         <header className={styles.iloginHeader}>
           <div className={styles.logoImgWarpper}>
-            <img
-              src="https://p0.meituan.net/travelcube/7c71ecc4b44d0e17447076cd23e501cb31967.png"
-              alt="logo"
-            />
+            <Link to="/">
+              <img
+                src="https://p0.meituan.net/travelcube/7c71ecc4b44d0e17447076cd23e501cb31967.png"
+                alt="logo"
+              />
+            </Link>
           </div>
         </header>
         <div className={styles.loginSection}>

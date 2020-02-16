@@ -55,6 +55,11 @@ export default {
         message.error(res.data.message);
       }
     },
+    // 退出登录
+    *clearStroge(action, { call, put }) {
+      console.log(1)
+      yield put({ type: 'qingStroge' });
+    },
   }, //异步操作
   reducers: {
     getYanCode(state, action) {
@@ -74,6 +79,11 @@ export default {
     userInfoDataMy(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.userinfo = action.payload;
+      return newState;
+    },
+    qingStroge(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.userinfo = null;
       return newState;
     },
   }, //更新状态

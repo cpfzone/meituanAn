@@ -2,14 +2,27 @@ import React, { Component, Fragment } from 'react';
 import styles from './index.less';
 import Link from 'umi/link';
 import router from 'umi/router';
+import data from '../../data/account_header.json';
 
 export default class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+  }
   returnTip = () => {
     if (window.location.pathname === '/account') {
       router.push('/');
     } else {
       router.go(-1);
     }
+  };
+
+  showTip = () => {
+    this.setState({
+      show: !this.state.show,
+    });
   };
 
   render() {
@@ -45,7 +58,36 @@ export default class index extends Component {
                 </span>
               </Link>
             </div>
-          ) : null}
+          ) : (
+            <div className={styles.navWarpRight}>
+              <a onClick={this.showTip}>
+                <span>
+                  <img
+                    src="https://p0.meituan.net/travelcube/7289ad16274ae18417b84c916bb6a711169.png"
+                    alt="搜索"
+                  />
+                </span>
+              </a>
+            </div>
+          )}
+          <div
+            className={styles.navDropDown}
+            style={{ display: this.state.show ? 'block' : 'none' }}
+          >
+            <ul>
+              {data.data.map((v, i) => {
+                return (
+                  <li key={i}>
+                    <Link to={v.url}>
+                      <img src={v.img} alt={v.title} />
+                      <em></em>
+                      {v.title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </header>
       </Fragment>
     );

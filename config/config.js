@@ -18,6 +18,10 @@ export default {
           component: './account',
         },
         {
+          path: "/account/myinfo",
+          component: "./account/myinfo"
+        },
+        {
           path: '/setPass',
           component: './setPass',
         },
