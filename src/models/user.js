@@ -1,6 +1,7 @@
 import { getListData, code, setPassWord, getUserInfoData } from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
+import routerPush from '../../utils/push';
 
 const DefaultUser = {
   isLogin: localStorage.getItem('meituanToken') === null ? false : true,
@@ -24,15 +25,16 @@ export default {
     // 判断验证码并且注册
     *code({ value }, { call, put }) {
       const res = yield call(code, value);
+      console.log(res);
       if (res.data.code === 3) {
         message.error(res.data.message);
       }
-      if (!res.data.userinfo.firstPas) {
+      if (!res.data.biao.firstPas) {
         // 第一次登录 需要设置密码
         router.push('/setPass' + window.location.search);
       } else {
         // 跳转回登录页面
-        console.log(router.query);
+        router.push(`/${routerPush()}`);
       }
       localStorage.setItem('meituanToken', res.data.token);
       localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
@@ -42,22 +44,15 @@ export default {
     *setPassWordDemo({ values }, { call, put }) {
       const res = yield call(setPassWord, values);
       if (res.data.code === 1) {
-        let str = window.location.search.substr(1);
-        let arr = str.split('&');
-        for (let i = 0; i < arr.length; i++) {
-          var brr = arr[i].split('=');
-          if (brr[0] === 'url') {
-            router.push(`/${brr[1]}`);
-          }
-        }
         // router.push('/acount');
+        router.push(`/${routerPush()}`);
       } else {
         message.error(res.data.message);
       }
     },
     // 退出登录
     *clearStroge(action, { call, put }) {
-      console.log(1)
+      console.log(1);
       yield put({ type: 'qingStroge' });
     },
   }, //异步操作

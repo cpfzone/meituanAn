@@ -56,44 +56,63 @@ code.post('/setPassword', koajwt({ secret }), async ctx => {
 });
 
 // 判断验证码是否正确 并且注册
+// 如果是第一次验证,则注册,如果有账号,则直接登录
 code.post('/yan', async ctx => {
   if (ctx.cookies.get('code') === ctx.request.body.code.code) {
+    const zhao = await Meituan.findOne({ phone: ctx.request.body.code.tel });
     let result = {};
-    // 操作数据库
-    const createTime = new Date().getTime();
-    const newPassword = hashCode(ctx.request.body.code.tel);
-    // 注册数据库模型
-    const userModel = new Meituan({
-      createTime,
-      password: newPassword.passwordHash,
-      phone: ctx.request.body.code.tel,
-      name: ctx.request.body.code.tel,
-      salt: newPassword.salt,
-      firstPas: false,
-      level: 1,
-      collections: ['123'],
-      quans: ['12', '34', '56'],
-      chous: [],
-    });
-    try {
-      let obj = await userModel.save();
+    if (zhao) {
       let gai = {};
-      obj.password = '';
-      gai.yy = obj._id;
+      zhao.password = '';
+      gai.yy = zhao._id;
       result.userinfo = gai;
-      result.biao = obj;
+      result.biao = zhao;
       result.code = 1;
-      // 生成加密token
       const token = jwt.sign(
         {
-          name: obj.name,
+          name: zhao.name,
         },
         secret,
         { expiresIn: '2h' },
       );
       result.token = token;
-    } catch (err) {
-      result = { code: 2, message: '服务器发生了错误' };
+    } else {
+      // 操作数据库
+      const createTime = new Date().getTime();
+      const newPassword = hashCode(ctx.request.body.code.tel);
+      // 注册数据库模型
+      const userModel = new Meituan({
+        createTime,
+        password: newPassword.passwordHash,
+        phone: ctx.request.body.code.tel,
+        name: ctx.request.body.code.tel,
+        salt: newPassword.salt,
+        firstPas: false,
+        level: 1,
+        collections: ['123'],
+        quans: ['12', '34', '56'],
+        chous: [],
+      });
+      try {
+        let obj = await userModel.save();
+        let gai = {};
+        obj.password = '';
+        gai.yy = obj._id;
+        result.userinfo = gai;
+        result.biao = obj;
+        result.code = 1;
+        // 生成加密token
+        const token = jwt.sign(
+          {
+            name: obj.name,
+          },
+          secret,
+          { expiresIn: '2h' },
+        );
+        result.token = token;
+      } catch (err) {
+        result = { code: 2, message: '服务器发生了错误' };
+      }
     }
     ctx.body = JSON.stringify(result);
   } else {
