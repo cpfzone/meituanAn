@@ -18,8 +18,12 @@ export default {
           component: './account',
         },
         {
-          path: "/account/myinfo",
-          component: "./account/myinfo"
+          path: '/account/myinfo',
+          component: './account/myinfo',
+        },
+        {
+          path: '/account/chous',
+          component: './account/chous',
         },
         {
           path: '/setPass',

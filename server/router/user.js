@@ -132,4 +132,43 @@ code.post('/info', koajwt({ secret }), async ctx => {
   ctx.body = JSON.stringify(obj);
 });
 
+// 通过密码登录
+code.post('/password', async ctx => {
+  const data = ctx.request.body;
+  const obj = await Meituan.findOne({ phone: data.value.tel });
+  let result = {};
+  if (obj) {
+    const salt = obj.salt;
+    const newMiMa = hashCode(data.value.password, salt); //输入的密码
+    if (newMiMa.passwordHash === obj.password) {
+      let gai = {};
+      obj.password = '';
+      gai.yy = obj._id;
+      result.userinfo = gai;
+      result.biao = obj;
+      result.code = 1;
+      // 生成加密token
+      const token = jwt.sign(
+        {
+          name: obj.name,
+        },
+        secret,
+        { expiresIn: '2h' },
+      );
+      result.token = token;
+    } else {
+      result = {
+        code: 3,
+        message: '账号或密码错误,请重新输入',
+      };
+    }
+  } else {
+    result = {
+      code: 3,
+      message: '账号或密码错误,请重新输入',
+    };
+  }
+  ctx.body = JSON.stringify(result);
+});
+
 module.exports = code.routes();

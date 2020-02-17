@@ -13,6 +13,10 @@ import { connect } from 'dva';
     type: 'user/code',
     value,
   }),
+  propsMiMaLogin: value => ({
+    type: 'user/password',
+    value,
+  }),
 })
 class index extends Component {
   constructor(props) {
@@ -23,6 +27,9 @@ class index extends Component {
       firstTime: 0,
       code: '',
       next: true,
+      nextPlus: true,
+      show: false,
+      password: '',
     };
   }
 
@@ -90,6 +97,28 @@ class index extends Component {
     }, 1000);
   };
 
+  // 修改密码
+  changePassword = e => {
+    let tel = this.state.tel;
+    let value = e.target.value;
+    this.setState(
+      {
+        password: value,
+      },
+      () => {
+        if (value.length > 0 && /^1[3456789]\d{9}$/.test(tel)) {
+          this.setState({
+            nextPlus: false,
+          });
+        } else {
+          this.setState({
+            nextPlus: true,
+          });
+        }
+      },
+    );
+  };
+
   componentWillMount = () => {
     this.clearCodeYan();
   };
@@ -99,9 +128,15 @@ class index extends Component {
     clearInterval(this.timer);
   };
 
+  toggleMiMa = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
+
   render() {
-    const { firstTip, firstTime, next, code, tel } = this.state;
-    const { propsLoginDemo } = this.props;
+    const { firstTip, firstTime, next, code, tel, show, password, nextPlus } = this.state;
+    const { propsLoginDemo, propsMiMaLogin } = this.props;
     return (
       <div className={styles.nei}>
         <header className={styles.iloginHeader}>
@@ -115,7 +150,7 @@ class index extends Component {
           </div>
         </header>
         <div className={styles.loginSection}>
-          <div id={styles.iLoginCompContainer}>
+          <div style={{ display: show ? 'none' : 'block' }} id={styles.iLoginCompContainer}>
             <div className={styles.isDemoLogin}>
               <div className={styles.iLoginCompphonenumwrapper}>
                 <div className={styles.country}>
@@ -127,6 +162,7 @@ class index extends Component {
                   placeholder="请输入手机号"
                   className={styles.phoneNumInput}
                   maxLength={13}
+                  value={tel}
                   onChange={this.changeInputValue}
                 />
               </div>
@@ -156,7 +192,60 @@ class index extends Component {
             </div>
             <div className={styles.iloginComp}>未注册的手机号验证后自动创建美团账户</div>
             <div className={styles.changeIcon}>
-              <span>账号密码登录</span>
+              <span onClick={this.toggleMiMa}>账号密码登录</span>
+            </div>
+          </div>
+          <div
+            className={styles.accountPwLoginContainer}
+            style={{ display: show ? 'block' : 'none' }}
+          >
+            <div className={styles.isDemoLogin}>
+              <div className={styles.iLoginCompphonenumwrapper}>
+                <div className={styles.country}>
+                  <span>中国+86</span>
+                  <i className={styles.right_row}></i>
+                </div>
+                <input
+                  type="text"
+                  value={tel}
+                  placeholder="请输入手机号"
+                  className={styles.phoneNumInput}
+                  maxLength={13}
+                  onChange={this.changeInputValue}
+                />
+              </div>
+              <div className={styles.mtfe}>{firstTip}</div>
+              <div className={[styles.iLoginCompphonenumwrapper, styles.margin50].join(' ')}>
+                <input
+                  type="password"
+                  onChange={this.changePassword}
+                  placeholder="请填写密码"
+                  className={styles.phoneNumInput}
+                />
+                <div className={styles.demoCode} onClick={this.getCodeClick}>
+                  <span>
+                    <Link to="/retrievepassword" className={styles.getMiMa}>
+                      忘记密码
+                    </Link>
+                  </span>
+                </div>
+              </div>
+              <div className={[styles.mtfe, styles.margin50].join(' ')}></div>
+              <div>
+                <Button
+                  onClick={() => propsMiMaLogin({ tel, password })}
+                  disabled={nextPlus}
+                  type="primary"
+                  className={styles.gaiColor}
+                >
+                  登录
+                </Button>
+              </div>
+            </div>
+            <div className={styles.changeLoginType}>
+              <span className={styles.toggleType} onClick={this.toggleMiMa}>
+                短信验证码登录
+              </span>
             </div>
           </div>
         </div>

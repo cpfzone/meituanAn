@@ -51,3 +51,13 @@ export const getUserInfoData = id => {
     url: '/server/user/info',
   });
 };
+
+export const passwordLogin = value => {
+  return Axios({
+    method: 'post',
+    data: {
+      value,
+    },
+    url: '/server/user/password',
+  });
+};

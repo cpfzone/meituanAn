@@ -1,4 +1,4 @@
-import { getListData, code, setPassWord, getUserInfoData } from '../service/user';
+import { getListData, code, setPassWord, getUserInfoData, passwordLogin } from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
 import routerPush from '../../utils/push';
@@ -12,6 +12,18 @@ export default {
   namespace: 'user',
   state: DefaultUser,
   effects: {
+    // 通过密码登录
+    *password({ value }, { call, put }) {
+      const res = yield call(passwordLogin, value);
+      if (res.data.code === 3) {
+        message.error(res.data.message);
+      } else {
+        router.push(`/${routerPush()}`);
+      }
+      localStorage.setItem('meituanToken', res.data.token);
+      localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
+      yield put({ type: 'codeState', payload: res.data });
+    },
     // 获取用户信息
     *userInfoData({ id }, { call, put }) {
       const res = yield call(getUserInfoData, id);
