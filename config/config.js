@@ -26,6 +26,10 @@ export default {
           component: './account/chous',
         },
         {
+          path: '/account/username',
+          component: './account/username',
+        },
+        {
           path: '/setPass',
           component: './setPass',
         },

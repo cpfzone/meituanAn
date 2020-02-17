@@ -61,3 +61,13 @@ export const passwordLogin = value => {
     url: '/server/user/password',
   });
 };
+
+export const gaiMing = value => {
+  return Axios({
+    method: 'post',
+    data: {
+      value,
+    },
+    url: '/server/user/name',
+  });
+};

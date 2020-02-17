@@ -132,6 +132,26 @@ code.post('/info', koajwt({ secret }), async ctx => {
   ctx.body = JSON.stringify(obj);
 });
 
+// 修改用户名
+code.post('/name', koajwt({ secret }), async ctx => {
+  const data = ctx.request.body;
+  const obj = await Meituan.updateOne(
+    { phone: data.value.phone },
+    { $set: { name: data.value.name } },
+  );
+  if (obj) {
+    ctx.body = {
+      code: 1,
+      message: '修改成功',
+    };
+  } else {
+    ctx.body = {
+      code: 2,
+      message: '服务器发生错误',
+    };
+  }
+});
+
 // 通过密码登录
 code.post('/password', async ctx => {
   const data = ctx.request.body;

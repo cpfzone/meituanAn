@@ -1,4 +1,11 @@
-import { getListData, code, setPassWord, getUserInfoData, passwordLogin } from '../service/user';
+import {
+  getListData,
+  code,
+  setPassWord,
+  getUserInfoData,
+  passwordLogin,
+  gaiMing,
+} from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
 import routerPush from '../../utils/push';
@@ -24,6 +31,16 @@ export default {
       localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
       yield put({ type: 'codeState', payload: res.data });
     },
+    // 修改用户名
+    *changeName({ value }, { call, put }) {
+      const res = yield call(gaiMing, value);
+      if (res.data.code === 2) {
+        message.error(res.data.message);
+      }
+      message.success(res.data.message);
+      yield put({ type: 'getMingZi', payload: value });
+      router.go(-1);
+    },
     // 获取用户信息
     *userInfoData({ id }, { call, put }) {
       const res = yield call(getUserInfoData, id);
@@ -37,7 +54,6 @@ export default {
     // 判断验证码并且注册
     *code({ value }, { call, put }) {
       const res = yield call(code, value);
-      console.log(res);
       if (res.data.code === 3) {
         message.error(res.data.message);
       }
@@ -91,6 +107,11 @@ export default {
     qingStroge(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.userinfo = null;
+      return newState;
+    },
+    getMingZi(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.userinfo.name = action.payload.name;
       return newState;
     },
   }, //更新状态
