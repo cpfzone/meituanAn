@@ -71,3 +71,23 @@ export const gaiMing = value => {
     url: '/server/user/name',
   });
 };
+
+export const resetLoginPassword = value => {
+  return Axios({
+    method: 'post',
+    data: {
+      value,
+    },
+    url: '/server/user/resetPassword',
+  });
+};
+
+export const uploadfile = file => {
+  return Axios({
+    method: 'post',
+    data: {
+      file,
+    },
+    url: '/server/user/uploadfile',
+  });
+};

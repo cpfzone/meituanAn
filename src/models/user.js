@@ -5,6 +5,8 @@ import {
   getUserInfoData,
   passwordLogin,
   gaiMing,
+  resetLoginPassword,
+  uploadfile,
 } from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
@@ -19,6 +21,21 @@ export default {
   namespace: 'user',
   state: DefaultUser,
   effects: {
+    // 上传头像
+    *fileImg({ file }, { call, put }) {
+      const res = yield call(uploadfile, file);
+      console.log(res);
+    },
+    // 修改密码
+    *resetPassword({ values }, { call, put }) {
+      const res = yield call(resetLoginPassword, values);
+      if (res.data.code !== 1) {
+        message.error(res.data.message);
+      } else {
+        message.success(res.data.message);
+        router.go(-1);
+      }
+    },
     // 通过密码登录
     *password({ value }, { call, put }) {
       const res = yield call(passwordLogin, value);
@@ -80,7 +97,6 @@ export default {
     },
     // 退出登录
     *clearStroge(action, { call, put }) {
-      console.log(1);
       yield put({ type: 'qingStroge' });
     },
   }, //异步操作

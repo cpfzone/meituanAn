@@ -1,6 +1,8 @@
 const code = require('koa-router')();
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 const koajwt = require('koa-jwt');
 // 加载mongodb数据库
 const dbName = require('../../config/db');
@@ -92,6 +94,7 @@ code.post('/yan', async ctx => {
         collections: ['123'],
         quans: ['12', '34', '56'],
         chous: [],
+        avatar: '',
       });
       try {
         let obj = await userModel.save();
@@ -152,6 +155,38 @@ code.post('/name', koajwt({ secret }), async ctx => {
   }
 });
 
+// 修改密码
+code.post('/resetPassword', koajwt({ secret }), async ctx => {
+  const data = ctx.request.body.value;
+  const newPassword = hashCode(data.yuanPassword, data.salt);
+  let result = {};
+  const obj = await Meituan.findOne({ password: newPassword.passwordHash });
+  if (obj) {
+    const password = hashCode(data.password, data.salt);
+    const a = await Meituan.updateOne(
+      { password: newPassword.passwordHash },
+      { $set: { password: password.passwordHash } },
+    );
+    if (a) {
+      result = {
+        code: 1,
+        message: '密码更改完成',
+      };
+    } else {
+      result = {
+        code: 3,
+        message: '服务器错误',
+      };
+    }
+  } else {
+    result = {
+      code: 2,
+      message: '原密码错误',
+    };
+  }
+  ctx.body = JSON.stringify(result);
+});
+
 // 通过密码登录
 code.post('/password', async ctx => {
   const data = ctx.request.body;
@@ -189,6 +224,21 @@ code.post('/password', async ctx => {
     };
   }
   ctx.body = JSON.stringify(result);
+});
+
+// 获取上传的文件
+code.post('/uploadfile', koajwt({ secret }), async ctx => {
+  // 上传单个文件
+  console.log(ctx.request.files);
+  const file = ctx.request.files.file; // 获取上传文件
+  // 创建可读流
+  const reader = fs.createReadStream(file.path);
+  let filePath = path.join(__dirname, 'public/upload/') + `/${file.name}`;
+  // 创建可写流
+  const upStream = fs.createWriteStream(filePath);
+  // 可读流通过管道写入可写流
+  reader.pipe(upStream);
+  return (ctx.body = '上传成功！');
 });
 
 module.exports = code.routes();

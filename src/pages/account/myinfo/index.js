@@ -50,6 +50,16 @@ class index extends Component {
           <Fragment>
             <dl className={styles.list}>
               <dd>
+                <Link to="/account/avatar" className={styles.react}>
+                  <div className={styles.moreWeak}>
+                    <i className={styles.iconText}>
+                      <span className="iconfont icon-touxiang"></span>
+                    </i>
+                    <span>修改用户头像</span>
+                  </div>
+                </Link>
+              </dd>
+              <dd>
                 <Link to="/account/username" className={styles.react}>
                   <div className={styles.moreWeak}>
                     <i className={styles.iconText}>

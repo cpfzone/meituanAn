@@ -31,6 +31,8 @@ const models = {
     quans: { type: Array },
     // 抽奖券
     chous: { type: Array },
+    // 用户头像设置
+    avatar: { type: String },
   },
 };
 

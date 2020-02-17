@@ -30,6 +30,14 @@ export default {
           component: './account/username',
         },
         {
+          path: '/account/resetPass',
+          component: './account/resetPass',
+        },
+        {
+          path: '/account/avatar',
+          component: './account/avatar',
+        },
+        {
           path: '/setPass',
           component: './setPass',
         },
