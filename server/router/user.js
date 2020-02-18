@@ -20,15 +20,8 @@ const secret = dbName.secret;
 // 获取验证码
 code.get('/phone', async (ctx, next) => {
   const params = ctx.query;
-  // 进行url编码转换
-  const content = encodeURI(
-    `你好,你的验证码是${params.code},欢迎你来到全栈练习项目美团,请在30分钟内完成验证`,
-  );
-  console.log(
-    `http://api.sms.cn/sms/?ac=send&uid=sunhang&pwd=${PHONECODE}&mobile=${params.phone}&content=${content}`,
-  );
   const result = await axios.get(
-    `http://api.sms.cn/sms/?ac=send&uid=sunhang&pwd=${PHONECODE}&mobile=${params.phone}&content=${content}`,
+    `http://api.sms.cn/sms/?ac=send&uid=sunhang&pwd=${PHONECODE}&template=528008&mobile=${params.phone}&content={"code":"${params.code}"}`,
   );
   ctx.cookies.set('code', params.code, {
     maxAge: 30 * 60 * 1000, // cookie有效时长
