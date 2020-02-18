@@ -18,9 +18,9 @@ import { connect } from 'dva';
 class Layout extends Component {
   constructor(props) {
     super(props);
-    if (this.props.userinfo === null && localStorage.getItem('meituanToken')) {
+    if (this.props.userinfo === null && window.localStorage.getItem('meituanToken')) {
       // 初始化用户数据
-      this.props.getUserInfoData(JSON.parse(localStorage.getItem('userinfo')).yy);
+      this.props.getUserInfoData(JSON.parse(window.localStorage.getItem('userinfo')).yy);
     }
   }
 

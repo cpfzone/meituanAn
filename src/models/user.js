@@ -13,7 +13,7 @@ import router from 'umi/router';
 import routerPush from '../../utils/push';
 
 const DefaultUser = {
-  isLogin: localStorage.getItem('meituanToken') === null ? false : true,
+  isLogin: window.localStorage.getItem('meituanToken') === null ? false : true,
   userinfo: null,
 };
 
@@ -44,8 +44,8 @@ export default {
       } else {
         router.push(`/${routerPush()}`);
       }
-      localStorage.setItem('meituanToken', res.data.token);
-      localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
+      window.localStorage.setItem('meituanToken', res.data.token);
+      window.localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
       yield put({ type: 'codeState', payload: res.data });
     },
     // 修改用户名
@@ -81,8 +81,8 @@ export default {
         // 跳转回登录页面
         router.push(`/${routerPush()}`);
       }
-      localStorage.setItem('meituanToken', res.data.token);
-      localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
+      window.localStorage.setItem('meituanToken', res.data.token);
+      window.localStorage.setItem('userinfo', JSON.stringify(res.data.userinfo));
       yield put({ type: 'codeState', payload: res.data });
     },
     // 设置密码

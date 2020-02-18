@@ -34,6 +34,30 @@ const models = {
     // 用户头像设置
     avatar: { type: String },
   },
+  back: {
+    // 销售数量
+    xiao: { type: Number },
+    // 名称
+    name: { type: String },
+    // 原先价格
+    old: { type: Number },
+    // 新价格
+    new: { type: Number },
+    // 地址
+    address: { type: String },
+    // 副标题
+    sub: { type: String },
+    // 页面标题
+    sup: { type: String },
+    // 是否支持随时退款
+    sui: { type: Boolean },
+    // 是否支持过期自动退款
+    guo: { type: Boolean },
+    // 90天内消费数量
+    num: { type: Number },
+    // 页面地址
+    quanAddress: { type: String },
+  },
 };
 
 for (let m in models) {

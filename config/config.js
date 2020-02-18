@@ -2,6 +2,7 @@ const config = require('./db');
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  ssr: true,
   routes: [
     //   以pages为根目录
     {

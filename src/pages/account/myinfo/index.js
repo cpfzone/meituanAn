@@ -29,7 +29,7 @@ class index extends Component {
       {
         text: '确定',
         onPress: () => {
-          localStorage.clear();
+          window.localStorage.clear();
           router.push('/');
           this.props.clearStorge();
           window.location.reload();
