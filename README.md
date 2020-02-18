@@ -75,15 +75,15 @@ server {
 
 > 效果图只是针对于本手机和电脑,并不代表全部
 
-<img src="/img/login.jpg" width="365">
+<img src="/img/login.jpg" width="365" />
 
-<img src="/img/home.jpg" width="365">
+<img src="/img/home.jpg" width="365"/>
 
-<img src="/img/account.jpg" width="365">
+<img src="/img/account.jpg" width="365"/>
 
-<img src="/img/gujiaping.jpg" width="365">
+<img src="/img/gujiaping.jpg" width="365"/>
 
-<img src="/img/user.jpg" width="365">
+<img src="/img/user.jpg" width="365"/>
 
 ## 配置
 
