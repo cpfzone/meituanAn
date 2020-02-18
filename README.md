@@ -38,11 +38,61 @@
 
 ## 计划
 
-- [ ] SSR服务端渲染
+- [ ] SSR服务端渲染 -> 原谅我太菜,看得我一脸懵逼
 
 ## 使用
+
+> 需要本地有mongoose并且启动,有umi
 
 ```js
 git clone https://github.com/2662419405/meituanAn.git
 cd meituanAn && npm install
+npm run server
+umi dev
+```
+
+**如果想要build之后可以访问,推荐配置nginx,这里面附上我的nginx配置**
+
+```yaml
+ # 移动端美团
+server {
+    listen       80;
+
+    server_name  react.shtodream.cn;
+    location / {
+        root   html/meituanAn/dist;
+        index  index.html index.htm;
+    }
+
+    location /server {
+        proxy_pass http://localhost:4001;  #这个地方需要和上面一致
+    }
+    
+}
+```
+
+## 效果图
+
+> 效果图只是针对于本手机和电脑,并不代表全部
+
+![/img/login.jpg](/img/login.jpg)
+
+![/img/home.jpg](/img/home.jpg)
+
+![/img/account.jpg](/img/account.jpg)
+
+![/img/gujiaping.jpg](/img/gujiaping.jpg)
+
+![/img/user.jpg](/img/user.jpg)
+
+## 配置
+
+> /config/db.js
+
+```js
+module.exports = {
+  port: 4001, // 后台启动的端口
+  dbName: 'meituan', // 数据库名称
+  secret: "it 's mySecret", //jwt秘钥
+};
 ```
