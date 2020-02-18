@@ -21,6 +21,41 @@ class index extends Component {
     loading: false,
     previewVisible: false,
     file: null,
+    OSSData: {},
+  };
+
+  async componentDidMount() {
+    await this.init();
+  }
+
+  init = async () => {
+    try {
+      const OSSData = await this.mockGetOSSData();
+
+      this.setState({
+        OSSData,
+      });
+    } catch (error) {
+      message.error(error);
+    }
+  };
+
+  getExtraData = file => {
+    const { OSSData } = this.state;
+    console.log(OSSData);
+    return {
+      key: file.url,
+      OSSAccessKeyId: OSSData.accessId,
+      policy: OSSData.policy,
+      Signature: OSSData.signature,
+    };
+  };
+
+  mockGetOSSData = () => {
+    return {
+      dir: 'user-dir/',
+      host: '//www.mocky.io/v2/5cc8019d300000980a055e76'
+    };
   };
 
   handleCancel = () => {
@@ -81,7 +116,7 @@ class index extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
-    const { imageUrl, previewVisible } = this.state;
+    const { imageUrl, previewVisible, OSSData } = this.state;
     return (
       <div>
         <Header title="修改头像" />
@@ -96,9 +131,10 @@ class index extends Component {
           listType="picture-card"
           className={styles.avatarUploader}
           showUploadList={false}
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          action={OSSData.host}
           beforeUpload={this.beforeUpload}
           onChange={this.handleChange}
+          data={this.getExtraData}
         >
           {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
         </Upload>
