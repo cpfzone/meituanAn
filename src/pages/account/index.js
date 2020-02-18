@@ -7,6 +7,7 @@ import styles from './index.less';
 import Link from 'umi/link';
 import data from '../../data/account.json';
 import router from 'umi/router';
+import { Skeleton } from 'antd';
 
 @connect(state => {
   return {
@@ -31,7 +32,17 @@ class index extends Component {
         {isLogin ? (
           <Fragment>
             {userinfo === null ? (
-              <div>1</div>
+              // 骨架屏配置
+              <div className={styles.blackDemo}>
+                <Skeleton active avatar paragraph={{ rows: 1 }} />
+                <Skeleton className={styles.chaju} active paragraph={{ rows: 1, width: '100%' }} />
+                <Skeleton
+                  className={styles.chaju}
+                  active
+                  paragraph={{ rows: 4, width: '100%' }}
+                  title={false}
+                />
+              </div>
             ) : (
               <Fragment>
                 <Link to="/account/myinfo" className={styles.myUserInfo}>
