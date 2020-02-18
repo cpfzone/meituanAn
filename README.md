@@ -75,15 +75,15 @@ server {
 
 > 效果图只是针对于本手机和电脑,并不代表全部
 
-![/img/login.jpg](/img/login.jpg)
+<img src="https://github.com/2662419405/meituanAn/tree/master/img/login.jpg" width="365">
 
-![/img/home.jpg](/img/home.jpg)
+<img src="https://github.com/2662419405/meituanAn/tree/master/img/home.jpg" width="365">
 
-![/img/account.jpg](/img/account.jpg)
+<img src="https://github.com/2662419405/meituanAn/tree/master/img/account.jpg" width="365">
 
-![/img/gujiaping.jpg](/img/gujiaping.jpg)
+<img src="https://github.com/2662419405/meituanAn/tree/master/img/gujiaping.jpg" width="365">
 
-![/img/user.jpg](/img/user.jpg)
+<img src="https://github.com/2662419405/meituanAn/tree/master/img/user.jpg" width="365">
 
 ## 配置
 
