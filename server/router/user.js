@@ -71,7 +71,7 @@ code.post('/yan', async ctx => {
           name: zhao.name,
         },
         secret,
-        { expiresIn: '2h' },
+        { expiresIn: '24h' },
       );
       result.token = token;
     } else {
@@ -106,7 +106,7 @@ code.post('/yan', async ctx => {
             name: obj.name,
           },
           secret,
-          { expiresIn: '2h' },
+          { expiresIn: '24h' },
         );
         result.token = token;
       } catch (err) {

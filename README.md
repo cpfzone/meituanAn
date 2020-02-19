@@ -1,5 +1,5 @@
 <div align="center">
-  
+
 # React-美团(Dva + umi + koa + Mongoose)
 
 </div>
@@ -13,9 +13,9 @@
 
 * 美团电脑网页 React + Koa + Mongoose <a href="https://github.com/2662419405/meituan">开发完毕</a> :tada:
 
-* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">正在开发</a>
+* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">开发完毕</a> :100:
 
-* 美团APP ReactNative <a href="#">还未开发</a>
+* 美团APP ReactNative + koa + Mongoose <a href="https://github.com/2662419405/meituanApp">正在开发</a>
 
 * 微信小程序 Tora <a href="#">还未开发</a>
 
@@ -39,6 +39,7 @@
 ## 计划
 
 - [ ] SSR服务端渲染 -> 原谅我太菜,看得我一脸懵逼
+- [ ] 使用TS编写代码 
 
 ## 使用
 
@@ -84,6 +85,20 @@ server {
 ![img/user.jpg](img/user.jpg)
 
 </div>
+
+## 后台api接口
+
+|          请求地址          | 请求类型 |              请求参数               |                    说明                     | 获取数据是否需要Token |
+| :------------------------: | :------: | :---------------------------------: | :-----------------------------------------: | :-------------------: |
+|     /server/user/phone     |   get    |          ?phone=xx&code=yy          |               获取手机验证码                |          否           |
+|  /server/user/setPassword  |   post   |   {values:{phone:xx,password:yy}}   |                 初始化密码                  |          是           |
+|      /server/user/yan      |   post   |      {code:{code:xx,tel:xxx}}       | 判断验证码 并且进行注册，如果注册过，则登录 |          否           |
+|     /server/user/info      |   post   |              {id:xxx}               |                获取用户信息                 |          是           |
+|     /server/user/name      |   post   |     {value:{phone:xx,name:xx}}      |                 修改用户名                  |          是           |
+| /server/user/resetPassword |   post   | {value:{yuanPassword:xxx,salt:xxx}} |                  修改密码                   |          是           |
+|   /server/user/password    |   post   |   {value:{tel:xxx,password:xxx}}    |                通过密码登录                 |          否           |
+|  /server/user/uploadfile   |   post   |                file                 |                获取上传文件                 |          是           |
+
 
 
 ## 配置
