@@ -106,7 +106,7 @@ code.post('/yan', async ctx => {
             name: obj.name,
           },
           secret,
-          { expiresIn: '24h' },
+          { expiresIn: '168h' },
         );
         result.token = token;
       } catch (err) {
@@ -204,7 +204,7 @@ code.post('/password', async ctx => {
           name: obj.name,
         },
         secret,
-        { expiresIn: '2h' },
+        { expiresIn: '168h' },
       );
       result.token = token;
     } else {
