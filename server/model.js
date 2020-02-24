@@ -35,14 +35,16 @@ const models = {
     avatar: { type: String },
   },
   back: {
+    // 首页图片url
+    imgUrls: { type: Array },
     // 销售数量
-    xiao: { type: Number },
+    xiao: { type: String },
     // 名称
     name: { type: String },
     // 原先价格
-    old: { type: Number },
+    old: { type: String },
     // 新价格
-    new: { type: Number },
+    new: { type: String },
     // 地址
     address: { type: String },
     // 副标题
@@ -56,8 +58,17 @@ const models = {
     // 90天内消费数量
     num: { type: Number },
     // 页面地址
+    xiangqings: { type: Array },
     quanAddress: { type: String },
-  },
+    // 团购信息
+    tuans: { type: Array },
+    tain: { type: String },
+    // 购买需知
+    youxiao: { type: String },
+    yuyue: { type: String },
+    tixing: { type: String },
+    tishi: { type: String }
+  }
 };
 
 for (let m in models) {
