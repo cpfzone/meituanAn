@@ -22,6 +22,10 @@ export default
   },
 )
 class index extends Component {
+  state = {
+    index: 0,
+  };
+
   componentDidMount() {
     this.props.getList();
   }
@@ -34,6 +38,12 @@ class index extends Component {
         detailArr = v;
       }
     });
+    let num = 0;
+    if (detailArr.tuans) {
+      detailArr.tuans.forEach(v => {
+        num += v.num * v.price;
+      });
+    }
     return (
       <Fragment>
         <Header title="团购信息" share={true} />
@@ -43,7 +53,12 @@ class index extends Component {
         ) : (
           <div className={styles.groupInfo}>
             <div className={styles.demoCarous}>
-              <Carousel autoplay={false} dots={false} className={styles.Carousel}>
+              <Carousel
+                autoplay={false}
+                dots={false}
+                className={styles.Carousel}
+                afterChange={index => this.setState({ index })}
+              >
                 {detailArr.imgUrls.length > 0 &&
                   detailArr.imgUrls.map(val => (
                     <img
@@ -57,6 +72,10 @@ class index extends Component {
               <div className={styles.count}>
                 <h3 className={styles.detailName}>{detailArr.name}</h3>
                 <p className={styles.detailSup}>{detailArr.sup}</p>
+              </div>
+              <div className={styles.swiperPage}>
+                <strong className={styles.strongPage}>{this.state.index+1}</strong>/
+                {detailArr.imgUrls.length}
               </div>
             </div>
             <div className={styles.cost}>
@@ -126,6 +145,75 @@ class index extends Component {
                 </div>
               </Link>
             </div>
+            <div className={styles.jiange}></div>
+            <div className={styles.tit}>
+              团购详情
+              <span className="iconfont icon-dingdan"></span>
+            </div>
+            <div className={styles.detailContent}>
+              <table width="100%" cellPadding="0" cellSpacing="0" className={styles.detailTable}>
+                <thead>
+                  <tr>
+                    <th width="50%">名称</th>
+                    <th width="25%">数量</th>
+                    <th width="25%">价值</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {detailArr.tuans.map((v, i) => {
+                    return (
+                      <tr key={i}>
+                        <td>{v.name}</td>
+                        <td className={styles.tc}>{v.num}份</td>
+                        <td className={styles.tc}>{v.price}元</td>
+                      </tr>
+                    );
+                  })}
+                  <tr className={styles.total}>
+                    <td></td>
+                    <td className={styles.tc}>
+                      <del>总价</del>
+                      <br />
+                      <span className={styles.changeColor}>团购价</span>
+                    </td>
+                    <td className={styles.tc}>
+                      <del>{num}元</del>
+                      <br />
+                      <span className={styles.changeColor}>{detailArr.sub}元</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div dangerouslySetInnerHTML={{ __html: detailArr.tain }}></div>
+            </div>
+            <div className={styles.jiange}></div>
+            <div className={styles.tit}>
+              购买须知
+              <span className="iconfont icon-xinbaniconshangchuan-"></span>
+            </div>
+            <div className={styles.bugKonw}>
+              <dl>
+                <dt>有效期</dt>
+                <p>{detailArr.youxiao}</p>
+              </dl>
+              <dl>
+                <dt>预约信息</dt>
+                <p>{detailArr.yuyue}</p>
+              </dl>
+              <dl>
+                <dt>规则提醒</dt>
+                <p>{detailArr.tixing}</p>
+              </dl>
+              <dl>
+                <dt>温馨提示</dt>
+                <p>{detailArr.tishi}</p>
+              </dl>
+            </div>
+            <div className={styles.jiange}></div>
+            <div className={styles.tit}>网友评论</div>
+            <div className={styles.jiange}></div>
+            <div className={styles.tit}>相关网购推荐</div>
+            <div className={styles.jiange}></div>
           </div>
         )}
         <Footer />

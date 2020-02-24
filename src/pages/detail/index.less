@@ -1,3 +1,20 @@
+.swiperPage {
+  position: absolute;
+  right: 0.3rem;
+  top: 0.2rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.2rem;
+  font-size: 0.2rem;
+  line-height: 0.2rem;
+  color: #666;
+  padding: 0.1rem 0.06rem 0.08rem;
+  text-align: center;
+  .strongPage {
+    font-weight: normal;
+    color: #fff;
+  }
+}
+
 .count {
   position: absolute;
   z-index: 9;
@@ -174,6 +191,86 @@
         cursor: pointer;
         -webkit-transform: rotate(-45deg);
       }
+    }
+  }
+}
+
+.tit {
+  margin-bottom: 0.2rem;
+  height: 0.8rem;
+  line-height: 0.84rem;
+  margin-left: 0.3rem;
+  font-size: 0.28rem;
+  border-bottom: 1px solid #eeeeee;
+  span {
+    margin-left: 5px;
+  }
+}
+
+.detailContent {
+  margin: 0 0.3rem;
+  p {
+    line-height: 0.4rem;
+    font-size: 0.28rem;
+    padding: 0.14rem 0rem;
+  }
+  .detailTable {
+    .changeColor {
+      margin-top: 0.1rem;
+      color: #06c1ae;
+      display: inline-block;
+      font-weight: bold;
+    }
+    thead tr {
+      border-bottom: 1px solid #eeeeee;
+    }
+    tbody tr {
+      border-bottom: 1px solid #eeeeee;
+      &:last-child {
+        border: none;
+      }
+    }
+    th {
+      text-align: center;
+      color: #999;
+      font-weight: normal;
+      padding: 0.2rem 0rem;
+      &:nth-child(2) {
+        text-align: right;
+      }
+      &:first-child {
+        text-align: left;
+      }
+    }
+    td {
+      padding: 0.2rem 0rem;
+      &:nth-child(2) {
+        text-align: right;
+      }
+      &:nth-child(3) {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.bugKonw {
+  font-size: 0.28rem;
+  padding: 0rem;
+  margin-left: 0.3rem;
+  color: #333;
+  dl {
+    padding: 0.2rem 0.24rem 0.2rem 0rem;
+    border-bottom: 1px solid #eeeeee;
+    dt {
+      line-height: 0.4rem;
+      font-size: 0.26rem;
+      display: block;
+      color: #999;
+    }
+    p {
+      margin: 0.14rem 0rem;
+      line-height: 1.8;
     }
   }
 }
