@@ -24,7 +24,6 @@ export default {
     // 上传头像
     *fileImg({ file }, { call, put }) {
       const res = yield call(uploadfile, file);
-      console.log(res);
     },
     // 修改密码
     *resetPassword({ values }, { call, put }) {

@@ -41,13 +41,15 @@ const models = {
     xiao: { type: String },
     // 名称
     name: { type: String },
+    // 副标题
+    oldName: { type: String },
     // 原先价格
     old: { type: String },
     // 新价格
     new: { type: String },
     // 地址
     address: { type: String },
-    // 副标题
+    // 团购总价
     sub: { type: String },
     // 页面标题
     sup: { type: String },
@@ -67,8 +69,8 @@ const models = {
     youxiao: { type: String },
     yuyue: { type: String },
     tixing: { type: String },
-    tishi: { type: String }
-  }
+    tishi: { type: String },
+  },
 };
 
 for (let m in models) {

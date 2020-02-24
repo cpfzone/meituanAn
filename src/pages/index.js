@@ -125,19 +125,21 @@ class index extends Component {
                   {arr.map((v, i) => {
                     return (
                       <dd key={i}>
-                        <Link to={'/detail/' + v.url} className={styles.react}>
+                        <Link to={'/detail/' + v._id + '/' + i} className={styles.react}>
                           <div className={styles.dealcard}>
                             <div className={styles.dealcardImg}>
-                              <img src={v.pic} alt="图像" />
+                              <img src={v.imgUrls[0].url} alt="图像" />
                             </div>
                             <div className={styles.dealcardRight}>
-                              <div className={styles.singleLine}>{v.title}</div>
-                              <div className={styles.title}>{'[' + v.city + ']' + v.content}</div>
+                              <div className={styles.singleLine}>{v.name}</div>
+                              <div className={styles.title}>
+                                {'[' + v.address + ']' + v.oldName}
+                              </div>
                               <div className={styles.price}>
                                 <span className={styles.strong}>{v.new}</span>
                                 <span className={styles.strongColor}>元</span>
                                 <del>{v.old}</del>
-                                <span className={styles.lineRight}>已售{v.num}</span>
+                                <span className={styles.lineRight}>已售{v.xiao}</span>
                               </div>
                             </div>
                           </div>

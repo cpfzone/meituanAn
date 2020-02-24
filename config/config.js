@@ -27,6 +27,11 @@ export default {
           component: './account/myinfo',
         },
         {
+          path: '/detail/:id/:index',
+          title: '详情页面',
+          component: './detail',
+        },
+        {
           path: '/account/chous',
           title: '订单',
           component: './account/chous',

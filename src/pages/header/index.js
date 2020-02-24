@@ -26,7 +26,7 @@ export default class index extends Component {
   };
 
   render() {
-    const { title, account } = this.props;
+    const { title, account, share } = this.props;
     return (
       <Fragment>
         <header id="account" className={styles.accountHeader}>
