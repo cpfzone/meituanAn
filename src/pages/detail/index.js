@@ -22,9 +22,12 @@ export default
   },
 )
 class index extends Component {
-  state = {
-    index: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+    };
+  }
 
   componentDidMount() {
     this.props.getList();
@@ -32,12 +35,18 @@ class index extends Component {
 
   render() {
     let { arr } = this.props;
+    let dIndex = this.props.match.params.index;
+    // 过滤掉已经显示的
+    arr.filter((v, i) => {
+      v.show = i == dIndex ? 'fou' : 'dui';
+    });
     let detailArr = {};
     arr.forEach((v, i) => {
       if (this.props.match.params.index == i) {
         detailArr = v;
       }
     });
+    // 计算总价
     let num = 0;
     if (detailArr.tuans) {
       detailArr.tuans.forEach(v => {
@@ -60,12 +69,12 @@ class index extends Component {
                 afterChange={index => this.setState({ index })}
               >
                 {detailArr.imgUrls.length > 0 &&
-                  detailArr.imgUrls.map(val => (
+                  detailArr.imgUrls.map((val, i) => (
                     <img
+                      key={i}
                       src={val.url}
                       alt=""
                       style={{ width: '100%', verticalAlign: 'top' }}
-                      key={val.key}
                     />
                   ))}
               </Carousel>
@@ -74,7 +83,7 @@ class index extends Component {
                 <p className={styles.detailSup}>{detailArr.sup}</p>
               </div>
               <div className={styles.swiperPage}>
-                <strong className={styles.strongPage}>{this.state.index+1}</strong>/
+                <strong className={styles.strongPage}>{this.state.index + 1}</strong>/
                 {detailArr.imgUrls.length}
               </div>
             </div>
@@ -212,7 +221,31 @@ class index extends Component {
             <div className={styles.jiange}></div>
             <div className={styles.tit}>网友评论</div>
             <div className={styles.jiange}></div>
-            <div className={styles.tit}>相关网购推荐</div>
+            <div className={styles.tit}>
+              <h3>相关网购推荐</h3>
+            </div>
+            <div className={styles.con}>
+              {arr &&
+                arr.map((v, i) => {
+                  return (
+                    <Link
+                      key={i}
+                      to={'/detail/' + v._id + '/' + i}
+                      style={{ display: v.show === 'dui' ? 'block' : 'none' }}
+                    >
+                      <div className={styles.groupTitle}>
+                        <span className={styles.tit}>{v.name}</span>
+                      </div>
+                      <div className={styles.group}>
+                        <div className={styles.price}>￥</div>
+                        <div className={styles.big}>{v.new}</div>
+                        <div className={styles.oPrice}>门市价￥{v.old}</div>
+                        <div className={styles.sold}>90天消费{v.num}</div>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
             <div className={styles.jiange}></div>
           </div>
         )}
