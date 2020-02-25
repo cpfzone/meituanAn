@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "name": "周边热门",
+      "url": "/search/"
+    },
+    {
+      "name": "自助餐",
+      "url": "/search/beijing-自助餐"
+    },
+    {
+      "name": "酒店",
+      "url": "/search/beijing-酒店"
+    },
+    {
+      "name": "电影",
+      "url": "/search/beijing-电影"
+    },
+    {
+      "name": "火锅",
+      "url": "/search/beijing-火锅"
+    },
+    {
+      "name": "烤肉",
+      "url": "/search/beijing-烤肉"
+    },
+    {
+      "name": "KTV",
+      "url": "/search/beijing-KTV"
+    },
+    {
+      "name": "运动健身",
+      "url": "/search/beijing-运动健身"
+    },
+    {
+      "name": "游泳",
+      "url": "/search/beijing-游泳"
+    },
+    {
+      "name": "西餐",
+      "url": "/search/beijing-西餐"
+    },
+    {
+      "name": "美容美体",
+      "url": "/search/beijing-美容美体"
+    },
+    {
+      "name": "日韩料理",
+      "url": "/search/beijing-日韩料理"
+    }
+  ]
+}

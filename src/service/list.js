@@ -16,3 +16,13 @@ export const getDetailListLi = value => {
     },
   });
 };
+
+export const getDataSuggest = value => {
+  return Axios({
+    method: 'get',
+    url: '/ptapi/suggest',
+    params: {
+      keyword: value,
+    },
+  });
+};

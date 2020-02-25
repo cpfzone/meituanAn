@@ -107,5 +107,9 @@ export default {
       target: `http://localhost:${config.port}`,
       changeOrigin: true,
     },
+    '/ptapi': {
+      target: `https://www.meituan.com`,
+      changeOrigin: true,
+    },
   },
 };

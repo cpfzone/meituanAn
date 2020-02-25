@@ -26,7 +26,7 @@ export default class index extends Component {
   };
 
   render() {
-    const { title, account, share } = this.props;
+    const { title, account, share, search } = this.props;
     return (
       <Fragment>
         <header id="account" className={styles.accountHeader}>
@@ -49,14 +49,16 @@ export default class index extends Component {
                   />
                 </span>
               </Link>
-              <Link to="/search">
-                <span>
-                  <img
-                    src="https://p0.meituan.net/travelcube/4b45dc09c35f9175498345f8672d08991022.png"
-                    alt="搜索"
-                  />
-                </span>
-              </Link>
+              {!search ? (
+                <Link to="/search">
+                  <span>
+                    <img
+                      src="https://p0.meituan.net/travelcube/4b45dc09c35f9175498345f8672d08991022.png"
+                      alt="搜索"
+                    />
+                  </span>
+                </Link>
+              ) : null}
             </div>
           ) : (
             <div className={styles.navWarpRight}>
