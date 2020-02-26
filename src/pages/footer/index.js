@@ -6,6 +6,7 @@ import { connect } from 'dva';
 @connect(state => {
   return {
     isLogin: state.user.isLogin,
+    city: state.user.city,
   };
 }, null)
 class index extends Component {
@@ -21,7 +22,7 @@ class index extends Component {
               alt="logo"
             />
             <Link to="/changeCity" className={styles.city_name_a}>
-              北京
+              {this.props.city}
             </Link>
           </div>
           {!this.props.isLogin ? (
@@ -30,7 +31,7 @@ class index extends Component {
                 登录
               </Link>
               <em></em>
-              <Link to="/register" className={styles.btn}>
+              <Link to="/login" className={styles.btn}>
                 注册
               </Link>
             </Fragment>

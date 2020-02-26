@@ -8,6 +8,7 @@ import { Button } from 'antd';
 import Link from 'umi/link';
 import { Rate } from 'antd';
 import router from 'umi/router';
+import ReturnTop from '../../components/returnTop';
 
 export default
 @connect(
@@ -27,11 +28,45 @@ class index extends Component {
     super(props);
     this.state = {
       index: 0,
+      gu: false,
+    };
+  }
+
+  getWindowsTop = () => {
+    let scrollTop =
+      window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 305) {
+      this.setState({
+        gu: true,
+      });
+    }
+    if (scrollTop < 305) {
+      this.setState({
+        gu: false,
+      });
+    }
+  };
+
+  // 防抖
+  fang(fn) {
+    this.timer = null;
+    return () => {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        fn.apply(this, arguments);
+      }, 200);
     };
   }
 
   componentDidMount() {
     this.props.getList();
+    window.addEventListener('scroll', this.fang(this.getWindowsTop));
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    window.removeEventListener('scroll', this.getWindowsTop());
+    console.log(this.fang());
   }
 
   render() {
@@ -89,21 +124,23 @@ class index extends Component {
               </div>
             </div>
             <div className={styles.cost}>
-              <div className={styles.buy}>
-                <div className={styles.price}>¥</div>
-                <div className={styles.sumPrice}>{detailArr.new}</div>
-                <div className={styles.past}>
-                  <span>门市价¥{detailArr.old}</span>
-                </div>
-                <div className={styles.last}>
-                  <Button
-                    type="primary"
-                    onClick={() =>
-                      router.push(`/order/${detailArr._id}/${this.props.match.params.index}`)
-                    }
-                  >
-                    立即抢购
-                  </Button>
+              <div className={this.state.gu ? styles.guding : null}>
+                <div className={styles.buy}>
+                  <div className={styles.price}>¥</div>
+                  <div className={styles.sumPrice}>{detailArr.new}</div>
+                  <div className={styles.past}>
+                    <span>门市价¥{detailArr.old}</span>
+                  </div>
+                  <div className={styles.last}>
+                    <Button
+                      type="primary"
+                      onClick={() =>
+                        router.push(`/order/${detailArr._id}/${this.props.match.params.index}`)
+                      }
+                    >
+                      立即抢购
+                    </Button>
+                  </div>
                 </div>
               </div>
               <ul className={styles.advantage}>
@@ -257,6 +294,7 @@ class index extends Component {
             <div className={styles.jiange}></div>
           </div>
         )}
+        {/* <ReturnTop /> */}
         <Footer />
       </Fragment>
     );

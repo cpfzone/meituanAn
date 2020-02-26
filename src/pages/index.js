@@ -11,6 +11,7 @@ export default
   state => {
     return {
       arr: state.list.arr,
+      city: state.user.city,
     };
   },
   {
@@ -25,14 +26,14 @@ class index extends Component {
   }
 
   render() {
-    const { arr } = this.props;
+    const { arr, city } = this.props;
     return (
       <div>
         <header className={styles.navbar}>
           <div className={styles.navbarLeft}>
             <Link to="/changeCity" className={styles.react}>
               <span className={styles.cityNav}>
-                北京
+                {city.substr(0,3)}
                 <em></em>
                 <img
                   src="https://p0.meituan.net/travelcube/45c79a92755b54adc9dc1c4682b123b3201.png"
