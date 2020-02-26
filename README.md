@@ -15,6 +15,8 @@
 
 * 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">开发完毕</a> :100:
 
+* 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">开发完毕</a> :rainbow:
+
 * 美团APP ReactNative + koa + Mongoose <a href="https://github.com/2662419405/meituanApp">正在开发</a>
 
 * 微信小程序 Tora <a href="#">还未开发</a>
