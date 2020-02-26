@@ -94,7 +94,12 @@ export default {
       const res = yield call(setPassWord, values);
       if (res.data.code === 1) {
         // router.push('/acount');
-        router.push(`/${routerPush()}`);
+        const a = routerPush();
+        if (a === undefined) {
+          router.push(`/`);
+        } else {
+          router.push(`/${a}`);
+        }
       } else {
         message.error(res.data.message);
       }

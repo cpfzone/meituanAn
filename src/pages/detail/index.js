@@ -8,7 +8,6 @@ import { Button } from 'antd';
 import Link from 'umi/link';
 import { Rate } from 'antd';
 import router from 'umi/router';
-import ReturnTop from '../../components/returnTop';
 
 export default
 @connect(
@@ -65,8 +64,7 @@ class index extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.timer);
-    window.removeEventListener('scroll', this.getWindowsTop());
-    console.log(this.fang());
+    window.removeEventListener('scroll', this.fang(this.getWindowsTop));
   }
 
   render() {
@@ -294,7 +292,6 @@ class index extends Component {
             <div className={styles.jiange}></div>
           </div>
         )}
-        {/* <ReturnTop /> */}
         <Footer />
       </Fragment>
     );

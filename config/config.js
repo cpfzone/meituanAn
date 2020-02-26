@@ -57,9 +57,19 @@ export default {
           component: './s',
         },
         {
+          path: '/submit',
+          title: '提交订单',
+          component: './submit',
+        },
+        {
           path: '/setPass',
           title: '修改密码',
           component: './setPass',
+        },
+        {
+          path: '/account/phone',
+          title: '修改手机号',
+          component: './account/phone',
         },
         {
           path: '/',
