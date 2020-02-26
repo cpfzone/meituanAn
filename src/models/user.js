@@ -15,12 +15,17 @@ import routerPush from '../../utils/push';
 const DefaultUser = {
   isLogin: window.localStorage.getItem('meituanToken') === null ? false : true,
   userinfo: null,
+  city: '北京',
 };
 
 export default {
   namespace: 'user',
   state: DefaultUser,
   effects: {
+    // 修改城市
+    *citySouHu({ name }, { call, put }) {
+      yield put({ type: 'cityState', name });
+    },
     // 上传头像
     *fileImg({ file }, { call, put }) {
       const res = yield call(uploadfile, file);
@@ -100,6 +105,9 @@ export default {
     },
   }, //异步操作
   reducers: {
+    cityState(state, action) {
+      return { ...state, city: action.name };
+    },
     getYanCode(state, action) {
       if (action.payload.stat === '100') {
         message.success('验证码发送成功!');
