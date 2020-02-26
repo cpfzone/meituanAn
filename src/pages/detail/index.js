@@ -7,6 +7,7 @@ import { Carousel } from 'antd-mobile';
 import { Button } from 'antd';
 import Link from 'umi/link';
 import { Rate } from 'antd';
+import router from 'umi/router';
 
 export default
 @connect(
@@ -95,7 +96,14 @@ class index extends Component {
                   <span>门市价¥{detailArr.old}</span>
                 </div>
                 <div className={styles.last}>
-                  <Button type="primary">立即抢购</Button>
+                  <Button
+                    type="primary"
+                    onClick={() =>
+                      router.push(`/order/${detailArr._id}/${this.props.match.params.index}`)
+                    }
+                  >
+                    立即抢购
+                  </Button>
                 </div>
               </div>
               <ul className={styles.advantage}>

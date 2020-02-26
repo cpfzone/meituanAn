@@ -12,11 +12,6 @@ export default {
       component: '../layouts/index.js',
       routes: [
         {
-          path: '/login',
-          title: '手机美团登录',
-          component: './login',
-        },
-        {
           path: '/account',
           title: '账号-个人页面',
           component: './account',
@@ -42,6 +37,11 @@ export default {
           component: './account/username',
         },
         {
+          path: '/order/:id/:index',
+          title: '提交订单',
+          component: './order',
+        },
+        {
           path: '/account/resetPass',
           title: '订单',
           component: './account/resetPass',
@@ -50,6 +50,11 @@ export default {
           path: '/account/avatar',
           title: '修改头像',
           component: './account/avatar',
+        },
+        {
+          path: '/s/:id',
+          title: '搜索详情页',
+          component: './s',
         },
         {
           path: '/setPass',
@@ -65,6 +70,11 @@ export default {
           title: '搜索',
           path: '/search',
           component: './search/index',
+        },
+        {
+          path: '/login',
+          title: '手机美团登录',
+          component: './login',
         },
         {
           title: '未找到相关信息',

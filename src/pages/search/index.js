@@ -117,7 +117,7 @@ class index extends Component {
               result.map((v, i) => {
                 return (
                   <li className={styles.listItems} key={i}>
-                    <Link to={{ pathname: v.editorWord }}>
+                    <Link to={{ pathname: `/s/${v.editorWord}` }}>
                       <span className={styles.itemSearch}>
                         <span className="iconfont icon-sousuo"></span>
                         <strong> {v.editorWord}</strong>
