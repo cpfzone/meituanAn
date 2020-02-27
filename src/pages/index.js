@@ -58,7 +58,6 @@ class index extends Component {
   render() {
     const { arr, city } = this.props;
     const { imgLazy } = this.state;
-    console.log(imgLazy);
     return (
       <div>
         <header className={styles.navbar}>

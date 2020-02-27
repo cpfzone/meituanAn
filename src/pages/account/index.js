@@ -28,7 +28,7 @@ class index extends Component {
     const { isLogin, route, userinfo } = this.props;
     return (
       <Fragment>
-        <Header title="我的美团" account={true} />
+        <Header title="我的美团" account={true} rightShow={true} search={true} />
         {isLogin ? (
           <Fragment>
             {userinfo === null ? (

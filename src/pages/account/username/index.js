@@ -57,7 +57,7 @@ class index extends Component {
           <div>1</div>
         ) : (
           <Fragment>
-            <Header title="修改用户名" account={false} />
+            <Header title="修改用户名" more={true} rightShow={true} />
             <dl className={styles.list}>
               <dd>
                 <input

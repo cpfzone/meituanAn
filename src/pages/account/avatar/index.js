@@ -119,7 +119,7 @@ class index extends Component {
     const { imageUrl, previewVisible, OSSData } = this.state;
     return (
       <div>
-        <Header title="修改头像" />
+        <Header title="修改头像" more={true} rightShow={true} />
         <div className={styles.btnWrapper}>
           <span className={styles.changAvatar}>修改用户头像</span>
           <Button onClick={this.showImg} className={styles.floatRight} type="primary">

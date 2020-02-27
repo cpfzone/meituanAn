@@ -89,7 +89,7 @@ class index extends Component {
     }
     return (
       <Fragment>
-        <Header title="团购信息" share={true} />
+        <Header title="团购信息" share={true} rightShow={true} />
         {detailArr.imgUrls === undefined ? (
           // 骨架屏位置
           <div>加载中</div>

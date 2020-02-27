@@ -43,7 +43,7 @@ class index extends Component {
     const { userinfo } = this.props;
     return (
       <div>
-        <Header title="我的账户" account={false} />
+        <Header title="我的账户" more={true} rightShow={true} />
         {userinfo === null ? (
           <div>1</div>
         ) : (

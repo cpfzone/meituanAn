@@ -3,6 +3,7 @@ import styles from './index.less';
 import Link from 'umi/link';
 import router from 'umi/router';
 import data from '../../data/account_header.json';
+import { ActionSheet, Toast } from 'antd-mobile';
 
 export default class index extends Component {
   constructor(props) {
@@ -25,8 +26,33 @@ export default class index extends Component {
     });
   };
 
+  dataList = [
+    { url: 'OpHiXAcYzmPQHcdlLFrc', title: '发送给朋友' },
+    { url: 'wvEzCMiDZjthhAOcwTOu', title: '新浪微博' },
+    { url: 'cTTayShKtEIdQVEMuiWt', title: '生活圈' },
+    { url: 'umnHwvEgSyQtXlZjNJTt', title: '微信好友' },
+    { url: 'SxpunpETIwdxNjcJamwB', title: 'QQ' },
+  ].map(obj => ({
+    icon: (
+      <img
+        src={`https://gw.alipayobjects.com/zos/rmsportal/${obj.url}.png`}
+        alt={obj.title}
+        style={{ width: 36 }}
+      />
+    ),
+    title: obj.title,
+  }));
+
+  showShare = () => {
+    ActionSheet.showShareActionSheetWithOptions({
+      options: this.dataList,
+      title: '分享到',
+    });
+  };
+
   render() {
-    const { title, account, share, search } = this.props;
+    const { title, account, share, search, rightShow, more } = this.props;
+    // rightShow 是否显示右侧  share是否显示分享 search 是否显示搜索, account是否显示主页 more是否显示更多
     return (
       <Fragment>
         <header id="account" className={styles.accountHeader}>
@@ -39,39 +65,53 @@ export default class index extends Component {
             </span>
           </div>
           <span className={styles.accountSpan}>{title}</span>
-          {account ? (
-            <div className={styles.navWarpRight}>
-              <Link to="/">
-                <span>
-                  <img
-                    src="https://p1.meituan.net/travelcube/142ba119b889881105236ef57446e6bf866.png"
-                    alt="搜索"
-                  />
-                </span>
-              </Link>
-              {!search ? (
-                <Link to="/search">
-                  <span>
-                    <img
-                      src="https://p0.meituan.net/travelcube/4b45dc09c35f9175498345f8672d08991022.png"
-                      alt="搜索"
-                    />
-                  </span>
-                </Link>
-              ) : null}
+          {/* 是否显示右侧 */}
+          {rightShow ? (
+            <div>
+              <div className={styles.navWarpRight}>
+                {account ? (
+                  <Link to="/">
+                    <span>
+                      <img
+                        src="https://p1.meituan.net/travelcube/142ba119b889881105236ef57446e6bf866.png"
+                        alt="主页"
+                      />
+                    </span>
+                  </Link>
+                ) : null}
+                {search ? (
+                  <Link to="/">
+                    <span>
+                      <img
+                        src="https://p0.meituan.net/travelcube/4b45dc09c35f9175498345f8672d08991022.png"
+                        alt="搜索"
+                      />
+                    </span>
+                  </Link>
+                ) : null}
+                {more ? (
+                  <a onClick={this.showTip}>
+                    <span>
+                      <img
+                        src="https://p0.meituan.net/travelcube/7289ad16274ae18417b84c916bb6a711169.png"
+                        alt="搜索"
+                      />
+                    </span>
+                  </a>
+                ) : null}
+                {share ? (
+                  <a onClick={this.showShare}>
+                    <span>
+                      <img
+                        src="https://cdn.jsdelivr.net/gh/2662419405/imgs/tu/shareimg.png"
+                        alt="分享"
+                      />
+                    </span>
+                  </a>
+                ) : null}
+              </div>
             </div>
-          ) : (
-            <div className={styles.navWarpRight}>
-              <a onClick={this.showTip}>
-                <span>
-                  <img
-                    src="https://p0.meituan.net/travelcube/7289ad16274ae18417b84c916bb6a711169.png"
-                    alt="搜索"
-                  />
-                </span>
-              </a>
-            </div>
-          )}
+          ) : null}
           <div
             className={styles.navDropDown}
             style={{ display: this.state.show ? 'block' : 'none' }}

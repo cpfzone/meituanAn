@@ -42,7 +42,7 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Fragment>
-        <Header title="设置密码" />
+        <Header title="设置密码" more={true} rightShow={true} />
         <Form onSubmit={this.handleSubmit} className={styles.loginForm}>
           <Form.Item label="请输入当前密码">
             {getFieldDecorator('yuanPassword', {

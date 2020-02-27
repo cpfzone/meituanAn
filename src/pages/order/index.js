@@ -51,7 +51,7 @@ class index extends Component {
     });
     return (
       <div>
-        <Header title="提交订单" account={true} />
+        <Header title="提交订单" more={true} rightShow={true} />
         <div className={styles.flexBoxOrder}>
           <div className={styles.contentTitleOrder}>{detailArr.name}</div>
           <div className={styles.formMbWrapper}>

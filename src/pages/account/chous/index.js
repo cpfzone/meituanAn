@@ -7,7 +7,7 @@ class index extends Component {
   render() {
     return (
       <div>
-        <Header title="我的订单" account={false} />
+        <Header title="我的订单" more={true} rightShow={true} />
         <NoEveryThing title="您还没有任何抽奖单，赶紧去参与吧" />
         <Footer />
       </div>
