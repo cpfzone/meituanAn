@@ -21,19 +21,51 @@ export default
   },
 )
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgLazy: 3,
+    };
+  }
+
   componentDidMount() {
     this.props.getList();
   }
 
+  componentWillMount() {
+    window.addEventListener('scroll', this.scrollTopImgLazy);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scrollTopImgLazy);
+  }
+
+  // 图片懒加载scrollTopImgLazy
+  scrollTopImgLazy = () => {
+    let scrollTop =
+      window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    let index = Math.ceil((scrollTop - this.refs.demo.scrollTop) / 102) + 3;
+    const preIndex = this.state.imgLazy;
+    // 防止反复滚动图片重复加载
+    if (preIndex > index) {
+      index = preIndex;
+    }
+    this.setState({
+      imgLazy: index,
+    });
+  };
+
   render() {
     const { arr, city } = this.props;
+    const { imgLazy } = this.state;
+    console.log(imgLazy);
     return (
       <div>
         <header className={styles.navbar}>
           <div className={styles.navbarLeft}>
             <Link to="/changeCity" className={styles.react}>
               <span className={styles.cityNav}>
-                {city.substr(0,3)}
+                {city.substr(0, 3)}
                 <em></em>
                 <img
                   src="https://p0.meituan.net/travelcube/45c79a92755b54adc9dc1c4682b123b3201.png"
@@ -117,7 +149,7 @@ class index extends Component {
           </WingBlank>
         </div>
         <div className={styles.Gekai}></div>
-        <div className={styles.guessLike}>
+        <div className={styles.guessLike} ref="demo">
           <WingBlank>
             <dl className={styles.listInDl} style={{ opacity: arr.length > 0 ? '1' : '0' }}>
               <dd>
@@ -128,8 +160,8 @@ class index extends Component {
                       <dd key={i}>
                         <Link to={'/detail/' + v._id + '/' + i} className={styles.react}>
                           <div className={styles.dealcard}>
-                            <div className={styles.dealcardImg}>
-                              <img src={v.imgUrls[0].url} alt="图像" />
+                            <div className={[styles.dealcardImg, styles.imgBox].join(' ')}>
+                              {imgLazy > i ? <img src={v.imgUrls[0].url} alt="图像" /> : null}
                             </div>
                             <div className={styles.dealcardRight}>
                               <div className={styles.singleLine}>{v.name}</div>
