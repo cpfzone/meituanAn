@@ -108,7 +108,7 @@ server {
 |     /server/user/phone     |   get    |          ?phone=xx&code=yy          |               获取手机验证码                |          否           |
 |  /server/user/setPassword  |   post   |   {values:{phone:xx,password:yy}}   |                 初始化密码                  |          是           |
 |      /server/user/yan      |   post   |      {code:{code:xx,tel:xxx}}       | 判断验证码 并且进行注册，如果注册过，则登录 |          否           |
-|     /server/user/info      |   post   |              {id:xxx}               |                获取用户信息                 |          是           |
+|     /server/user/info      |   post   |              {id:xxx}               |                获取用户信息                 |          否           |
 |     /server/user/name      |   post   |     {value:{phone:xx,name:xx}}      |                 修改用户名                  |          是           |
 | /server/user/resetPassword |   post   | {value:{yuanPassword:xxx,salt:xxx}} |                  修改密码                   |          是           |
 |   /server/user/password    |   post   |   {value:{tel:xxx,password:xxx}}    |                通过密码登录                 |          否           |

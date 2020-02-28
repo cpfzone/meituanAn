@@ -125,7 +125,7 @@ code.post('/yan', async ctx => {
 
 // 获取用户基本信息
 // 判断验证码是否正确 并且注册
-code.post('/info', koajwt({ secret }), async ctx => {
+code.post('/info', async ctx => {
   const data = ctx.request.body;
   const obj = await Meituan.findById(data.id);
   obj.password = '';
