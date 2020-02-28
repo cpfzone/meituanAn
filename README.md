@@ -50,6 +50,8 @@
 - [ ] 群聊
 - [ ] 私聊
 - [ ] 照片墙
+- [ ] 热门模块
+- [ ] 瀑布流的照片墙
 
 ## 优化
 
@@ -114,6 +116,7 @@ server {
 |   /server/user/password    |   post   |   {value:{tel:xxx,password:xxx}}    |                通过密码登录                 |          否           |
 |  /server/user/uploadfile   |   post   |                file                 |                获取上传文件                 |          是           |
 |     /server/user/tags      |   get    |                 无                  |                获取首页数据                 |          否           |
+|      /server/user/hot      |   get    |                 无                  |                获取热门数据                 |          否           |
 |    /server/user/detail     |   get    |               ?id=xx                |             获取某一个首页数据              |          否           |
 
 
