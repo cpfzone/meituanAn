@@ -5,6 +5,7 @@ import { Carousel, WingBlank } from 'antd-mobile';
 import data from '../data/header.json';
 import Footer from './footer';
 import { connect } from 'dva';
+import TabBar from '../components/TabBar';
 
 export default
 @connect(
@@ -188,7 +189,8 @@ class index extends Component {
               </dd>
             </dl>
           </WingBlank>
-          <Footer />
+          <Footer bar={true} />
+          <TabBar />
         </div>
       </div>
     );

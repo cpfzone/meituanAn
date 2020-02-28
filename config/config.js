@@ -12,9 +12,19 @@ export default {
       component: '../layouts/index.js',
       routes: [
         {
+          path: '/liao',
+          title: '聊天交友',
+          component: './liao/index.js',
+        },
+        {
+          path: '/hot',
+          title: '热门模块',
+          component: './hot/index.js',
+        },
+        {
           path: '/account',
           title: '账号-个人页面',
-          component: './account',
+          component: './account/index.js',
         },
         {
           path: '/account/myinfo',

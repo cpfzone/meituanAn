@@ -7,6 +7,7 @@ import styles from './index.less';
 import Link from 'umi/link';
 import data from '../../data/account.json';
 import router from 'umi/router';
+import NavBar from '../../components/TabBar';
 import { Skeleton } from 'antd';
 
 @connect(state => {
@@ -153,7 +154,8 @@ class index extends Component {
         ) : (
           <Redirect to={{ pathname: '/login', query: { url: route.path.substr(1) } }} />
         )}
-        <Footer />
+        <Footer bar={true} />
+        <NavBar />
       </Fragment>
     );
   }

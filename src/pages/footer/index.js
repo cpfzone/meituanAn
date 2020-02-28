@@ -11,8 +11,10 @@ import { connect } from 'dva';
 }, null)
 class index extends Component {
   render() {
+    const { bar } = this.props;
+
     return (
-      <footer>
+      <footer style={{ padding: bar ? '0 0.2rem 1.4rem' : null }}>
         <div className={styles.footerNav}>
           <div className={[styles.pullRight, styles.pullDemo].join(' ')}>
             <span className={styles.m_city}>城市</span>
