@@ -1,12 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import TabBar from '../../components/TabBar';
+import { NoticeBar } from 'antd-mobile';
+import { connect } from 'dva';
+import Redirect from 'umi/redirect';
 
-export default class index extends Component {
+export default
+@connect(state => {
+  return {
+    isLogin: state.user.isLogin,
+  };
+}, null)
+class index extends Component {
   render() {
+    const { isLogin, route } = this.props;
     return (
       <div>
-        我是聊天模块
-        <TabBar />
+        {isLogin ? (
+          <Fragment>
+            <NoticeBar mode="closable" marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
+              此模块正在开发中
+            </NoticeBar>
+            <TabBar />
+          </Fragment>
+        ) : (
+          <Redirect to={{ pathname: '/login', query: { url: route.path.substr(1) } }} />
+        )}
       </div>
     );
   }
