@@ -239,23 +239,4 @@ code.post('/uploadfile', koajwt({ secret }), async ctx => {
   return (ctx.body = '上传成功！');
 });
 
-// 查看首页数据列表
-code.get('/tags', async ctx => {
-  const obj = await Back.find({});
-  ctx.body = obj;
-});
-
-// 查看热门数据列表
-code.get('/hot', async ctx => {
-  const obj = await Hot.find({});
-  ctx.body = obj;
-});
-
-// 查看某一个数据
-code.get('/detail', async ctx => {
-  const data = ctx.query.id;
-  const obj = await Back.findOne({ _id: data });
-  ctx.body = obj;
-});
-
 module.exports = code.routes();

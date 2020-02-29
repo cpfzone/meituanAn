@@ -1,4 +1,10 @@
-import { getListData, getDetailListLi, getDataSuggest, putHotData } from '../service/list';
+import {
+  getListData,
+  getDetailListLi,
+  getDataSuggest,
+  putHotData,
+  putDetailHotData,
+} from '../service/list';
 import randomNumber from '../../utils/luan';
 import { message } from 'antd';
 
@@ -8,12 +14,18 @@ const homeList = {
   result: {},
   hotList: [],
   refreshing: false,
+  detailListHot: {},
 };
 
 export default {
   namespace: 'list',
   state: homeList,
   effects: {
+    // 获取某一个热门数据
+    *getHotDetailData({ id }, { call, put }) {
+      const res = yield call(putDetailHotData, id);
+      yield put({ type: 'defaultHotData', payload: res.data });
+    },
     // 获取热门内容
     *hotData({}, { call, put }) {
       const res = yield call(putHotData);
@@ -64,6 +76,11 @@ export default {
     getRefChange(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.refreshing = true;
+      return newState;
+    },
+    defaultHotData(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.detailListHot = action.payload;
       return newState;
     },
   }, //更新状态

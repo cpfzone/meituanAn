@@ -90,6 +90,8 @@ const models = {
     avatar: { type: String },
     // 分类:
     select: { type: String },
+    // 创建时间
+    createTime: { type: String },
   },
 };
 

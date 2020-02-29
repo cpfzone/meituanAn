@@ -3,14 +3,14 @@ import Axios from 'axios';
 export const getListData = () => {
   return Axios({
     method: 'get',
-    url: '/server/user/tags',
+    url: '/server/list/tags',
   });
 };
 
 export const getDetailListLi = value => {
   return Axios({
     method: 'get',
-    url: '/server/user/detail',
+    url: '/server/list/detail',
     params: {
       id: value,
     },
@@ -30,6 +30,16 @@ export const getDataSuggest = value => {
 export const putHotData = () => {
   return Axios({
     method: 'get',
-    url: '/server/user/hot',
+    url: '/server/list/hot',
+  });
+};
+
+export const putDetailHotData = id => {
+  return Axios({
+    method: 'get',
+    url: '/server/list/detail',
+    params: {
+      id,
+    },
   });
 };
