@@ -15,7 +15,6 @@ export default
 @connect(
   state => {
     return {
-      isLogin: state.user.isLogin,
       hotList: state.list.hotList,
     };
   },
@@ -90,7 +89,7 @@ class index extends Component {
   }
 
   render() {
-    let { isLogin, route, hotList } = this.props;
+    let { hotList } = this.props;
     const { tabs, tags } = this.state;
     let arr = [];
     if (hotList.length > 0) {
@@ -135,50 +134,46 @@ class index extends Component {
 
     return (
       <div className={styles.containerHot}>
-        {isLogin ? (
-          <Fragment>
-            <div className={styles.header}>
-              <span>热门内容</span>
-            </div>
-            <Tabs size="small" tabBarGutter={5} defaultActiveKey="0" onChange={this.callback}>
-              {tabs.map((v, i) => {
-                return (
-                  <TabPane tab={v.title} key={i}>
-                    <PullToRefresh
-                      damping={60}
-                      ref={el => (this.ptr = el)}
-                      style={{
-                        height: this.state.height,
-                        overflow: 'auto',
-                      }}
-                      indicator={this.state.down ? {} : { deactivate: '上拉可以刷新' }}
-                      direction={this.state.down ? 'down' : 'up'}
-                      refreshing={this.state.refreshing}
-                      onRefresh={() => {
-                        this.setState({ refreshing: true });
-                        setTimeout(() => {
-                          this.setState({ refreshing: false });
-                        }, 1000);
-                      }}
-                    >
-                      <Row>
-                        <Col span={1}></Col>
-                        <Col span={11}>{MapList[0]}</Col>
-                        <Col span={1}></Col>
-                        <Col span={10}>{MapList[1]}</Col>
-                        <Col span={1}></Col>
-                      </Row>
-                      <div style={{ height: '100px' }}></div>
-                    </PullToRefresh>
-                  </TabPane>
-                );
-              })}
-            </Tabs>
-            <TabBar />
-          </Fragment>
-        ) : (
-          <Redirect to={{ pathname: '/login', query: { url: route.path.substr(1) } }} />
-        )}
+        <Fragment>
+          <div className={styles.header}>
+            <span>热门内容</span>
+          </div>
+          <Tabs size="small" tabBarGutter={5} defaultActiveKey="0" onChange={this.callback}>
+            {tabs.map((v, i) => {
+              return (
+                <TabPane tab={v.title} key={i}>
+                  <PullToRefresh
+                    damping={60}
+                    ref={el => (this.ptr = el)}
+                    style={{
+                      height: this.state.height,
+                      overflow: 'auto',
+                    }}
+                    indicator={this.state.down ? {} : { deactivate: '上拉可以刷新' }}
+                    direction={this.state.down ? 'down' : 'up'}
+                    refreshing={this.state.refreshing}
+                    onRefresh={() => {
+                      this.setState({ refreshing: true });
+                      setTimeout(() => {
+                        this.setState({ refreshing: false });
+                      }, 1000);
+                    }}
+                  >
+                    <Row>
+                      <Col span={1}></Col>
+                      <Col span={11}>{MapList[0]}</Col>
+                      <Col span={1}></Col>
+                      <Col span={10}>{MapList[1]}</Col>
+                      <Col span={1}></Col>
+                    </Row>
+                    <div style={{ height: '100px' }}></div>
+                  </PullToRefresh>
+                </TabPane>
+              );
+            })}
+          </Tabs>
+          <TabBar />
+        </Fragment>
       </div>
     );
   }
