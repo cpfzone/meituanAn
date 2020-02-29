@@ -1,19 +1,24 @@
 import { getListData, getDetailListLi, getDataSuggest, putHotData } from '../service/list';
+import randomNumber from '../../utils/luan';
+import { message } from 'antd';
 
 const homeList = {
   arr: [],
   detailArr: {},
   result: {},
   hotList: [],
+  refreshing: false,
 };
 
 export default {
   namespace: 'list',
   state: homeList,
   effects: {
-    // 获取人呢内容
+    // 获取热门内容
     *hotData({}, { call, put }) {
       const res = yield call(putHotData);
+      // 随机打乱
+      res.data.sort(randomNumber);
       yield put({ type: 'initHotData', payload: res.data });
     },
     // 获取搜索内容
@@ -28,6 +33,10 @@ export default {
     *getDetailList({ value }, { call, put }) {
       const res = yield call(getDetailListLi, value);
       yield put({ type: 'detailList', payload: res.data });
+    },
+    *refChange({ value }, { call, put }) {
+      yield put({ type: 'getRefChange' });
+      message.success('为你更新数据完成');
     },
   }, //异步操作
   reducers: {
@@ -49,6 +58,12 @@ export default {
     initHotData(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.hotList = action.payload;
+      newState.refreshing = false;
+      return newState;
+    },
+    getRefChange(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.refreshing = true;
       return newState;
     },
   }, //更新状态

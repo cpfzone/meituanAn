@@ -12,7 +12,10 @@ axios.interceptors.request.use(function(config) {
   // jwt添加header的token
   const token = localStorage.getItem('meituanToken');
   config.headers.common['Authorization'] = 'Bearer ' + token;
-  Toast.loading('加载中', 0);
+  // 过滤掉热门模块和搜索模块
+  if (config.url !== '/server/user/hot' && config.url !== '/ptapi/suggest') {
+    Toast.loading('加载中', 0);
+  }
   // eslint-disable-next-line no-undef
   return config;
 });

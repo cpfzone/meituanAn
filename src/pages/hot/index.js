@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import TabBar from '../../components/TabBar';
 import { connect } from 'dva';
-import Redirect from 'umi/redirect';
 import styles from './index.less';
 import { Tabs } from 'antd';
 import { PullToRefresh } from 'antd-mobile';
 import ReactDOM from 'react-dom';
 import { Card, Row, Col, Avatar } from 'antd';
 import group from '../../../utils/arr';
+import Link from 'umi/link';
 
 const { TabPane } = Tabs;
 
@@ -16,11 +16,15 @@ export default
   state => {
     return {
       hotList: state.list.hotList,
+      refreshing: state.list.refreshing,
     };
   },
   {
     getArrList: () => ({
       type: 'list/hotData',
+    }),
+    changeRef: () => ({
+      type: 'list/refChange',
     }),
   },
 )
@@ -28,49 +32,16 @@ class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabs: [
-        {
-          title: '全部',
-          data: {},
-        },
-        {
-          title: '旅行',
-          data: {},
-        },
-        {
-          title: '丽人',
-          data: {},
-        },
-        {
-          title: '电影',
-          data: {},
-        },
-        {
-          title: '结婚',
-          data: {},
-        },
-        {
-          title: '教培',
-          data: {},
-        },
-        {
-          title: '家装',
-          data: {},
-        },
-        {
-          title: '亲子',
-          data: {},
-        },
-      ],
-      refreshing: false,
+      tabs: ['全部', '旅行', '丽人', '电影', '结婚', '教培', '家装', '亲子'],
       down: true,
       height: document.documentElement.clientHeight,
       tags: '',
+      suo: 0,
     };
   }
 
   callback = value => {
-    const name = this.state.tabs[value].title;
+    const name = this.state.tabs[value];
     this.setState({
       tags: name,
     });
@@ -89,8 +60,8 @@ class index extends Component {
   }
 
   render() {
-    let { hotList } = this.props;
-    const { tabs, tags } = this.state;
+    let { hotList, refreshing } = this.props;
+    const { tabs, tags, suo } = this.state;
     let arr = [];
     if (hotList.length > 0) {
       let xin = hotList;
@@ -106,29 +77,30 @@ class index extends Component {
 
     const MapList = arr.map(list =>
       list.map((item, index) => (
-        <Card
-          hoverable
-          bodyStyle={{ padding: '24px 10px' }}
-          key={index}
-          style={{ marginBottom: '10px' }}
-          cover={<img alt="example" src={item.imgUrls[0].url} />}
-        >
-          <Card.Meta
-            title={<span className={styles.titleMeta}>{item.title}</span>}
-            description={
-              <div className={styles.containerImgHot}>
-                <div className={styles.userImg}>
-                  <Avatar src={item.avatar} />
-                  <span className={styles.deactivateMeta}>{item.name}</span>
+        <Link key={index} to={{ pathname: '/hot/detail/' + item._id }}>
+          <Card
+            hoverable
+            bodyStyle={{ padding: '24px 10px' }}
+            style={{ marginBottom: '10px' }}
+            cover={<img alt="example" src={item.imgUrls[0].url} />}
+          >
+            <Card.Meta
+              title={<span className={styles.titleMeta}>{item.title}</span>}
+              description={
+                <div className={styles.containerImgHot}>
+                  <div className={styles.userImg}>
+                    <Avatar src={item.avatar} />
+                    <span className={styles.deactivateMeta}>{item.name}</span>
+                  </div>
+                  <div className={styles.likeMeta}>
+                    <span className="iconfont icon-xin"></span>
+                    <span className={styles.xiangYouMeta}>{item.adds.length}</span>
+                  </div>
                 </div>
-                <div className={styles.likeMeta}>
-                  <span className="iconfont icon-xin"></span>
-                  <span className={styles.xiangYouMeta}>{item.adds.length}</span>
-                </div>
-              </div>
-            }
-          />
-        </Card>
+              }
+            />
+          </Card>
+        </Link>
       )),
     );
 
@@ -141,7 +113,7 @@ class index extends Component {
           <Tabs size="small" tabBarGutter={5} defaultActiveKey="0" onChange={this.callback}>
             {tabs.map((v, i) => {
               return (
-                <TabPane tab={v.title} key={i}>
+                <TabPane tab={v} key={i}>
                   <PullToRefresh
                     damping={60}
                     ref={el => (this.ptr = el)}
@@ -149,14 +121,10 @@ class index extends Component {
                       height: this.state.height,
                       overflow: 'auto',
                     }}
-                    indicator={this.state.down ? {} : { deactivate: '上拉可以刷新' }}
-                    direction={this.state.down ? 'down' : 'up'}
-                    refreshing={this.state.refreshing}
+                    refreshing={refreshing}
                     onRefresh={() => {
-                      this.setState({ refreshing: true });
-                      setTimeout(() => {
-                        this.setState({ refreshing: false });
-                      }, 1000);
+                      this.props.changeRef();
+                      this.props.getArrList();
                     }}
                   >
                     <Row>

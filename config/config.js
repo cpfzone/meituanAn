@@ -17,6 +17,11 @@ export default {
           component: './liao/index.js',
         },
         {
+          path: '/hot/detail/:id',
+          title: '热门模块',
+          component: './hot/detail',
+        },
+        {
           path: '/hot',
           title: '热门模块',
           component: './hot/index.js',
