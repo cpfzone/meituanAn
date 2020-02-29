@@ -13,11 +13,15 @@ export default
     return {
       arr: state.list.arr,
       city: state.user.city,
+      hotList: state.list.hotList,
     };
   },
   {
     getList: () => ({
       type: 'list/getList', //aciton的type需要加上命名空间
+    }),
+    getArrList: () => ({
+      type: 'list/hotData',
     }),
   },
 )
@@ -30,6 +34,9 @@ class index extends Component {
   }
 
   componentDidMount() {
+    if (this.props.hotList.length === 0) {
+      this.props.getArrList();
+    }
     this.props.getList();
   }
 

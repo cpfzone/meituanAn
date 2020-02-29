@@ -56,7 +56,9 @@ class index extends Component {
         }),
       0,
     );
-    this.props.getArrList();
+    if (this.props.hotList.length === 0) {
+      this.props.getArrList();
+    }
   }
 
   render() {
