@@ -3,6 +3,7 @@ import Header from '../../header';
 import { Carousel } from 'antd';
 import styles from './index.less';
 import { connect } from 'dva';
+import format from '../../../../utils/time';
 
 export default
 @connect(
@@ -82,6 +83,23 @@ class index extends Component {
                 <div dangerouslySetInnerHTML={{ __html: detailListHot.textArea }}></div>
               </div>
             </div>
+            <div className={styles.operation_block}>
+              <ul>
+                <li>
+                  <span className="iconfont icon-xin"></span>
+                  <strong>{detailListHot.adds.length}</strong>
+                </li>
+                <li>
+                  <span className="iconfont icon-pinglun"></span>
+                  <strong>{detailListHot.speaks.length}</strong>
+                </li>
+                <li>
+                  <span className="iconfont icon-shoucang1"></span>
+                  <strong>0</strong>
+                </li>
+              </ul>
+            </div>
+            <div className={styles.updateTime}>{format(detailListHot.createTime)}</div>
           </Fragment>
         )}
       </div>
