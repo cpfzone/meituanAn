@@ -26,3 +26,10 @@ export const getDataSuggest = value => {
     },
   });
 };
+
+export const putHotData = () => {
+  return Axios({
+    method: 'get',
+    url: '/server/user/hot',
+  });
+};

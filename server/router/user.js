@@ -8,6 +8,7 @@ const koajwt = require('koa-jwt');
 const dbName = require('../../config/db');
 const model = require('../model');
 const Meituan = model.getNames('meituan');
+const Hot = model.getNames('hot');
 const Back = model.getNames('back');
 const hashCode = require('../utils/hasCode'); // 密码加盐
 // 这个是我个人的一个验证码平台,资金有限,如果大家使用尽量就是用来自己测试,不要随意使用,短信低于一定数量之后我会停掉这个接口
@@ -241,6 +242,12 @@ code.post('/uploadfile', koajwt({ secret }), async ctx => {
 // 查看首页数据列表
 code.get('/tags', async ctx => {
   const obj = await Back.find({});
+  ctx.body = obj;
+});
+
+// 查看热门数据列表
+code.get('/hot', async ctx => {
+  const obj = await Hot.find({});
   ctx.body = obj;
 });
 

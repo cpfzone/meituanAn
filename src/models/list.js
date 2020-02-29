@@ -1,15 +1,21 @@
-import { getListData, getDetailListLi, getDataSuggest } from '../service/list';
+import { getListData, getDetailListLi, getDataSuggest, putHotData } from '../service/list';
 
 const homeList = {
   arr: [],
   detailArr: {},
   result: {},
+  hotList: [],
 };
 
 export default {
   namespace: 'list',
   state: homeList,
   effects: {
+    // 获取人呢内容
+    *hotData({}, { call, put }) {
+      const res = yield call(putHotData);
+      yield put({ type: 'initHotData', payload: res.data });
+    },
     // 获取搜索内容
     *keySuggest({ value }, { call, put }) {
       const res = yield call(getDataSuggest, value);
@@ -38,6 +44,11 @@ export default {
     getListData(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.arr = action.payload;
+      return newState;
+    },
+    initHotData(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.hotList = action.payload;
       return newState;
     },
   }, //更新状态
