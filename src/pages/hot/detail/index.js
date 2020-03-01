@@ -99,7 +99,7 @@ class index extends Component {
                 </li>
               </ul>
             </div>
-            <div className={styles.updateTime}>{format(detailListHot.createTime)}</div>
+            <div className={styles.updateTime}>{format(detailListHot.createTime)}gai</div>
           </Fragment>
         )}
       </div>
