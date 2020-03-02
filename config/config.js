@@ -37,6 +37,11 @@ export default {
           component: './account/myinfo',
         },
         {
+          path: '/account/quans',
+          title: '我的抵用券',
+          component: './account/quans',
+        },
+        {
           path: '/detail/:id/:index',
           title: '详情页面',
           component: './detail',
