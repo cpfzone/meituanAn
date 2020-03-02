@@ -37,6 +37,7 @@ class index extends Component {
       height: document.documentElement.clientHeight,
       tags: '',
       suo: 0,
+      show: false,
     };
   }
 
@@ -44,6 +45,7 @@ class index extends Component {
     const name = this.state.tabs[value];
     this.setState({
       tags: name,
+      show: false,
     });
   };
 
@@ -61,9 +63,35 @@ class index extends Component {
     }
   }
 
+  // 图片预加载
+  yuImgLoad = (data, flag) => {
+    if (flag) {
+      return false;
+    }
+    let sum = 0;
+    let count = 0;
+    // 计算总数
+    data.forEach(v => {
+      sum += v.imgUrls.length;
+    });
+    // 预加载
+    data.forEach(v => {
+      v.imgUrls.forEach(item => {
+        let img = new Image();
+        img.src = item.url;
+        img.onload = () => {
+          count++;
+          if (count === sum) {
+            this.setState({ show: true });
+          }
+        };
+      });
+    });
+  };
+
   render() {
     let { hotList, refreshing } = this.props;
-    const { tabs, tags, suo } = this.state;
+    const { tabs, tags, show } = this.state;
     let arr = [];
     if (hotList.length > 0) {
       let xin = hotList;
@@ -73,6 +101,7 @@ class index extends Component {
           return v.select == tags;
         });
       }
+      this.yuImgLoad(xin, show);
       // 分组,瀑布流
       arr = group(xin, xin.length / 2);
     }
@@ -129,7 +158,7 @@ class index extends Component {
                       this.props.getArrList();
                     }}
                   >
-                    <Row>
+                    <Row style={{ display: show ? 'block' : 'none' }}>
                       <Col span={1}></Col>
                       <Col span={11}>{MapList[0]}</Col>
                       <Col span={1}></Col>
@@ -142,6 +171,7 @@ class index extends Component {
               );
             })}
           </Tabs>
+          <div style={{ display: show ? 'none' : 'block' }} className={styles.loader}></div>
           <TabBar />
         </Fragment>
       </div>
