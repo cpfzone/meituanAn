@@ -72,20 +72,18 @@ class index extends Component {
     let count = 0;
     // 计算总数
     data.forEach(v => {
-      sum += v.imgUrls.length;
+      sum += 1;
     });
     // 预加载
     data.forEach(v => {
-      v.imgUrls.forEach(item => {
-        let img = new Image();
-        img.src = item.url;
-        img.onload = () => {
-          count++;
-          if (count === sum) {
-            this.setState({ show: true });
-          }
-        };
-      });
+      let img = new Image();
+      img.src = v.imgUrls[0].url;
+      img.onload = () => {
+        count++;
+        if (count === sum) {
+          this.setState({ show: true });
+        }
+      };
     });
   };
 
