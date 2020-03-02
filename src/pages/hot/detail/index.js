@@ -17,6 +17,9 @@ export default
       type: 'list/getHotDetailData',
       id,
     }),
+    destoryDetailHot: () => ({
+      type: 'list/hotDesotryData',
+    }),
   },
 )
 class index extends Component {
@@ -27,6 +30,10 @@ class index extends Component {
 
   componentDidMount() {
     this.props.getHotDetailData(this.props.match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.destoryDetailHot();
   }
 
   render() {
@@ -99,7 +106,34 @@ class index extends Component {
                 </li>
               </ul>
             </div>
-            <div className={styles.updateTime}>{format(detailListHot.createTime)}gai</div>
+            <div className={styles.updateTime}>{format(detailListHot.createTime)}</div>
+            <div className={styles.kongxi}></div>
+            <div className={styles.allTip}>
+              <h3 className={styles.top}>
+                <i className={styles.remain}></i>
+                <span className={styles.brief}>笔记评论</span>
+              </h3>
+              {detailListHot.speaks.length > 0 ? (
+                <div>评论区</div>
+              ) : (
+                <div className={styles.nocoment}>
+                  <img
+                    src="//s.xiaohongshu.com/formula-static/frieza/public/img/elephant.207c437.png"
+                    alt="头像"
+                    className={styles.smallpic}
+                  />
+                  <h3 className={styles.remain}>啊欧，还没有评论哦～</h3>
+                </div>
+              )}
+            </div>
+            <div className={styles.kongxi}>
+              <div className={styles.allTip}>
+                <h3 className={styles.top}>
+                  <i className={styles.remain}></i>
+                  <span className={styles.brief}>相关推荐</span>
+                </h3>
+              </div>
+            </div>
           </Fragment>
         )}
       </div>

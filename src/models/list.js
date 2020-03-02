@@ -50,6 +50,9 @@ export default {
       yield put({ type: 'getRefChange' });
       message.success('为你更新数据完成');
     },
+    *hotDesotryData({}, { call, put }) {
+      yield put({ type: 'destoryHotData' });
+    },
   }, //异步操作
   reducers: {
     initList(state, action) {
@@ -81,6 +84,11 @@ export default {
     defaultHotData(state, action) {
       const newState = JSON.parse(JSON.stringify(state));
       newState.detailListHot = action.payload;
+      return newState;
+    },
+    destoryHotData(state, action) {
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.detailListHot = {};
       return newState;
     },
   }, //更新状态
