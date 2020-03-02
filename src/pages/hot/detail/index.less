@@ -120,6 +120,42 @@
       color: #555;
       line-height: 0.54rem;
     }
+    .checkMore {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2.8rem;
+      background-image: linear-gradient(-180deg, hsla(0, 0%, 100%, 0), #fff 70%);
+      z-index: 100;
+      .checkBtn {
+        position: absolute !important;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.9rem;
+        line-height: 0.9rem;
+        font-size: 0.26rem;
+        color: #5b92e1;
+        text-align: center;
+        background-color: #fff;
+        position: relative;
+        border: none;
+        &:before {
+          content: '';
+          position: absolute;
+          width: 200%;
+          height: 200%;
+          top: 0;
+          left: 0;
+          transform-origin: 0 0;
+          transform: scale(0.5);
+          box-sizing: border-box;
+          pointer-events: none;
+          border-top: 1px solid #e6e6e6;
+        }
+      }
+    }
   }
 }
 
@@ -205,5 +241,25 @@
     .brief {
       vertical-align: middle;
     }
+  }
+}
+
+.blackDemo {
+  padding: 0.2rem 0.3rem 0.1rem;
+  .guAvatar {
+    background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+    background-size: 400% 100%;
+    animation: ant-skeleton-loading 1.4s ease infinite;
+    width: 100%;
+    height: 300px;
+  }
+}
+
+@keyframes ant-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
   }
 }

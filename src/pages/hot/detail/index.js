@@ -1,15 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../../header';
-import { Carousel } from 'antd';
+import { Carousel, Skeleton } from 'antd';
 import styles from './index.less';
 import { connect } from 'dva';
 import format from '../../../../utils/time';
+import { Modal } from 'antd-mobile';
+import route from 'umi/router';
+
+const alert = Modal.alert;
 
 export default
 @connect(
   state => {
     return {
       detailListHot: state.list.detailListHot,
+      isLogin: state.user.isLogin,
     };
   },
   {
@@ -25,7 +30,9 @@ export default
 class index extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      detail: false,
+    };
   }
 
   componentDidMount() {
@@ -36,14 +43,40 @@ class index extends Component {
     this.props.destoryDetailHot();
   }
 
+  changeCheckMore = () => {
+    // 提示用户进行登录
+    alert('', '是否进行登录,获取更多功能', [
+      {
+        text: '取消',
+        onPress: () =>
+          this.setState({
+            detail: true,
+          }),
+      },
+      {
+        text: '登录',
+        onPress: () => console.log(route.push),
+      },
+    ]);
+  };
+
   render() {
-    const { detailListHot } = this.props;
+    const { detailListHot, isLogin } = this.props;
     return (
       <div>
         <Header title="热门模块" rightShow={true} share={true}></Header>
         {detailListHot.imgUrls === undefined ? (
           // 骨架屏位置
-          <div>加载中</div>
+          <div className={styles.blackDemo}>
+            <div className={styles.guAvatar}></div>
+            <Skeleton className={styles.chaju} active paragraph={{ rows: 1, width: '100%' }} />
+            <Skeleton
+              className={styles.chaju}
+              active
+              paragraph={{ rows: 5, width: '100%' }}
+              title={false}
+            />
+          </div>
         ) : (
           <Fragment>
             <div className={styles.zuoyouHot}>
@@ -87,7 +120,18 @@ class index extends Component {
             <div className={styles.node}>
               <h1 className={styles.hotTitle}>{detailListHot.title}</h1>
               <div className={styles.contentHot}>
-                <div dangerouslySetInnerHTML={{ __html: detailListHot.textArea }}></div>
+                <div
+                  style={{ height: !isLogin && !this.state.detail ? '254px' : null }}
+                  dangerouslySetInnerHTML={{ __html: detailListHot.textArea }}
+                ></div>
+                {!isLogin && !this.state.detail ? (
+                  <div className={styles.checkMore}>
+                    <div className={styles.checkBtn} onClick={this.changeCheckMore}>
+                      展开阅读全文
+                      <span className="iconfont icon-down-arrow"></span>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className={styles.operation_block}>
