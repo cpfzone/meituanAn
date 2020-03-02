@@ -42,6 +42,11 @@ export default {
           component: './account/quans',
         },
         {
+          path: '/account/quans/help',
+          title: '活动通用规则',
+          component: './account/quans/help',
+        },
+        {
           path: '/detail/:id/:index',
           title: '详情页面',
           component: './detail',
