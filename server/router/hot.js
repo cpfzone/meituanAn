@@ -31,4 +31,10 @@ code.post('/zan', koajwt({ secret }), async ctx => {
   }
 });
 
+code.post('/ping', koajwt({ secret }), async ctx => {
+  const data = ctx.request.body;
+  const obj = await Hot.updateOne({ _id: data.data.item }, { $push: { speaks: data.data } });
+  ctx.body = obj;
+});
+
 module.exports = code.routes();

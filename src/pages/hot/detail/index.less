@@ -263,3 +263,113 @@
     background-position: 0 50%;
   }
 }
+
+//  评论框
+.commonsPing {
+  position: relative;
+  .commonsNei {
+    position: relative;
+    padding: 0.3rem 0.3rem 0.3rem 0;
+    margin-left: 0.3rem;
+    .comment_info_dian {
+      overflow: hidden;
+      position: relative;
+      zoom: 1;
+      .dianzanhuifu {
+        float: right;
+        font-size: 0.26rem;
+        line-height: 0.3rem;
+        color: #666;
+        .huifu {
+          cursor: pointer;
+          margin-left: 5px;
+        }
+        .dianzan {
+          cursor: pointer;
+          svg {
+            display: inline-block;
+            width: 0.3rem;
+            height: 0.3rem;
+            margin: 0 0.04rem;
+            vertical-align: -0.04rem;
+          }
+        }
+      }
+      .comment_user {
+        float: left;
+        zoom: 1;
+        .comment_stats {
+          float: left;
+          margin-left: 0.2rem;
+          margin-top: 0.07rem;
+          h4 {
+            margin: 0;
+            font-size: 0.3rem;
+            font-weight: 500;
+            line-height: 0.34rem;
+            color: #333;
+          }
+          span {
+            display: inline-block;
+            margin-top: 0.1rem;
+            font-size: 0.22rem;
+            line-height: 0.26rem;
+            color: #999;
+          }
+        }
+        .comment_fa_avatar {
+          width: 0.84rem;
+          height: 0.84rem;
+          float: left;
+          .comment_avatar {
+            display: block;
+            width: 100%;
+            height: 100%;
+            font-size: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 10;
+            img {
+              display: block;
+              width: 100%;
+              height: auto;
+              opacity: 1;
+              transition: opacity 0.2s ease-in;
+            }
+          }
+        }
+      }
+    }
+    .commonsContentNei {
+      position: relative;
+      margin: 0.2rem 0 0 1.04rem;
+      font-size: 0.3rem;
+      line-height: 0.45rem;
+    }
+  }
+}
+
+.bottomPingLun {
+  position: relative;
+  .bottomCheckAll {
+    display: block;
+    padding: 0.2rem 0;
+    text-align: center;
+    position: relative;
+    border: none;
+    padding-top: 0.24rem;
+    padding-bottom: 0.16rem;
+    .bottomCheckAllBtn {
+      display: inline-block;
+      text-align: center;
+      font-size: 0.26rem;
+      font-weight: 700;
+      color: #ff2442;
+      padding: 0.16rem 0.7rem;
+      border: 1px solid #ff2442;
+      border-radius: 2rem;
+      padding-top: 0.18rem;
+      padding-bottom: 0.14rem;
+    }
+  }
+}

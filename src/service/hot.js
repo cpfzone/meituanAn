@@ -9,3 +9,13 @@ export const getDianZan = id => {
     url: '/server/hot/zan',
   });
 };
+
+export const getPingLun = data => {
+  return Axios({
+    method: 'post',
+    data: {
+      data,
+    },
+    url: '/server/hot/ping',
+  });
+};

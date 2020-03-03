@@ -92,7 +92,7 @@ code.post('/yan', async ctx => {
         collections: ['123'],
         quans: ['12', '34', '56'],
         chous: [],
-        avatar: '',
+        avatar: 'https://img.meituan.net/avatar/4ba9758be0a301ef9e3d8f45e472b1563720.jpg',
       });
       try {
         let obj = await userModel.save();
