@@ -1,4 +1,4 @@
-import { getDianZan } from '../service/hot';
+import { getDianZan, getPingLun } from '../service/hot';
 
 const homeList = {};
 
@@ -6,6 +6,9 @@ export default {
   namespace: 'hot',
   state: homeList,
   effects: {
+    *ping({ data }, { call, put }) {
+      const res = yield call(getPingLun, data);
+    },
     *zan({ id }, { call, put }) {
       const res = yield call(getDianZan, id);
       yield put({ type: 'initAdds', payload: res.data });
