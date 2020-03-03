@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Header from '../header';
 import Footer from '../footer';
 import styles from './index.less';
@@ -78,33 +78,40 @@ class index extends Component {
               </div>
             </div>
           </div>
-          <div className={styles.formMbWrapper} onClick={() => message.error('暂时不支持抵用券')}>
-            <div className={styles.msListLine}>
-              <div className={styles.textLight}>抵用券</div>
-              <div className={styles.flexTwo}>
-                <span className={styles.changeHui}>></span>
+          {isLogin ? (
+            <Fragment>
+              <div
+                className={styles.formMbWrapper}
+                onClick={() => message.error('暂时不支持抵用券')}
+              >
+                <div className={styles.msListLine}>
+                  <div className={styles.textLight}>抵用券</div>
+                  <div className={styles.flexTwo}>
+                    <span className={styles.changeHui}>></span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className={styles.formMbWrapper}>
-            <div className={styles.msListLine}>
-              <div className={styles.textLight}>还需支付</div>
-              <div className={[styles.flexTwo, styles.totalDetail].join(' ')}>
-                {this.state.totalPrice * detailArr.new}元
+              <div className={styles.formMbWrapper}>
+                <div className={styles.msListLine}>
+                  <div className={styles.textLight}>还需支付</div>
+                  <div className={[styles.flexTwo, styles.totalDetail].join(' ')}>
+                    {this.state.totalPrice * detailArr.new}元
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div className={styles.contentTitleOrder}>你绑定的手机号码</div>
-          <div className={styles.formMbWrapper}>
-            <div className={styles.msListLine}>
-              <div className={styles.textLight}>
-                {userinfo && userinfo.phone.substr(0, 3) + '****' + userinfo.phone.substr(7)}
+              <div className={styles.contentTitleOrder}>你绑定的手机号码</div>
+              <div className={styles.formMbWrapper}>
+                <div className={styles.msListLine}>
+                  <div className={styles.textLight}>
+                    {userinfo && userinfo.phone.substr(0, 3) + '****' + userinfo.phone.substr(7)}
+                  </div>
+                  <div className={styles.flexTwo}>
+                    <Link to="/account/phone">绑定新手机号&nbsp;></Link>
+                  </div>
+                </div>
               </div>
-              <div className={styles.flexTwo}>
-                <Link to="/account/phone">绑定新手机号&nbsp;></Link>
-              </div>
-            </div>
-          </div>
+            </Fragment>
+          ) : null}
           {isLogin ? (
             <div className={styles.tags}>
               <ul className={styles.advantage}>

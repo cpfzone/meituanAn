@@ -13,8 +13,10 @@ export default
 @connect(
   state => {
     return {
+      id: state.user.userinfo,
       detailListHot: state.list.detailListHot,
       isLogin: state.user.isLogin,
+      add: state.hot.add,
     };
   },
   {
@@ -24,6 +26,13 @@ export default
     }),
     destoryDetailHot: () => ({
       type: 'list/hotDesotryData',
+    }),
+    zengjiaDianZan: id => ({
+      type: 'hot/zan',
+      id,
+    }),
+    destoryHotData: () => ({
+      type: 'hot/quxiaoZan',
     }),
   },
 )
@@ -41,7 +50,19 @@ class index extends Component {
 
   componentWillUnmount() {
     this.props.destoryDetailHot();
+    this.props.destoryHotData();
   }
+
+  // 点赞和评论
+  changeAdds = (add, id) => {
+    if (!this.props.isLogin) {
+      this.changeCheckMore();
+      return false;
+    }
+    if (add == 'add') {
+      this.props.zengjiaDianZan({ id, item: this.props.match.params.id });
+    }
+  };
 
   changeCheckMore = () => {
     // 提示用户进行登录
@@ -55,13 +76,15 @@ class index extends Component {
       },
       {
         text: '登录',
-        onPress: () => console.log(route.push),
+        onPress: () => route.push('/login'),
       },
     ]);
   };
 
   render() {
-    const { detailListHot, isLogin } = this.props;
+    const { detailListHot, isLogin, id, add } = this.props;
+    const userId = id && id._id;
+    const shiFouZan = add && add.n >= 1 ? true : false;
     return (
       <div>
         <Header title="热门模块" rightShow={true} share={true}></Header>
@@ -136,11 +159,17 @@ class index extends Component {
             </div>
             <div className={styles.operation_block}>
               <ul>
-                <li>
-                  <span className="iconfont icon-xin"></span>
-                  <strong>{detailListHot.adds.length}</strong>
+                <li onClick={() => this.changeAdds('add', userId)}>
+                  {shiFouZan ? (
+                    <span className="iconfont icon-01" style={{ color: '#f66262' }}></span>
+                  ) : (
+                    <span className="iconfont icon-xin"></span>
+                  )}
+                  <strong>
+                    {shiFouZan ? detailListHot.adds.length + 1 : detailListHot.adds.length}
+                  </strong>
                 </li>
-                <li>
+                <li onClick={() => this.changeAdds('speak', userId)}>
                   <span className="iconfont icon-pinglun"></span>
                   <strong>{detailListHot.speaks.length}</strong>
                 </li>
