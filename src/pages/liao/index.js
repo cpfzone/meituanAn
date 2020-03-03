@@ -3,6 +3,7 @@ import TabBar from '../../components/TabBar';
 import { NoticeBar } from 'antd-mobile';
 import { connect } from 'dva';
 import Redirect from 'umi/redirect';
+import Header from './header';
 
 export default
 @connect(state => {
@@ -17,8 +18,9 @@ class index extends Component {
       <div>
         {isLogin ? (
           <Fragment>
+            <Header />
             <NoticeBar mode="closable" marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-              此模块正在开发中
+              此模块功能还在不断完善,bug可能会比较常见
             </NoticeBar>
             <TabBar />
           </Fragment>
