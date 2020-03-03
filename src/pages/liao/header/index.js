@@ -29,7 +29,7 @@ export default class index extends Component {
             <span className="iconfont icon-ren"></span>
           </div>
         </div>
-        <span className={styles.navbarHeaderLiao}>聊天</span>
+        <span className={styles.navbarHeaderLiao}>聊天交友</span>
         <div className={styles.navbArRightLiao}>
           <div className={styles.navbarLiaoJia}>
             <Popover
