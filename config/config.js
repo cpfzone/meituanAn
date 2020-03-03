@@ -1,4 +1,7 @@
 const config = require('./db');
+
+const dbPath = config.complete ? '114.115.182.108' : 'localhost';
+
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
@@ -149,7 +152,7 @@ export default {
   },
   proxy: {
     '/server': {
-      target: `http://localhost:${config.port}`,
+      target: `http://${dbPath}:${config.port}`,
       changeOrigin: true,
     },
     '/ptapi': {

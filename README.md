@@ -61,16 +61,33 @@
 - [ ] 数据分页
 - [ ] 虚拟列表
 
-## 使用
+## 快速使用(推荐)
 
-> 需要本地有mongoose并且启动,有umi
+> 需要全局安装了umi
 
 ```js
 git clone https://github.com/2662419405/meituanAn.git
 cd meituanAn && npm install
+umi dev
+```
+
+## 完全版启动
+
+> 这个需要本地有MongoDB,并且后台启动,这种启动方式,会使用本地的数据库和本地的后台api接口,是为了方便人员修改后台接口准备的
+
+1. 打开这个功能,在config/db.js中,complete->改为false
+
+2. 
+
+```js
+git clone https://github.com/2662419405/meituanAn.git
+cd meituanAn && npm install
+// 下面的两个都需要一直挂载着
 npm run server
 umi dev
 ```
+
+## build之后使用
 
 **如果想要build之后可以访问,推荐配置nginx,这里面附上我的nginx配置**
 
