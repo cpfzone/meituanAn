@@ -50,6 +50,11 @@ export default {
           component: './account/quans/help',
         },
         {
+          path: '/liao/add',
+          title: '添加好友',
+          component: './liao/add',
+        },
+        {
           path: '/detail/:id/:index',
           title: '详情页面',
           component: './detail',

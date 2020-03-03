@@ -240,6 +240,21 @@ class index extends Component {
                 <i className={styles.remain}></i>
                 <span className={styles.brief}>笔记评论</span>
               </h3>
+              {ping && isLogin ? (
+                <div>
+                  <Comment
+                    avatar={<Avatar src={tou} alt="Han Solo" />}
+                    content={
+                      <Editor
+                        onChange={this.handleChange}
+                        onSubmit={() => this.handleSubmit({ avatar: tou, id: userId, name })}
+                        submitting={submitting}
+                        value={value}
+                      />
+                    }
+                  />
+                </div>
+              ) : null}
               {allComments.length > 0 ? (
                 <div className={styles.commonsPing}>
                   {allComments.map((v, i) => {
@@ -301,21 +316,6 @@ class index extends Component {
                   <h3 className={styles.remain}>啊欧，还没有评论哦～</h3>
                 </div>
               )}
-              {ping && isLogin ? (
-                <div>
-                  <Comment
-                    avatar={<Avatar src={tou} alt="Han Solo" />}
-                    content={
-                      <Editor
-                        onChange={this.handleChange}
-                        onSubmit={() => this.handleSubmit({ avatar: tou, id: userId, name })}
-                        submitting={submitting}
-                        value={value}
-                      />
-                    }
-                  />
-                </div>
-              ) : null}
             </div>
             <div className={styles.kongxi}>
               <div className={styles.allTip}>

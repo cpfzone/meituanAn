@@ -33,6 +33,12 @@ const models = {
     chous: { type: Array },
     // 用户头像设置
     avatar: { type: String },
+    // 关注的数量
+    guans: { type: Array },
+    // 粉丝的数量
+    fens: { type: Array },
+    // 好友的数量
+    hao: { type: Array },
   },
   back: {
     // 首页图片url
