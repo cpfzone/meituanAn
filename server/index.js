@@ -17,6 +17,7 @@ app.use(
 // 注册登录路由加载
 router.use('/server/user', require('./router/user.js'));
 router.use('/server/list', require('./router/list.js'));
+router.use('/server/hot', require('./router/hot.js'));
 
 // 加载所有路由
 app.use(router.routes()); /*启动路由*/

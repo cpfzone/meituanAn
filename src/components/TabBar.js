@@ -25,7 +25,6 @@ class TabBarExample extends Component {
           title: '聊天',
           url: 'chat',
           selectedTab: '/liao',
-          badge: 1,
         },
         {
           title: '我的',
