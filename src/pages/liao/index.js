@@ -18,7 +18,7 @@ class index extends Component {
         {isLogin ? (
           <Fragment>
             <NoticeBar mode="closable" marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
-              此模块正在开发中
+              此模块功能还在不断完善,bug可能会比较常见
             </NoticeBar>
             <TabBar />
           </Fragment>
