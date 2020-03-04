@@ -5,27 +5,68 @@ import { connect } from 'dva';
 import Redirect from 'umi/redirect';
 import Header from './header';
 import styles from './index.less';
+import { Drawer, Collapse } from 'antd';
 
 const Item = List.Item;
 const Brief = Item.Brief;
+const { Panel } = Collapse;
 
 export default
 @connect(state => {
   return {
     isLogin: state.user.isLogin,
+    userinfo: state.user.userinfo,
   };
 }, null)
 class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+    };
+  }
+
+  showDrawer = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  onClose = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+
   render() {
     const { isLogin, route } = this.props;
     return (
       <div>
         {isLogin ? (
           <Fragment>
-            <Header />
+            {/* 头部 */}
+            <Header changeUserList={this.showDrawer} />
+            {/* 滚动信息栏 */}
             <NoticeBar mode="closable" marqueeProps={{ loop: true, style: { padding: '0 7.5px' } }}>
               此模块功能还在不断完善,bug可能会比较常见
             </NoticeBar>
+            <Drawer
+              title="好友列表"
+              placement="left"
+              closable={false}
+              onClose={this.onClose}
+              visible={this.state.visible}
+            >
+              <Collapse accordion>
+                <Panel header="添加邀请" key="1">
+                  <p>空</p>
+                </Panel>
+                <Panel header="好友列表" key="2">
+                  <p>空</p>
+                </Panel>
+              </Collapse>
+            </Drawer>
+            {/* 用户列表 */}
             <List className="my-list">
               <Item
                 extra={
