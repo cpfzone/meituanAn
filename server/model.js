@@ -38,7 +38,7 @@ const models = {
     // 粉丝的数量
     fens: { type: Array },
     // 好友的数量
-    hao: { type: Array },
+    haos: { type: Array },
   },
   back: {
     // 首页图片url
