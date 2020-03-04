@@ -1,4 +1,4 @@
-import { addUserLiao, tianUserLiao } from '../service/liao';
+import { addUserLiao, tianUserLiao, getFriendsList } from '../service/liao';
 import { message } from 'antd';
 
 const defaultState = {
@@ -18,6 +18,10 @@ export default {
       if (res.data.n == 1) {
         message.success('添加成功');
       }
+    },
+    *firendsList({ id }, { call, put }) {
+      const res = yield call(getFriendsList, id);
+      console.log(res);
     },
   },
   reducers: {

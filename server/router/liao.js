@@ -34,4 +34,17 @@ code.post('/tian', koajwt({ secret }), async ctx => {
   ctx.body = result;
 });
 
+code.post('/firends', koajwt({ secret }), async ctx => {
+  const { value } = ctx.request.body;
+  const obj = await Meituan.findById(value).then(res => {
+    var promises = res.haos.map(async (v, index) => {
+      const data = await Meituan.findOne({ _id: v.dui });
+      data.password = v.que;
+      return data;
+    });
+    return Promise.all(promises);
+  });
+  ctx.body = obj;
+});
+
 module.exports = code.routes();

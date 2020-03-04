@@ -12,12 +12,20 @@ const Brief = Item.Brief;
 const { Panel } = Collapse;
 
 export default
-@connect(state => {
-  return {
-    isLogin: state.user.isLogin,
-    userinfo: state.user.userinfo,
-  };
-}, null)
+@connect(
+  state => {
+    return {
+      isLogin: state.user.isLogin,
+      userinfo: state.user.userinfo,
+    };
+  },
+  {
+    getFriendsList: id => ({
+      type: 'liao/firendsList',
+      id,
+    }),
+  },
+)
 class index extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +35,7 @@ class index extends Component {
   }
 
   showDrawer = () => {
+    this.props.getFriendsList(this.props.userinfo._id);
     this.setState({
       visible: true,
     });
