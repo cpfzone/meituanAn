@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import Header from '../../header';
-import { InputItem } from 'antd-mobile';
+import { InputItem, List } from 'antd-mobile';
 import styles from './index.less';
 import { connect } from 'dva';
+import { getChatId } from '../../../../utils/userId';
 
 import io from 'socket.io-client';
 const socket = io(`ws://localhost:4001`);
+const Item = List.Item;
 
 export default
 @connect(
   state => {
     return {
       userinfo: state.user.userinfo,
+      messageList: state.chat.messageList,
+      huo: state.chat.huo,
     };
   },
   {
@@ -21,6 +25,10 @@ export default
     }),
     getMessageList: data => ({
       type: 'chat/getMessage',
+      data,
+    }),
+    getFirstData: data => ({
+      type: 'chat/first',
       data,
     }),
   },
@@ -33,6 +41,7 @@ class index extends Component {
       xian: false,
       index: 0,
       messageList: [],
+      first: true,
     };
   }
 
@@ -61,14 +70,48 @@ class index extends Component {
       from: this.props.userinfo._id,
       to: this.props.match.params.id,
     });
+    this.setState({
+      value: '',
+    });
+  };
+
+  faDataMessage = () => {
+    if (this.props.huo) {
+      this.props.getFirstData({ from: this.props.userinfo._id, to: this.props.match.params.id });
+    }
   };
 
   render() {
     const { xian, value, messageList } = this.state;
-    return (
+    const myPropsData = this.props.messageList;
+    const newData = myPropsData.concat(messageList);
+    const { userinfo } = this.props;
+    const user = userinfo && userinfo._id;
+    // 获取chatid
+    userinfo && this.faDataMessage();
+    const chatid = getChatId(user, this.props.match.params.id);
+    // 判断是否是我的消息
+    let chatmsgs = newData.filter(v => v.chatid === chatid).slice(-20);
+    return !userinfo ? (
+      <div>加载中</div>
+    ) : (
       <div>
         <Header title={this.props.match.params.name} rightShow={true} />
-        <div className={styles.chat_message}></div>
+        <div className={styles.chat_message} id="myDivMessage">
+          <List>
+            {chatmsgs.map((v, i) => {
+              return v.from === userinfo._id ? (
+                <Item wrap thumb={v.fromDetail} multipleLine className="mySendMessage" key={i}>
+                  <span className="chatMessage">{v.value}</span>
+                </Item>
+              ) : (
+                <Item multipleLine wrap thumb={v.toDetail} key={i}>
+                  <span className="chatDuiMessage">{v.value}</span>
+                </Item>
+              );
+            })}
+          </List>
+        </div>
         <div className={styles.stick_footer}>
           <InputItem
             onKeyUp={e => {

@@ -7,6 +7,7 @@ const server = require('http').createServer(app.callback());
 const io = require('socket.io')(server);
 const model = require('./model');
 const Chat = model.getNames('Chat');
+const Meituan = model.getNames('meituan');
 
 // 聊天数据处理
 io.on('connection', socket => {
@@ -16,6 +17,12 @@ io.on('connection', socket => {
     const chatid = [from, to].sort().join('_');
     const obj = new Chat({ from, to, value, create_time, chatid });
     const result = await obj.save();
+    const fromDetail = await Meituan.findOne({ _id: from });
+    const toDetail = await Meituan.findOne({ _id: to });
+    // 查询到发送者头像和接受者头像
+    result.fromDetail = fromDetail.avatar;
+    result.toDetail = toDetail.avatar;
+    // 发送数据
     io.emit('recvmsg', result);
   });
 });
@@ -35,6 +42,7 @@ router.use('/server/user', require('./router/user.js'));
 router.use('/server/list', require('./router/list.js'));
 router.use('/server/hot', require('./router/hot.js'));
 router.use('/server/liao', require('./router/liao.js'));
+router.use('/server/chat', require('./router/chat.js'));
 
 // 加载所有路由
 app.use(router.routes()); /*启动路由*/

@@ -105,13 +105,17 @@ const models = {
     // 是否读取
     read: { type: Boolean, default: false },
     // 发送者
-    form: { type: String, require: true },
+    from: { type: String, require: true },
     // 读取者
     to: { type: String, require: true },
     // 内容
     value: { type: String, require: true, default: '' },
     // 创建时间
     create_time: { type: Number, default: '' },
+    // 发布者详情
+    fromDetail: { type: Object },
+    // 接受者详情
+    toDetail: { type: Object },
   },
 };
 
