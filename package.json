@@ -28,6 +28,7 @@
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.14.4",
     "react-transition-group": "^4.3.0",
+    "socket.io": "^2.3.0",
     "umi-server": "^1.2.2",
     "vanilla-lazyload": "^12.5.0"
   },

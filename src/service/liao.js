@@ -29,3 +29,13 @@ export const getFriendsList = value => {
     url: '/server/liao/firends',
   });
 };
+
+export const tongYiFriend = value => {
+  return Axios({
+    method: 'post',
+    data: {
+      value,
+    },
+    url: '/server/liao/tong',
+  });
+};

@@ -65,6 +65,11 @@ export default {
           component: './account/chous',
         },
         {
+          path: '/liao/:id',
+          title: '聊天页面',
+          component: './liao/_id',
+        },
+        {
           path: '/account/username',
           title: '订单',
           component: './account/username',
