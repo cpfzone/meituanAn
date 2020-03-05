@@ -178,7 +178,7 @@ class index extends Component {
                   </Item>
                   {arr2.map((v, i) => {
                     return (
-                      <Link key={i} to={{ pathname: `/liao/${v._id}` }}>
+                      <Link key={i} to={{ pathname: `/liao/${v._id}/${v.name}` }}>
                         <Item
                           extra={
                             <Fragment>

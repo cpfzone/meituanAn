@@ -3,6 +3,22 @@ const Koa = require('koa');
 const router = require('koa-router')();
 const koaBody = require('koa-body');
 const app = new Koa();
+const server = require('http').createServer(app.callback());
+const io = require('socket.io')(server);
+const model = require('./model');
+const Chat = model.getNames('Chat');
+
+// 聊天数据处理
+io.on('connection', socket => {
+  socket.on('sendMsg', async data => {
+    const { from, to, value } = data;
+    const create_time = new Date().getTime();
+    const chatid = [from, to].sort().join('_');
+    const obj = new Chat({ from, to, value, create_time, chatid });
+    const result = await obj.save();
+    io.emit('recvmsg', result);
+  });
+});
 
 // 加载文件 使用 koa-body 代替 koa-bodyparser 和 koa-multer
 app.use(
@@ -24,6 +40,6 @@ router.use('/server/liao', require('./router/liao.js'));
 app.use(router.routes()); /*启动路由*/
 app.use(router.allowedMethods());
 
-app.listen(config.port, () => {
+server.listen(config.port, () => {
   console.log(`服务器运行在${config.port}端口上`);
 });

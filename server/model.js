@@ -99,6 +99,20 @@ const models = {
     // 创建时间
     createTime: { type: String },
   },
+  Chat: {
+    // 回话id
+    chatid: { type: String, require: true },
+    // 是否读取
+    read: { type: Boolean, default: false },
+    // 发送者
+    form: { type: String, require: true },
+    // 读取者
+    to: { type: String, require: true },
+    // 内容
+    value: { type: String, require: true, default: '' },
+    // 创建时间
+    create_time: { type: Number, default: '' },
+  },
 };
 
 for (let m in models) {
