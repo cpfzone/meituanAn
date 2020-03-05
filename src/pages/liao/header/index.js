@@ -31,7 +31,7 @@ export default class index extends Component {
       <Fragment>
         <div className={styles.navbarLiao}>
           <div className={styles.navbArLeftLiao}>
-            <div className={styles.navbarLiaoUser}>
+            <div className={styles.navbarLiaoUser} onClick={this.props.changeUserList}>
               <span className="iconfont icon-ren"></span>
             </div>
           </div>

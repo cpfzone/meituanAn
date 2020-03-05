@@ -140,6 +140,8 @@ server {
 |      /server/user/hot      |   get    |                 无                  |                获取热门数据                 |          否           |
 |    /server/user/detail     |   get    |               ?id=xx                |             获取某一个首页数据              |          否           |
 |      /server/hot/zan       |   post   |  {id:点赞用户id,item:点了哪条数据}  |                  进行点赞                   |          是           |
+|      /server/liao/add      |   post   |        {value:{value,name}}         |                  搜索好友                   |          是           |
+|     /server/liao/tian      |   post   |          {value{dui,que}}           |                  添加好友                   |          是           |
 
 
 

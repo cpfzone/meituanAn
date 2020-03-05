@@ -51,11 +51,10 @@ class index extends Component {
       userInfo.haos.forEach(v => {
         addUsers.forEach(item => {
           if (item._id === v.dui) {
-            if (v.que === false) {
+            if (v.que !== 1) {
               // 等待验证
               item.yan = '等待验证';
-            }
-            if (v.que === true) {
+            } else {
               // 已经同意
               item.yan = '已经同意';
             }
