@@ -1,8 +1,14 @@
-import { messageListDefault, firstMessageData, friendsTouXiang } from '../service/chat';
+import {
+  messageListDefault,
+  firstMessageData,
+  friendsTouXiang,
+  initMessageDefault,
+} from '../service/chat';
 const defaultState = {
   messageList: [],
   huo: true,
   tou: '',
+  initMessage: [],
 };
 
 export default {
@@ -20,6 +26,10 @@ export default {
       const res = yield call(friendsTouXiang, data);
       yield put({ type: 'friendsTou', payload: res.data });
     },
+    *messageDefault({}, { call, put }) {
+      const res = yield call(initMessageDefault);
+      yield put({ type: 'messageDefaultData', payload: res.data });
+    },
   },
   reducers: {
     initFirstData(state, action) {
@@ -27,6 +37,12 @@ export default {
     },
     friendsTou(state, action) {
       return { ...state, tou: action.payload };
+    },
+    messageDefaultData(state, action) {
+      return { ...state, initMessage: action.payload };
+    },
+    getHuo(state, action) {
+      return { ...state, huo: true };
     },
   },
 };

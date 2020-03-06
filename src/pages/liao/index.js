@@ -7,6 +7,11 @@ import Header from './header';
 import styles from './index.less';
 import { Drawer, Collapse } from 'antd';
 import Link from 'umi/link';
+import io from 'socket.io-client';
+import { getChatId } from '../../../utils/userId';
+const config = require('../../../config/db');
+const dbPath = config.complete ? '114.115.182.108' : 'localhost';
+const socket = io(`ws://${dbPath}:${config.port}`);
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -19,6 +24,7 @@ export default
       isLogin: state.user.isLogin,
       userinfo: state.user.userinfo,
       friendsList: state.liao.friendsList,
+      initMessage: state.chat.initMessage,
     };
   },
   {
@@ -30,6 +36,9 @@ export default
       type: 'liao/submitFriend',
       value,
     }),
+    getMessageListDefault: value => ({
+      type: 'chat/messageDefault',
+    }),
   },
 )
 class index extends Component {
@@ -38,6 +47,7 @@ class index extends Component {
     this.state = {
       visible: false,
       friends: true,
+      messagesList: [],
     };
   }
 
@@ -48,6 +58,14 @@ class index extends Component {
     });
   };
 
+  componentDidMount() {
+    socket.on('recvmsg', data => {
+      this.setState({
+        messagesList: [...this.state.messagesList, data],
+      });
+    });
+  }
+
   onClose = () => {
     this.setState({
       visible: false,
@@ -57,6 +75,7 @@ class index extends Component {
   handlerChangeFriends = id => {
     if (this.state.friends) {
       this.props.getFriendsList(id);
+      this.props.getMessageListDefault();
       this.setState({
         friends: false,
       });
@@ -64,8 +83,9 @@ class index extends Component {
   };
 
   render() {
-    const { isLogin, route, friendsList, userinfo } = this.props;
-    userinfo && this.handlerChangeFriends(userinfo._id);
+    const { isLogin, route, friendsList, userinfo, initMessage } = this.props;
+    const { messagesList } = this.state;
+    userinfo && this.handlerChangeFriends(userinfo._id); // 获取还有列表 数据列表
     const arr1 = []; //没有添加的好友
     const arr2 = []; //已经添加好友的列表
     friendsList.forEach(v => {
@@ -74,6 +94,22 @@ class index extends Component {
       } else {
         arr2.push(v);
       }
+    });
+    // 获取初始化消息
+    const chatMessage = initMessage.concat(messagesList);
+    // 更新数量和最后一次消息
+    arr2.forEach(v => {
+      const chatid = getChatId(userinfo._id, v._id);
+      let weiDu = 0;
+      let zui = '';
+      chatMessage.forEach(i => {
+        if (i.chatid === chatid && i.read === false) {
+          weiDu++;
+          zui = i.value;
+        }
+      });
+      v.weiDu = weiDu;
+      v.zui = zui;
     });
     return (
       <div>
@@ -184,15 +220,13 @@ class index extends Component {
                             <Fragment>
                               <span>10:30</span>
                               <br />
-                              <Badge text={1} />
+                              <Badge text={v.weiDu} />
                             </Fragment>
                           }
                           thumb={v.avatar}
                         >
                           {v.name}
-                          <Brief className={styles.contentLiaoFu}>
-                            感谢你的注册于支持,如果有任何意见欢迎提出
-                          </Brief>
+                          <Brief className={styles.contentLiaoFu}>{v.zui}</Brief>
                         </Item>
                       </Link>
                     );
