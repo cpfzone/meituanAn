@@ -117,6 +117,12 @@ const models = {
     // 接受者详情
     toDetail: { type: Object },
   },
+  expression: {
+    name: String, // 表情包名称
+    info: String, // 描述
+    list: Array, // 表情列表
+    code: Number, // 编码
+  },
 };
 
 for (let m in models) {

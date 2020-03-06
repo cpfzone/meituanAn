@@ -11,12 +11,13 @@ code.post('/first', koajwt({ secret }), async ctx => {
   const { from, to } = ctx.request.body.value;
   const chatid = [from, to].sort().join('_');
   const obj = await Chat.find({ chatid });
-  // 查询到发送者头像和接受者头像
-  const fromDetail = await Meituan.findOne({ _id: from });
-  const toDetail = await Meituan.findOne({ _id: to });
-  obj.fromDetail = fromDetail.avatar;
-  obj.toDetail = toDetail.avatar;
   ctx.body = obj;
+});
+
+code.post('/avatar', koajwt({ secret }), async ctx => {
+  const value = ctx.request.body;
+  const fromDetail = await Meituan.findOne({ _id: value.value });
+  ctx.body = fromDetail.avatar;
 });
 
 module.exports = code.routes();

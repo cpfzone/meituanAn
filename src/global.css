@@ -77,6 +77,13 @@ li {
 /* 发送消息 */
 #myDivMessage {
   background: #f1f1f1;
+  padding-top: 1.01rem;
+}
+#myDivMessage .am-list-body div:not(:last-child) .am-list-line {
+  border: none;
+}
+#myDivMessage .am-list-body {
+  border: none;
 }
 #myDivMessage .am-list-item {
   padding: 0 15px;
@@ -93,11 +100,11 @@ li {
 }
 
 #myDivMessage .am-list-item .am-list-line-multiple {
-  padding: 12.5px 20px 12.5px 0;
+  padding: 12.5px 30px 12.5px 0;
 }
 
 #myDivMessage .mySendMessage .am-list-line-multiple {
-  padding: 12.5px 0 12.5px 20px;
+  padding: 12.5px 0 12.5px 30px;
 }
 
 #myDivMessage .am-list-item img {

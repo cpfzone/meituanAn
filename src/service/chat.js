@@ -17,3 +17,13 @@ export const firstMessageData = value => {
     },
   });
 };
+
+export const friendsTouXiang = value => {
+  return Axios({
+    method: 'post',
+    url: '/server/chat/avatar',
+    data: {
+      value,
+    },
+  });
+};

@@ -16,6 +16,7 @@ export default
       userinfo: state.user.userinfo,
       messageList: state.chat.messageList,
       huo: state.chat.huo,
+      tou: state.chat.tou,
     };
   },
   {
@@ -29,6 +30,10 @@ export default
     }),
     getFirstData: data => ({
       type: 'chat/first',
+      data,
+    }),
+    getFriendsAvatar: data => ({
+      type: 'chat/friendsAvatar',
       data,
     }),
   },
@@ -78,6 +83,7 @@ class index extends Component {
   faDataMessage = () => {
     if (this.props.huo) {
       this.props.getFirstData({ from: this.props.userinfo._id, to: this.props.match.params.id });
+      this.props.getFriendsAvatar(this.props.match.params.id);
     }
   };
 
@@ -85,7 +91,7 @@ class index extends Component {
     const { xian, value, messageList } = this.state;
     const myPropsData = this.props.messageList;
     const newData = myPropsData.concat(messageList);
-    const { userinfo } = this.props;
+    const { userinfo, tou } = this.props;
     const user = userinfo && userinfo._id;
     // 获取chatid
     userinfo && this.faDataMessage();
@@ -95,17 +101,18 @@ class index extends Component {
     return !userinfo ? (
       <div>加载中</div>
     ) : (
-      <div>
-        <Header title={this.props.match.params.name} rightShow={true} />
+      <div className={styles.boxLaShen}>
+        <Header ding={true} title={this.props.match.params.name} rightShow={true} />
         <div className={styles.chat_message} id="myDivMessage">
+          <img src={require('@/assets/expression/文小喵/02.gif')} />
           <List>
             {chatmsgs.map((v, i) => {
               return v.from === userinfo._id ? (
-                <Item wrap thumb={v.fromDetail} multipleLine className="mySendMessage" key={i}>
+                <Item wrap thumb={userinfo.avatar} multipleLine className="mySendMessage" key={i}>
                   <span className="chatMessage">{v.value}</span>
                 </Item>
               ) : (
-                <Item multipleLine wrap thumb={v.toDetail} key={i}>
+                <Item multipleLine wrap thumb={tou} key={i}>
                   <span className="chatDuiMessage">{v.value}</span>
                 </Item>
               );
