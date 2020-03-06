@@ -13,13 +13,13 @@
 
 * 美团电脑网页 React + Koa + Mongoose <a href="https://github.com/2662419405/meituan">开发完毕</a> :tada:
 
-* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">完善中</a> :100:
+* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">开发完毕</a> :100:
 
-* 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">完善中</a> :rainbow:
+* 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">开发完毕</a> :rainbow:
+
+* 微信小程序 Tora <a href="https://github.com/2662419405/meituanWx">正在开发</a>
 
 * 美团APP ReactNative + koa + Mongoose <a href="https://github.com/2662419405/meituanApp">开发一部分</a>
-
-* 微信小程序 Tora <a href="#">还未开发</a>
 
 
 ## 快速使用(推荐)
@@ -91,15 +91,16 @@ server {
 - [x] 根据搜狐提供的api获取用户城市
 - [x] 瀑布流
 - [x] 热门模块 :100:
+- [x] 添加好友
+- [x] 私聊
+- [x] socket在线聊天 :rainbow:
 
 ## 计划
 
 - [ ] SSR服务端渲染 -> 原谅我太菜,看得我一脸懵逼
 - [ ] 使用TS编写代码 
-- [ ] socket在线聊天
-- [ ] 添加好友
+- [ ] 丰富的表情包
 - [ ] 群聊
-- [ ] 私聊
 - [ ] 照片墙
 
 ## 优化

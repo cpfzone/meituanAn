@@ -76,23 +76,26 @@ li {
 
 /* 发送消息 */
 #myDivMessage {
-  background: #f1f1f1;
   padding-top: 1.01rem;
+  padding-bottom: 81px;
 }
 #myDivMessage .am-list-body div:not(:last-child) .am-list-line {
   border: none;
 }
 #myDivMessage .am-list-body {
   border: none;
+  background: none;
 }
 #myDivMessage .am-list-item {
   padding: 0 15px;
+  background: none;
 }
 #myDivMessage .mySendMessage .am-list-line {
   order: -1;
 }
 #myDivMessage .mySendMessage .am-list-line .am-list-content {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 #myDivMessage .mySendMessage .am-list-thumb:first-child {
   margin-left: 15px;
@@ -134,4 +137,8 @@ li {
   position: relative;
   display: inline-block;
   line-height: 1.8;
+}
+
+#myDivMessage .am-list-body div:not(:last-child) .am-list-line::after {
+  display: none;
 }

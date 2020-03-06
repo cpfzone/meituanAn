@@ -102,8 +102,11 @@ class index extends Component {
       const chatid = getChatId(userinfo._id, v._id);
       let weiDu = 0;
       let zui = '';
+      if (chatMessage.length > 0) {
+        zui = chatMessage[chatMessage.length - 1].value;
+      }
       chatMessage.forEach(i => {
-        if (i.chatid === chatid && i.read === false) {
+        if (i.chatid === chatid && i.from !== userinfo._id && i.read === false) {
           weiDu++;
           zui = i.value;
         }
