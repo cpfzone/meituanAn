@@ -43,4 +43,4 @@ const initEmoji = (filePath, objs) => {
   });
 };
 
-initEmoji('../img/expression');
+initEmoji('../src/assets/expression');
