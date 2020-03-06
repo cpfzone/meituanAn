@@ -6,6 +6,7 @@ import { connect } from 'dva';
 import { getChatId } from '../../../../utils/userId';
 
 import io from 'socket.io-client';
+import { message } from 'antd';
 const config = require('../../../../config/db');
 const dbPath = config.complete ? '114.115.182.108' : 'localhost';
 const socket = io(`ws://${dbPath}:${config.port}`);
@@ -49,7 +50,6 @@ class index extends Component {
     this.state = {
       value: '',
       xian: false,
-      index: 0,
       bg: 0,
       messageList: [],
       first: true,
@@ -110,8 +110,10 @@ class index extends Component {
   };
 
   showBottomList = index => {
+    if (index !== 3) {
+      message.error('正在开发中');
+    }
     this.setState({
-      index,
       xian: true,
     });
   };
@@ -216,9 +218,6 @@ class index extends Component {
                   <span className="iconfont icon-add-sy"></span>
                 </li>
               </ul>
-              <div className={[styles.bottomDivContent, xian ? styles.zhanshi : null].join(' ')}>
-                123
-              </div>
             </div>
           </div>
         </div>

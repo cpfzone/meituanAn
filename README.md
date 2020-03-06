@@ -13,13 +13,13 @@
 
 * 美团电脑网页 React + Koa + Mongoose <a href="https://github.com/2662419405/meituan">开发完毕</a> :tada:
 
-* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">完善中</a> :100:
+* 美团手机网页 Dva + umi + koa + Mongoose <a href="https://github.com/2662419405/meituanAn">开发完毕</a> :100:
 
-* 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">完善中</a> :rainbow:
+* 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">开发完毕</a> :rainbow:
+
+* 微信小程序 Tora <a href="https://github.com/2662419405/meituanWx">正在开发</a>
 
 * 美团APP ReactNative + koa + Mongoose <a href="https://github.com/2662419405/meituanApp">开发一部分</a>
-
-* 微信小程序 Tora <a href="#">还未开发</a>
 
 
 ## 快速使用(推荐)
