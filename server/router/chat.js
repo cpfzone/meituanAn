@@ -10,7 +10,16 @@ const secret = dbName.secret;
 code.post('/first', koajwt({ secret }), async ctx => {
   const { from, to } = ctx.request.body.value;
   const chatid = [from, to].sort().join('_');
+  // await Chat.updateMany({ chatid }, { read: false });
   const obj = await Chat.find({ chatid });
+  let lastMessage = '';
+  if (obj.length > 0) {
+    lastMessage = obj[obj.length - 1].to;
+  }
+  if (from === lastMessage) {
+    // 标记为已读
+    await Chat.updateMany({ chatid }, { $set: { read: true } });
+  }
   ctx.body = obj;
 });
 

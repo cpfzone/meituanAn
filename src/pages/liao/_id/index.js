@@ -50,8 +50,16 @@ class index extends Component {
       value: '',
       xian: false,
       index: 0,
+      bg: 0,
       messageList: [],
       first: true,
+      show: false,
+      bgColor: [
+        'https://cdn.jsdelivr.net/gh/2662419405/imgs/tu/20200306141916.jfif',
+        'https://cdn.jsdelivr.net/gh/2662419405/imgs/tu/20200306141753.jpg',
+        'https://cdn.jsdelivr.net/gh/2662419405/imgs/tu/20200306141752.jpg',
+        'https://cdn.jsdelivr.net/gh/2662419405/imgs/tu/20200306141751.jpg',
+      ],
     };
   }
 
@@ -61,7 +69,45 @@ class index extends Component {
         messageList: [...this.state.messageList, data],
       });
     });
+    this.kaiJi();
+    // 与加载图片
+    this.imgYu(this.state.bgColor);
   }
+
+  imgYu = data => {
+    let sum = 0;
+    let count = 0;
+    // 计算总数
+    data.forEach(v => {
+      sum += 1;
+    });
+    // 预加载
+    data.forEach(v => {
+      let img = new Image();
+      img.src = v;
+      img.onload = () => {
+        count++;
+        if (count === sum) {
+          this.setState({ show: true });
+        }
+      };
+    });
+  };
+
+  // 换背景
+  kaiJi = () => {
+    this.timer = setInterval(() => {
+      let result = this.state.bg;
+      if (this.state.bg >= this.state.bgColor.length - 1) {
+        result = 0;
+      } else {
+        result++;
+      }
+      this.setState({
+        bg: result,
+      });
+    }, 7000);
+  };
 
   showBottomList = index => {
     this.setState({
@@ -87,17 +133,20 @@ class index extends Component {
 
   faDataMessage = () => {
     if (this.props.huo) {
+      // 获取好友聊天记录
       this.props.getFirstData({ from: this.props.userinfo._id, to: this.props.match.params.id });
+      // 获取好友信息
       this.props.getFriendsAvatar(this.props.match.params.id);
     }
   };
 
   componentWillUnmount() {
     this.props.getHuo();
+    clearInterval(this.timer);
   }
 
   render() {
-    const { xian, value, messageList } = this.state;
+    const { xian, value, messageList, bgColor, bg, show } = this.state;
     const myPropsData = this.props.messageList;
     const newData = myPropsData.concat(messageList);
     const { userinfo, tou } = this.props;
@@ -111,6 +160,8 @@ class index extends Component {
       <div>加载中</div>
     ) : (
       <div className={styles.boxLaShen}>
+        <div style={{ display: show ? 'none' : 'block' }} className={styles.loader}></div>
+        <div className={styles.rong} style={{ backgroundImage: `url(${bgColor[bg]})` }}></div>
         <Header ding={true} title={this.props.match.params.name} rightShow={true} />
         <div className={styles.chat_message} id="myDivMessage">
           <List>
@@ -126,48 +177,48 @@ class index extends Component {
               );
             })}
           </List>
-        </div>
-        <div className={styles.stick_footer}>
-          <InputItem
-            onKeyUp={e => {
-              if (e.keyCode === 13) {
-                this.handleSubmit();
+          <div className={styles.stick_footer}>
+            <InputItem
+              onKeyUp={e => {
+                if (e.keyCode === 13) {
+                  this.handleSubmit();
+                }
+              }}
+              ref={el => (this.inputRef = el)}
+              placeholder="请输入聊天内容"
+              value={value}
+              onChange={v =>
+                this.setState({
+                  value: v,
+                })
               }
-            }}
-            ref={el => (this.inputRef = el)}
-            placeholder="请输入聊天内容"
-            value={value}
-            onChange={v =>
-              this.setState({
-                value: v,
-              })
-            }
-            extra={
-              <div>
-                <span onClick={this.handleSubmit}>发送</span>
+              extra={
+                <div>
+                  <span onClick={this.handleSubmit}>发送</span>
+                </div>
+              }
+            ></InputItem>
+            <div className={styles.bottomListUI}>
+              <ul>
+                <li onClick={() => this.showBottomList(1)}>
+                  <span className="iconfont icon-yuyin"></span>
+                </li>
+                <li onClick={() => this.showBottomList(2)}>
+                  <span className="iconfont icon-picture"></span>
+                </li>
+                <li onClick={() => this.showBottomList(3)}>
+                  <span className="iconfont icon-biaoqing-xue"></span>
+                </li>
+                <li onClick={() => this.showBottomList(4)}>
+                  <span className="iconfont icon-wenjian"></span>
+                </li>
+                <li onClick={() => this.showBottomList(5)}>
+                  <span className="iconfont icon-add-sy"></span>
+                </li>
+              </ul>
+              <div className={[styles.bottomDivContent, xian ? styles.zhanshi : null].join(' ')}>
+                123
               </div>
-            }
-          ></InputItem>
-          <div className={styles.bottomListUI}>
-            <ul>
-              <li onClick={() => this.showBottomList(1)}>
-                <span className="iconfont icon-yuyin"></span>
-              </li>
-              <li onClick={() => this.showBottomList(2)}>
-                <span className="iconfont icon-picture"></span>
-              </li>
-              <li onClick={() => this.showBottomList(3)}>
-                <span className="iconfont icon-biaoqing-xue"></span>
-              </li>
-              <li onClick={() => this.showBottomList(4)}>
-                <span className="iconfont icon-wenjian"></span>
-              </li>
-              <li onClick={() => this.showBottomList(5)}>
-                <span className="iconfont icon-add-sy"></span>
-              </li>
-            </ul>
-            <div className={[styles.bottomDivContent, xian ? styles.zhanshi : null].join(' ')}>
-              123
             </div>
           </div>
         </div>
