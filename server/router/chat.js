@@ -20,4 +20,9 @@ code.post('/avatar', koajwt({ secret }), async ctx => {
   ctx.body = fromDetail.avatar;
 });
 
+code.post('/initMessage', koajwt({ secret }), async ctx => {
+  const value = await Chat.find();
+  ctx.body = value;
+});
+
 module.exports = code.routes();

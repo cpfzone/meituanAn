@@ -2,6 +2,7 @@ const code = require('koa-router')();
 // 加载mongodb数据库
 const model = require('../model');
 const Meituan = model.getNames('meituan');
+const Chat = model.getNames('Chat');
 const dbName = require('../../config/db');
 const koajwt = require('koa-jwt');
 const secret = dbName.secret;
@@ -56,6 +57,7 @@ code.post('/firends', koajwt({ secret }), async ctx => {
   ctx.body = obj;
 });
 
+// 同意好友添加
 code.post('/tong', koajwt({ secret }), async ctx => {
   const { value } = ctx.request.body;
   // 双方的好友都需要修改一波
@@ -81,6 +83,25 @@ code.post('/tong', koajwt({ secret }), async ctx => {
       },
     },
   );
+  // 双方都要受到一封信息
+  const create_time = new Date().getTime();
+  const chatid = [value.dui, value.id].sort().join('_');
+  const res = new Chat({
+    from: value.dui,
+    to: value.id,
+    value: '我们已经成为好友了,快来聊天吧',
+    create_time,
+    chatid,
+  });
+  const result = new Chat({
+    from: value.id,
+    to: value.dui,
+    value: '我们已经成为好友了,快来聊天吧',
+    create_time,
+    chatid,
+  });
+  res.save();
+  result.save();
   ctx.body = obj;
 });
 

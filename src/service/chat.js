@@ -27,3 +27,10 @@ export const friendsTouXiang = value => {
     },
   });
 };
+
+export const initMessageDefault = value => {
+  return Axios({
+    method: 'post',
+    url: '/server/chat/initMessage',
+  });
+};

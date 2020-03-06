@@ -6,7 +6,9 @@ import { connect } from 'dva';
 import { getChatId } from '../../../../utils/userId';
 
 import io from 'socket.io-client';
-const socket = io(`ws://localhost:4001`);
+const config = require('../../../../config/db');
+const dbPath = config.complete ? '114.115.182.108' : 'localhost';
+const socket = io(`ws://${dbPath}:${config.port}`);
 const Item = List.Item;
 
 export default
@@ -35,6 +37,9 @@ export default
     getFriendsAvatar: data => ({
       type: 'chat/friendsAvatar',
       data,
+    }),
+    getHuo: data => ({
+      type: 'chat/getHuo',
     }),
   },
 )
@@ -87,6 +92,10 @@ class index extends Component {
     }
   };
 
+  componentWillUnmount() {
+    this.props.getHuo();
+  }
+
   render() {
     const { xian, value, messageList } = this.state;
     const myPropsData = this.props.messageList;
@@ -104,7 +113,6 @@ class index extends Component {
       <div className={styles.boxLaShen}>
         <Header ding={true} title={this.props.match.params.name} rightShow={true} />
         <div className={styles.chat_message} id="myDivMessage">
-          <img src={require('@/assets/expression/文小喵/02.gif')} />
           <List>
             {chatmsgs.map((v, i) => {
               return v.from === userinfo._id ? (
