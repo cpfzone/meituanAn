@@ -51,11 +51,11 @@ export default class index extends Component {
   };
 
   render() {
-    const { title, account, share, search, rightShow, more } = this.props;
+    const { ding, title, account, share, search, rightShow, more } = this.props;
     // rightShow 是否显示右侧  share是否显示分享 search 是否显示搜索, account是否显示主页 more是否显示更多
     return (
       <Fragment>
-        <header id="account" className={styles.accountHeader}>
+        <header id="account" className={[styles.accountHeader, ding ? styles.dingWei : null].join(" ")}>
           <div className={styles.navWarpLeft}>
             <span onClick={this.returnTip}>
               <img

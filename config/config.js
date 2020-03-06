@@ -65,7 +65,7 @@ export default {
           component: './account/chous',
         },
         {
-          path: '/liao/:id',
+          path: '/liao/:id/:name',
           title: '聊天页面',
           component: './liao/_id',
         },
@@ -168,6 +168,6 @@ export default {
     '/ptapi': {
       target: `https://www.meituan.com`,
       changeOrigin: true,
-    },
+    }
   },
 };

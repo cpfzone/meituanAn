@@ -99,6 +99,30 @@ const models = {
     // 创建时间
     createTime: { type: String },
   },
+  Chat: {
+    // 回话id
+    chatid: { type: String, require: true },
+    // 是否读取
+    read: { type: Boolean, default: false },
+    // 发送者
+    from: { type: String, require: true },
+    // 读取者
+    to: { type: String, require: true },
+    // 内容
+    value: { type: String, require: true, default: '' },
+    // 创建时间
+    create_time: { type: Number, default: '' },
+    // 发布者详情
+    fromDetail: { type: Object },
+    // 接受者详情
+    toDetail: { type: Object },
+  },
+  expression: {
+    name: String, // 表情包名称
+    info: String, // 描述
+    list: Array, // 表情列表
+    code: Number, // 编码
+  },
 };
 
 for (let m in models) {
