@@ -1,4 +1,4 @@
-import { getDianZan, getPingLun } from '../service/hot';
+import { getDianZan } from '../service/hot';
 
 const homeList = {};
 
@@ -7,13 +7,13 @@ export default {
   state: homeList,
   effects: {
     *ping({ data }, { call, put }) {
-      const res = yield call(getPingLun, data);
+      // const res = yield call(getPingLun, data);
     },
     *zan({ id }, { call, put }) {
       const res = yield call(getDianZan, id);
       yield put({ type: 'initAdds', payload: res.data });
     },
-    *quxiaoZan({}, { put }) {
+    *quxiaoZan({ data }, { put }) {
       yield put({ type: 'quxiaoAdd' });
     },
   }, //异步操作

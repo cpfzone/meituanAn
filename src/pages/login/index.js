@@ -248,6 +248,19 @@ class index extends Component {
               </span>
             </div>
           </div>
+          <div className={styles.container}>
+            <div className={styles.three_list}>
+              <a href="https://github.com/login/oauth/authorize?client_id=f4f827cfbebe51a858b8&redirect_uri=http://localhost:4001/server/oauth/redirect">
+                <img alt="github" src="https://static.iiter.cn/github.ico" />
+              </a>
+            </div>
+            <div className={[styles.three_list, styles.bianLan].join(' ')}>
+              <span className="iconfont icon-sign_qq"></span>
+            </div>
+            <div className={[styles.three_list, styles.bianLv, styles.kongMargin].join(' ')}>
+              <span className="iconfont icon-weixin"></span>
+            </div>
+          </div>
         </div>
         <footer className={styles.iloginFooter}>
           <p>

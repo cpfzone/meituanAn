@@ -12,7 +12,7 @@ export default {
   effects: {
     *submitFriend({ value }, { call, put }) {
       const res = yield call(tongYiFriend, value);
-      if (res.data.n == 1) {
+      if (res.data.n === 1) {
         message.success('添加成功');
       }
     },
@@ -22,7 +22,7 @@ export default {
     },
     *tian({ value }, { call, put }) {
       const res = yield call(tianUserLiao, value);
-      if (res.data.n == 1) {
+      if (res.data.n === 1) {
         message.success('添加成功');
       }
     },

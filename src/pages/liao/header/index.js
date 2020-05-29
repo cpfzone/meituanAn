@@ -68,7 +68,6 @@ export default class index extends Component {
                   offset: [-10, 0],
                 }}
                 onVisibleChange={this.handleVisibleChange}
-                onSelect={this.onSelect}
               >
                 <div
                   style={{

@@ -26,7 +26,7 @@ export default {
       const res = yield call(friendsTouXiang, data);
       yield put({ type: 'friendsTou', payload: res.data });
     },
-    *messageDefault({}, { call, put }) {
+    *messageDefault({ data }, { call, put }) {
       const res = yield call(initMessageDefault);
       yield put({ type: 'messageDefaultData', payload: res.data });
     },

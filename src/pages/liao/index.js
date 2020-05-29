@@ -89,7 +89,7 @@ class index extends Component {
     const arr1 = []; //没有添加的好友
     const arr2 = []; //已经添加好友的列表
     friendsList.forEach(v => {
-      if (v.password != 1) {
+      if (v.password !== 1) {
         arr1.push(v);
       } else {
         arr2.push(v);
@@ -148,7 +148,7 @@ class index extends Component {
                                 key={i}
                                 thumb={<img src={v.avatar} alt="头像" />}
                                 extra={
-                                  v.password == 2 ? (
+                                  v.password === 2 ? (
                                     <button
                                       className={styles.rightBtnLIst}
                                       onClick={() => {

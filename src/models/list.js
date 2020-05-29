@@ -27,7 +27,7 @@ export default {
       yield put({ type: 'defaultHotData', payload: res.data });
     },
     // 获取热门内容
-    *hotData({}, { call, put }) {
+    *hotData({value}, { call, put }) {
       const res = yield call(putHotData);
       // 随机打乱
       res.data.sort(randomNumber);
@@ -50,7 +50,7 @@ export default {
       yield put({ type: 'getRefChange' });
       message.success('为你更新数据完成');
     },
-    *hotDesotryData({}, { call, put }) {
+    *hotDesotryData({value}, { call, put }) {
       yield put({ type: 'destoryHotData' });
     },
   }, //异步操作

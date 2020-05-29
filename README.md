@@ -17,10 +17,11 @@
 
 * 美团后台管理 Nuxt + koa + Mongoose <a href="https://github.com/2662419405/meituanBack">开发完毕</a> :rainbow:
 
-* 微信小程序 Tora <a href="https://github.com/2662419405/meituanWx">正在开发</a>
+* 微信小程序 Tora <a href="https://github.com/2662419405/meituanWx">开发完毕:fire:</a>
+
+* Taro多端支持 <a href="https://github.com/2662419405/meituan-taro">正在开发</a>
 
 * 美团APP ReactNative + koa + Mongoose <a href="https://github.com/2662419405/meituanApp">开发一部分</a>
-
 
 ## 快速使用(推荐)
 
@@ -97,6 +98,7 @@ server {
 
 ## 计划
 
+- [ ] 第三方登录 github & QQ :fire:
 - [ ] SSR服务端渲染 -> 原谅我太菜,看得我一脸懵逼
 - [ ] 使用TS编写代码 
 - [ ] 丰富的表情包

@@ -82,7 +82,7 @@ class index extends Component {
       return false;
     }
     // 追加点赞
-    if (add == 'add') {
+    if (add === 'add') {
       this.props.zengjiaDianZan({ id, item: this.props.match.params.id });
     } else {
       // 追加评论
@@ -298,7 +298,7 @@ class index extends Component {
                       </div>
                     );
                   })}
-                  {allComments.length == 5 && (
+                  {allComments.length === 5 && (
                     <div className={styles.bottomPingLun}>
                       <div className={styles.bottomCheckAll}>
                         <span className={styles.bottomCheckAllBtn}>点击展开更多评论信息</span>
