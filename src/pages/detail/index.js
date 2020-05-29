@@ -72,11 +72,11 @@ class index extends Component {
     let dIndex = this.props.match.params.index;
     // 过滤掉已经显示的
     arr.filter((v, i) => {
-      v.show = i == dIndex ? 'fou' : 'dui';
+      return v.show = i === dIndex ? 'fou' : 'dui';
     });
     let detailArr = {};
     arr.forEach((v, i) => {
-      if (this.props.match.params.index == i) {
+      if (parseInt(dIndex) === i) {
         detailArr = v;
       }
     });
@@ -144,20 +144,20 @@ class index extends Component {
               <ul className={styles.advantage}>
                 <li>
                   <span
-                    style={{ color: detailArr.guo == 'false' ? '#666' : null }}
+                    style={{ color: detailArr.guo === 'false' ? '#666' : null }}
                     className="iconfont icon-tuikuan"
                   ></span>
-                  <p style={{ color: detailArr.sui == 'false' ? '#666' : null }}>
-                    {detailArr.sui == 'false' ? '不支持随时退款' : '支持随时退款'}
+                  <p style={{ color: detailArr.sui === 'false' ? '#666' : null }}>
+                    {detailArr.sui === 'false' ? '不支持随时退款' : '支持随时退款'}
                   </p>
                 </li>
                 <li>
                   <span
-                    style={{ color: detailArr.guo == 'false' ? '#666' : null }}
+                    style={{ color: detailArr.guo === 'false' ? '#666' : null }}
                     className="iconfont icon-tuikuan"
                   ></span>
-                  <p style={{ color: detailArr.guo == 'false' ? '#666' : null }}>
-                    {detailArr.guo == 'false' ? '不支持过期自动退' : '支持过期自动退'}
+                  <p style={{ color: detailArr.guo === 'false' ? '#666' : null }}>
+                    {detailArr.guo === 'false' ? '不支持过期自动退' : '支持过期自动退'}
                   </p>
                 </li>
                 <li className={styles.gaiLi}>

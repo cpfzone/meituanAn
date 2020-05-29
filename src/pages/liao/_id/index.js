@@ -148,7 +148,7 @@ class index extends Component {
   }
 
   render() {
-    const { xian, value, messageList, bgColor, bg, show } = this.state;
+    const { value, messageList, bgColor, bg, show } = this.state;
     const myPropsData = this.props.messageList;
     const newData = myPropsData.concat(messageList);
     const { userinfo, tou } = this.props;

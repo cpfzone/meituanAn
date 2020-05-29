@@ -94,9 +94,9 @@ class index extends Component {
     if (hotList.length > 0) {
       let xin = hotList;
       // 过滤
-      if (!(tags == '' || tags == '全部')) {
+      if (!(tags === '' || tags === '全部')) {
         xin = hotList.filter(v => {
-          return v.select == tags;
+          return v.select === tags;
         });
       }
       this.yuImgLoad(xin, show);

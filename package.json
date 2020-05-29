@@ -6,7 +6,8 @@
     "test": "umi test",
     "lint": "eslint {src,mock,tests}/**/*.{js,jsx} --fix",
     "precommit": "lint-staged",
-    "server": "nodemon ./server/index.js"
+    "server": "nodemon ./server/index.js",
+    "format": "eslint src/**/*.{jsx,js} --fix"
   },
   "dependencies": {
     "antd": "^3.19.5",

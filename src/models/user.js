@@ -6,7 +6,6 @@ import {
   passwordLogin,
   gaiMing,
   resetLoginPassword,
-  uploadfile,
 } from '../service/user';
 import { message } from 'antd';
 import router from 'umi/router';
@@ -28,7 +27,7 @@ export default {
     },
     // 上传头像
     *fileImg({ file }, { call, put }) {
-      const res = yield call(uploadfile, file);
+      // const res = yield call(uploadfile, file);
     },
     // 修改密码
     *resetPassword({ values }, { call, put }) {
