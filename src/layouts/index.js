@@ -38,8 +38,9 @@ class Layout extends Component {
   }
 
   componentDidMount() {
-    const cityName = window.returnCitySN ? window.returnCitySN['cname'] : '定位失败';
-    alert('', '你的城市为' + cityName + '是否要切换', [
+    // const cityName = window.returnCitySN ? window.returnCitySN['cname'] : '定位失败';
+    const cityName = '定位失败';
+    alert('', '你当前的城市:' + cityName, [
       { text: '否' },
       { text: '是', onPress: () => this.props.changeCity(cityName) },
     ]);
